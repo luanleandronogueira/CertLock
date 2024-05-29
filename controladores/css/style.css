@@ -1,0 +1,19 @@
+.topo1 {
+    padding: 18px;
+    height: 60px;  /* Ajuste a altura conforme necessário */
+    width: 100%;    /* Largura total do container pai */
+    background-color: rgb(235, 240, 241);  /* Apenas para visualização */
+    /* text-align: center;  Centralizar o conteúdo */
+    border-bottom: 1px solid;
+    border-color: gray;
+    
+    
+
+}
+
+.color {
+
+    background-color: rgb(235, 240, 241);  /* Apenas para visualização */
+    box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2); /* Sombra inferior */
+    
+}
