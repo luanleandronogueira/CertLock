@@ -4,12 +4,39 @@ include 'controladores/controller.php';
 
 ?>
 
+<script>
+        // Verifique se a página foi recarregada (atualizada)
+        if (performance.navigation.type === 1) {
+            // Redirecione para a URL desejada
+            window.location.href = 'cadastraEntidade.php';
+        }
+</script>
+
 
 <div class="container mt-3">
     <div class="row">
 
         <!-- Card -->
         <div class="col-md-12 col-sm-12 col-12 col-xl-12">
+
+        <?php if (isset($_GET['status']) AND isset($_GET['status']) == 'sucesso') { ?>
+
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                 Entidade <strong> <?= $_GET['nomeEntidade'] ?></strong> cadastrada com sucesso!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+        <?php } ?>
+
+        <?php if (isset($_GET['condicao']) AND isset($_GET['condicao']) == 'falhou') { ?>
+
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Entidade <strong> <?= $_GET['nomeEntidade'] ?></strong> já foi cadastrada anteriormente!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <?php } ?>
+
             <div class="card">
                 <div class="card-header">
                     Cadastrar nova entidade
@@ -26,7 +53,7 @@ include 'controladores/controller.php';
                         <h6 class="card-title text-center">Dados da Entidade</h6>
 
                         <div id="PJ" class="form-section" >
-                            <form action="" method="post">
+                            <form action="provedores/CadastraEntidade.php" method="post">
                                     <div class="row">
 
                                         <div class="col-md-6 col-sm-12 col-lg-3 col-xl-3">
@@ -82,7 +109,7 @@ include 'controladores/controller.php';
                                         </div>
 
                                         <div class="col-md-12 col-sm-12 col-lg-4 col-xl-4 mt-3">
-                                            <button class="btn btn-primary"  id="btn_submit_pj" type="submit">Cadastrar</button>
+                                            <button class="btn btn-primary" name="btn_submit_pj"  id="btn_submit_pj" type="submit">Cadastrar</button>
                                         </div>
 
                                         <div>
@@ -95,12 +122,12 @@ include 'controladores/controller.php';
                             
 
                         <div id="PF" class="form-section mt-4">
-                            <form action="" method="post">
+                            <form action="provedores/CadastraEntidade.php" method="post">
                                 <div class="row">
 
                                     <div class="col-md-6 col-sm-12 col-lg-2 col-xl-2">
                                         <label for="">CPF:</label>
-                                        <input class="form-control"  type="number" name="cpf" id="cpf_entidade_pf">
+                                        <input class="form-control"  type="number" name="cpf_entidade_pf" id="cpf_entidade_pf">
                                     </div>
 
                                     <div class="col-md-12 col-sm-12 col-lg-10 col-xl-10">
