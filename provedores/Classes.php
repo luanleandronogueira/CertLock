@@ -51,6 +51,71 @@ class Entidades {
 
     }
 
+    public function chamaEntidade(){
+
+        $query = "SELECT * FROM tb_entidades";
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+
+        $stmt->execute();
+
+        $r = [];
+
+        return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    public function chamaEntidadeAtivas(){
+
+        $query = "SELECT id_entidade, nome_empresa_entidade, cnpj_entidade FROM tb_entidades WHERE status_entidade = 'A'";
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+
+        $stmt->execute();
+
+        $r = [];
+
+        return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    public function atualizarEntidade($cnpj_entidade, $nome_empresa_entidade, $contato_entidade, $logradouro_entidade, $numero_entidade, $bairro_entidade, $cidade_entidade, $uf_entidade, $cep_entidade, $email_entidade, $status_entidade) {
+
+        $query = "UPDATE tb_entidades SET 
+                    nome_empresa_entidade = :nome_empresa_entidade,
+                    contato_entidade = :contato_entidade,
+                    logradouro_entidade = :logradouro_entidade,
+                    numero_entidade = :numero_entidade,
+                    bairro_entidade = :bairro_entidade,
+                    cidade_entidade = :cidade_entidade,
+                    uf_entidade = :uf_entidade,
+                    cep_entidade = :cep_entidade,
+                    email_entidade = :email_entidade,
+                    status_entidade = :status_entidade
+                  WHERE cnpj_entidade = :cnpj_entidade";
+    
+        $conn = $this->conexao->Conectar();
+    
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':cnpj_entidade', $cnpj_entidade);
+        $stmt->bindValue(':nome_empresa_entidade', $nome_empresa_entidade);
+        $stmt->bindValue(':contato_entidade', $contato_entidade);
+        $stmt->bindValue(':logradouro_entidade', $logradouro_entidade);
+        $stmt->bindValue(':numero_entidade', $numero_entidade);
+        $stmt->bindValue(':bairro_entidade', $bairro_entidade);
+        $stmt->bindValue(':cidade_entidade', $cidade_entidade);
+        $stmt->bindValue(':uf_entidade', $uf_entidade);
+        $stmt->bindValue(':cep_entidade', $cep_entidade);
+        $stmt->bindValue(':email_entidade', $email_entidade);
+        $stmt->bindValue(':status_entidade', $status_entidade);
+    
+        $stmt->execute();
+    }
+    
+    
+
     public function verificaEntidade($cnpj_entidade) {
 
         $query = 'SELECT COUNT(*) AS total FROM tb_entidades WHERE cnpj_entidade = :cnpj_entidade';
@@ -87,14 +152,13 @@ class Entidades_pf {
 
     }
 
-    public function inserirEntidadePf($cpf_entidade_pf, $nome_entidade_pf, $email_entidade_pf, $contato_entidade_pf, $status_entidade_pf){
+    public function inserirEntidadePf($nome_entidade_pf, $email_entidade_pf, $contato_entidade_pf, $status_entidade_pf){
 
-        $query = "INSERT INTO tb_entidades_pf (cpf_entidade_pf, nome_entidade_pf, email_entidade_pf, contato_entidade_pf, status_entidade_pf) VALUES (:cpf_entidade_pf, :nome_entidade_pf, :email_entidade_pf, :contato_entidade_pf, :status_entidade_pf)";
+        $query = "INSERT INTO tb_entidades_pf (nome_entidade_pf, email_entidade_pf, contato_entidade_pf, status_entidade_pf) VALUES (:cpf_entidade_pf, :nome_entidade_pf, :email_entidade_pf, :contato_entidade_pf, :status_entidade_pf)";
 
         $conn = $this->conexao->Conectar();
 
         $stmt = $conn->prepare($query);
-        $stmt->bindValue(':cpf_entidade_pf', $cpf_entidade_pf);
         $stmt->bindValue(':nome_entidade_pf', $nome_entidade_pf);
         $stmt->bindValue(':email_entidade_pf', $email_entidade_pf);
         $stmt->bindValue(':contato_entidade_pf', $contato_entidade_pf);
@@ -103,6 +167,44 @@ class Entidades_pf {
         $stmt->execute();
 
     }
+
+    public function chamaEntidadePf(){
+
+        $query = "SELECT * FROM tb_entidades_pf";
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+
+        $stmt->execute();
+
+        $r = [];
+
+        return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    public function atualizarEntidadePf($cpf_entidade_pf, $nome_entidade_pf, $email_entidade_pf, $contato_entidade_pf, $status_entidade_pf) {
+
+        $query = "UPDATE tb_entidades_pf SET 
+                    nome_entidade_pf = :nome_entidade_pf,
+                    email_entidade_pf = :email_entidade_pf,
+                    contato_entidade_pf = :contato_entidade_pf,
+                    status_entidade_pf = :status_entidade_pf
+                  WHERE cpf_entidade_pf = :cpf_entidade_pf";
+    
+        $conn = $this->conexao->Conectar();
+    
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':cpf_entidade_pf', $cpf_entidade_pf);
+        $stmt->bindValue(':nome_entidade_pf', $nome_entidade_pf);
+        $stmt->bindValue(':email_entidade_pf', $email_entidade_pf);
+        $stmt->bindValue(':contato_entidade_pf', $contato_entidade_pf);
+        $stmt->bindValue(':status_entidade_pf', $status_entidade_pf);
+    
+        $stmt->execute();
+    }
+    
+    
 
     public function verificaEntidadePF($cpf_entidade_pf) {
 
@@ -119,8 +221,9 @@ class Entidades_pf {
 
         return $r = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
     }
+
+    
 
 
 }

@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
     <link rel="stylesheet" href="controladores/css/style.css">
     <script src="controladores/js/script.js"></script>
     <style>
@@ -95,8 +97,9 @@
                         Administrador
                     </a>
                     <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="analisaEntidade.php">Analisa Entidades</a></li>
                         <li><a class="dropdown-item" href="cadastraEntidade.php">Cadastrar uma Entidade</a></li>
-                        <li><a class="dropdown-item" href="#">Inativar uma Entidade</a></li>
+                        <li><a class="dropdown-item" href="cadastraUsuario.php">Cadastrar uma Usuário</a></li>
                         <li><a class="dropdown-item" href="#">Histórico de Pagamento</a></li>
                     </ul>
                 </li>
