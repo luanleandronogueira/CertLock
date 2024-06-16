@@ -183,6 +183,21 @@ class Entidades_pf {
 
     }
 
+    public function chamaEntidadePfAtiva(){
+
+        $query = "SELECT * FROM tb_entidades_pf WHERE status_entidade_pf = 'A'";
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+
+        $stmt->execute();
+
+        $r = [];
+
+        return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
     public function atualizarEntidadePf($cpf_entidade_pf, $nome_entidade_pf, $email_entidade_pf, $contato_entidade_pf, $status_entidade_pf) {
 
         $query = "UPDATE tb_entidades_pf SET 
@@ -223,7 +238,116 @@ class Entidades_pf {
 
     }
 
+}
+
+abstract class UsuarioAdm {
+
+    protected $conexao;
+    protected $id_usuario_adm_pj;
+    protected $cpf_usuario_adm_pj;
+    protected $email_usuario_adm_pj;
+    protected $nome_usuario_adm_pj;
+    protected $senha_usuario_adm_pj;
+    protected $status_usuario_adm_pj;
+    protected $id_entidade_usuario_adm_pj;
     
+    //dados para usuario pessoa física
+
+    protected $id_usuario_adm_pf;
+    protected $cpf_usuario_adm_pf;
+    protected $email_usuario_adm_pf;
+    protected $nome_usuario_adm_pf;
+    protected $senha_usuario_adm_pf;
+    protected $status_usuario_adm_pf;
+    protected $id_entidade_usuario_adm_pf;
+
+    public function __construct() {
+
+        $this->conexao = new Conexao();
+
+    }
+
+    abstract function inserirUsuario($dados);
+    abstract function verificaUsuario($dados);
+
+}
+
+
+class UsuarioAdmPj extends UsuarioAdm {
+
+
+    public function inserirUsuario($dados) {
+        // Lógica para inserir usuário PJ
+        $query = "INSERT INTO tb_usuario_adm_pj (cpf_usuario_adm_pj, email_usuario_adm_pj, nome_usuario_adm_pj, senha_usuario_adm_pj, status_usuario_adm_pj, id_entidade_usuario_adm_pj) VALUES (:cpf_usuario_adm_pj, :email_usuario_adm_pj, :nome_usuario_adm_pj, :senha_usuario_adm_pj, :status_usuario_adm_pj, :id_entidade_usuario_adm_pj)";
+
+        $conexao =  new Conexao;
+
+        $conn = $conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':cpf_usuario_adm_pj', $dados['cpf_usuario_adm_pj']);
+        $stmt->bindValue(':email_usuario_adm_pj', $dados['email_usuario_adm_pj']);
+        $stmt->bindValue(':nome_usuario_adm_pj', $dados['nome_usuario_adm_pj']);
+        $stmt->bindValue(':senha_usuario_adm_pj', $dados['senha_usuario_adm_pj']);
+        $stmt->bindValue(':status_usuario_adm_pj', $dados['status_usuario_adm_pj']);
+        $stmt->bindValue(':id_entidade_usuario_adm_pj', $dados['id_entidade_usuario_adm_pj']);
+        
+        $stmt->execute();
+    }
+
+    public function verificaUsuario($dados) {
+        // Lógica para verificar usuário PJ
+        $query = "SELECT COUNT(*) AS total FROM tb_usuario_adm_pj WHERE cpf_usuario_adm_pj = :cpf_usuario_adm_pj";
+
+        $conexao =  new Conexao;
+
+        $conn = $conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':cpf_usuario_adm_pj', $dados);
+        
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+}
+
+class UsuarioAdmPf extends UsuarioAdm {
+
+    public function inserirUsuario($dados)
+    {
+        $query = "INSERT INTO tb_usuario_adm_pf (cpf_usuario_adm_pf, email_usuario_adm_pf, nome_usuario_adm_pf, senha_usuario_adm_pf, status_usuario_adm_pf, id_entidade_usuario_adm_pf) VALUES (:cpf_usuario_adm_pf, :email_usuario_adm_pf, :nome_usuario_adm_pf, :senha_usuario_adm_pf, :status_usuario_adm_pf, :id_entidade_usuario_adm_pf)";
+
+        $conexao =  new Conexao;
+
+        $conn = $conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':cpf_usuario_adm_pf', $dados['cpf_usuario_adm_pf']);
+        $stmt->bindValue(':email_usuario_adm_pf', $dados['email_usuario_adm_pf']);
+        $stmt->bindValue(':nome_usuario_adm_pf', $dados['nome_usuario_adm_pf']);
+        $stmt->bindValue(':senha_usuario_adm_pf', $dados['senha_usuario_adm_pf']);
+        $stmt->bindValue(':status_usuario_adm_pf', $dados['status_usuario_adm_pf']);
+        $stmt->bindValue(':id_entidade_usuario_adm_pf', $dados['id_entidade_usuario_adm_pf']);
+        
+        $stmt->execute();
+    }
+
+    public function verificaUsuario($dados)
+    {
+         // Lógica para verificar usuário PJ
+         $query = "SELECT COUNT(*) AS total FROM tb_usuario_adm_pf WHERE cpf_usuario_adm_pf = :cpf_usuario_adm_pf";
+
+         $conexao =  new Conexao;
+ 
+         $conn = $conexao->Conectar();
+ 
+         $stmt = $conn->prepare($query);
+         $stmt->bindValue(':cpf_usuario_adm_pf', $dados);
+         
+         $stmt->execute();
+         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
 
 
 }

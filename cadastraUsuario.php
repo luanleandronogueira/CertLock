@@ -4,8 +4,11 @@ include 'controladores/controller.php';
 include 'provedores/Classes.php';
 
 $Entidades = new Entidades;
+$Entidadepf = new Entidades_pf;
 
 $Entidade = $Entidades->chamaEntidadeAtivas();
+$EntidadePf = $Entidadepf->chamaEntidadePfAtiva();
+
 
 //print_r($Entidade);
 
@@ -65,7 +68,7 @@ $Entidade = $Entidades->chamaEntidadeAtivas();
 
                                         <div class="col-md-6 col-sm-12 col-lg-12 col-xl-12">
                                             <label for="">Nome da Empresa:</label>
-                                            <select class="form-control" required type="text" name="nome_empresa_entidade" id="nome_empresa_entidade">
+                                            <select class="form-control" required type="text" name="id_entidade_usuario_adm_pj" id="nome_empresa_entidade">
                                             
                                                 <?php foreach($Entidade as $E) { ?>
                                                     <option value="<?=$E['id_entidade'] ?>"><?=$E['nome_empresa_entidade'] ?> - <?=$E['cnpj_entidade'] ?></option>
@@ -77,25 +80,21 @@ $Entidade = $Entidades->chamaEntidadeAtivas();
 
                                         <div class="col-md-6 col-sm-12 col-lg-3 col-xl-3">
                                             <label for="">CPF:</label>
-                                            <input class="form-control" required type="text"  name="" id="">
+                                            <input class="form-control" required type="text"  name="cpf_usuario_adm_pj" id="cpf_usuario_adm_pj">
                                         </div>
 
                                         <div class="col-md-6 col-sm-12 col-lg-9 col-xl-9">
                                             <label for="">E-mail:</label>
-                                            <input class="form-control" required type="text" name="" id="">
+                                            <input class="form-control" required type="text" name="email_usuario_adm_pj" id="email_usuario_adm_pj">
                                         </div>
 
                                         <div class="col-md-6 col-sm-12 col-lg-12 col-xl-12">
                                             <label for="">Nome Completo:</label>
-                                            <input class="form-control" required type="text" name="" id="">
+                                            <input class="form-control" required type="text" name="nome_usuario_adm_pj" id="nome_usuario_adm_pj">
                                         </div>
 
                                         <div class="col-md-12 col-sm-12 col-lg-4 col-xl-4 mt-3">
                                             <button class="btn btn-primary" name="btn_submit_pj"  id="btn_submit_pj" type="submit">Cadastrar</button>
-                                        </div>
-
-                                        <div>
-
                                         </div>
 
                                     </div>
@@ -104,32 +103,38 @@ $Entidade = $Entidades->chamaEntidadeAtivas();
                             
 
                         <div id="PF" class="form-section mt-4">
-                            <form action="provedores/CadastraEntidade.php" method="post">
+                            <form action="provedores/CadastraUsuario.php" method="post">
                                 <div class="row">
+                                <div class="col-md-6 col-sm-12 col-lg-12 col-xl-12">
+                                            <label for="">Selecione o Usuário:</label>
+                                            <select class="form-control" required type="text" name="id_entidade_usuario_adm_pf">
+                                            
+                                                <?php foreach($EntidadePf as $Epf) { ?>
+                                                    <option value="<?=$Epf['id_entidade_pf'] ?>"><?=$Epf['nome_entidade_pf'] ?> - <?=$Epf['cpf_entidade_pf'] ?></option>
+                                                <?php } ?>
 
-                                    <div class="col-md-6 col-sm-12 col-lg-2 col-xl-2">
-                                        <label for="">CPF:</label>
-                                        <input class="form-control" required type="number" name="cpf_entidade_pf" id="cpf_entidade_pf">
-                                    </div>
+                                            </select>
+                                            
+                                        </div>
 
-                                    <div class="col-md-12 col-sm-12 col-lg-10 col-xl-10">
-                                        <label for="">Nome Completo:</label>
-                                        <input class="form-control" required type="text" name="nome_entidade_pf" id="nome_entidade_pf">
-                                    </div>
+                                        <div class="col-md-6 col-sm-12 col-lg-3 col-xl-3">
+                                            <label for="">CPF:</label>
+                                            <input class="form-control" required type="text"  name="cpf_usuario_adm_pf" id="cpf_usuario_adm_pf">
+                                        </div>
 
-                                    <div class="col-md-12 col-sm-12 col-lg-6 col-xl-6">
-                                        <label for="">Email:</label>
-                                        <input class="form-control" required type="text" name="email_entidade_pf" id="email_entidade_pf">
-                                    </div>
+                                        <div class="col-md-6 col-sm-12 col-lg-9 col-xl-9">
+                                            <label for="">E-mail:</label>
+                                            <input class="form-control" required type="text" name="email_usuario_adm_pf" id="email_usuario_adm_pf">
+                                        </div>
 
-                                    <div class="col-md-12 col-sm-12 col-lg-6 col-xl-6">
-                                        <label for="">Contato:</label>
-                                        <input class="form-control" required  type="number" name="contato_entidade_pf" id="contato_entidade_pf">
-                                    </div>
+                                        <div class="col-md-6 col-sm-12 col-lg-12 col-xl-12">
+                                            <label for="">Nome Completo:</label>
+                                            <input class="form-control" required type="text" name="nome_usuario_adm_pf" id="nome_usuario_adm_pf">
+                                        </div>
 
-                                    <div class="col-md-12 col-sm-12 col-lg-4 col-xl-4 mt-3">
-                                        <button class="btn btn-primary" name="btn_submit_pf" id="btn_submit_pf" type="submit">Cadastrar</button>
-                                    </div>
+                                        <div class="col-md-12 col-sm-12 col-lg-4 col-xl-4 mt-3">
+                                            <button class="btn btn-primary" name="btn_submit_pf"  id="btn_submit_pj" type="submit">Cadastrar</button>
+                                        </div>
 
 
                                 </div>
