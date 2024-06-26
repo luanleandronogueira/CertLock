@@ -66,6 +66,21 @@ class Entidades {
 
     }
 
+    public function chamaEntidadeId($id)
+    {
+        $query = 'SELECT cnpj_entidade, nome_empresa_entidade FROM tb_entidades WHERE id_entidade = :id';
+
+        $conexao =  new Conexao;
+
+        $conn = $conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':id', $id);
+        
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function chamaEntidadeAtivas(){
 
         $query = "SELECT id_entidade, nome_empresa_entidade, cnpj_entidade FROM tb_entidades WHERE status_entidade = 'A'";
@@ -269,6 +284,8 @@ abstract class UsuarioAdm {
 
     abstract function inserirUsuario($dados);
     abstract function verificaUsuario($dados);
+    abstract function chamaUsuario($log);
+    // abstract function chamaEntidade($id);
 
 }
 
@@ -294,6 +311,22 @@ class UsuarioAdmPj extends UsuarioAdm {
         
         $stmt->execute();
     }
+
+    public function chamaUsuario($email_usuario_adm_pj){
+
+        $query = 'SELECT * FROM tb_usuario_adm_pj WHERE email_usuario_adm_pj = :email_usuario_adm_pj';
+        $conexao =  new Conexao;
+
+        $conn = $conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':email_usuario_adm_pj', $email_usuario_adm_pj);
+        
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+
+    }
+
 
     public function verificaUsuario($dados) {
         // Lógica para verificar usuário PJ
@@ -330,6 +363,26 @@ class UsuarioAdmPf extends UsuarioAdm {
         $stmt->bindValue(':id_entidade_usuario_adm_pf', $dados['id_entidade_usuario_adm_pf']);
         
         $stmt->execute();
+    }
+
+    public function chamaUsuario($email_usuario_adm_pf){
+
+        $query = 'SELECT * FROM tb_usuario_adm_pf WHERE tb_usuario_adm_pf = :email_usuario_adm_pf';
+        $conexao =  new Conexao;
+
+        $conn = $conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':email_usuario_adm_pf', $email_usuario_adm_pf);
+        
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+
+    }
+
+    public function chamaEntidade($id)
+    {
+        
     }
 
     public function verificaUsuario($dados)
