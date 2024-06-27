@@ -68,7 +68,7 @@ class Entidades {
 
     public function chamaEntidadeId($id)
     {
-        $query = 'SELECT cnpj_entidade, nome_empresa_entidade FROM tb_entidades WHERE id_entidade = :id';
+        $query = 'SELECT id_entidade, cnpj_entidade, nome_empresa_entidade FROM tb_entidades WHERE id_entidade = :id';
 
         $conexao =  new Conexao;
 
@@ -399,6 +399,77 @@ class UsuarioAdmPf extends UsuarioAdm {
          
          $stmt->execute();
          return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
+
+}
+
+abstract class Clientes {
+
+    protected $id_cliente_pj;
+    protected $conexao;
+    protected $responsavel_cliente_pj;
+    protected $telefone_cliente_pj;
+    protected $cnpj_cliente_pj;
+    protected $nome_cliente_pj;
+    protected $contato_cliente_pj;
+    protected $logradouro_cliente_pj;
+    protected $numero_cliente_pj;
+    protected $bairro_cliente_pj;
+    protected $cidade_cliente_pj;
+    protected $uf_cliente_pj;
+    protected $cep_cliente_pj;
+    protected $email_cliente_pj;
+    protected $id_usuario_cliente_pj;
+    protected $entidade_cliente_pj;
+
+    public function __construct() {
+
+        $this->conexao = new Conexao();
+
+    }
+
+    abstract function inserirCliente($dados);
+       
+
+}
+
+class ClientesPj extends Clientes {
+
+
+    public function __construct() {
+
+        $this->conexao = new Conexao();
+
+    }
+    
+    public function inserirCliente($dados)
+    {
+        $query = "INSERT INTO tb_clientes_pj (responsavel_cliente_pj, telefone_cliente_pj, cnpj_cliente_pj, nome_cliente_pj, contato_cliente_pj, logradouro_cliente_pj, numero_cliente_pj, bairro_cliente_pj, cidade_cliente_pj, uf_cliente_pj, cep_cliente_pj, email_cliente_pj, id_usuario_cliente_pj, entidade_cliente_pj) VALUES (:responsavel_cliente_pj, :telefone_cliente_pj, :cnpj_cliente_pj, :nome_cliente_pj, :contato_cliente_pj, :logradouro_cliente_pj, :numero_cliente_pj, :bairro_cliente_pj, :cidade_cliente_pj, :uf_cliente_pj, :cep_cliente_pj, :email_cliente_pj, :id_usuario_cliente_pj, :entidade_cliente_pj)";
+
+        extract($dados);
+
+        $conexao =  new Conexao;
+        $conn = $conexao->Conectar();
+ 
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':responsavel_cliente_pj', ucwords($responsavel_cliente_pj));
+        $stmt->bindValue(':telefone_cliente_pj', $telefone_cliente_pj);
+        $stmt->bindValue(':cnpj_cliente_pj', $cnpj_cliente_pj);
+        $stmt->bindValue(':nome_cliente_pj', ucwords($nome_cliente_pj));
+        $stmt->bindValue(':contato_cliente_pj', $contato_cliente_pj);
+        $stmt->bindValue(':logradouro_cliente_pj', ucwords($logradouro_cliente_pj));
+        $stmt->bindValue(':numero_cliente_pj', $numero_cliente_pj);
+        $stmt->bindValue(':bairro_cliente_pj', ucwords($bairro_cliente_pj));
+        $stmt->bindValue(':cidade_cliente_pj', ucwords($cidade_cliente_pj));
+        $stmt->bindValue(':uf_cliente_pj', strtoupper($uf_cliente_pj));
+        $stmt->bindValue(':cep_cliente_pj', $cep_cliente_pj);
+        $stmt->bindValue(':email_cliente_pj', $email_cliente_pj);
+        $stmt->bindValue(':id_usuario_cliente_pj', $id_usuario_cliente_pj);
+        $stmt->bindValue(':entidade_cliente_pj', $entidade_cliente_pj);
+        
+        $stmt->execute();
     }
 
 

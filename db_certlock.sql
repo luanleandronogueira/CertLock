@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25/06/2024 às 02:02
+-- Tempo de geração: 27/06/2024 às 02:34
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -20,6 +20,38 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `db_certlock`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `tb_clientes_pj`
+--
+
+CREATE TABLE `tb_clientes_pj` (
+  `id_cliente_pj` int(11) NOT NULL,
+  `responsavel_cliente_pj` varchar(100) NOT NULL,
+  `telefone_cliente_pj` varchar(12) NOT NULL,
+  `cnpj_cliente_pj` varchar(14) NOT NULL,
+  `nome_cliente_pj` varchar(200) NOT NULL,
+  `contato_cliente_pj` varchar(12) NOT NULL,
+  `logradouro_cliente_pj` varchar(100) NOT NULL,
+  `numero_cliente_pj` varchar(10) NOT NULL,
+  `bairro_cliente_pj` varchar(200) NOT NULL,
+  `cidade_cliente_pj` varchar(100) NOT NULL,
+  `uf_cliente_pj` varchar(2) NOT NULL,
+  `cep_cliente_pj` int(11) NOT NULL,
+  `email_cliente_pj` varchar(200) NOT NULL,
+  `id_usuario_cliente_pj` int(11) NOT NULL,
+  `entidade_cliente_pj` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `tb_clientes_pj`
+--
+
+INSERT INTO `tb_clientes_pj` (`id_cliente_pj`, `responsavel_cliente_pj`, `telefone_cliente_pj`, `cnpj_cliente_pj`, `nome_cliente_pj`, `contato_cliente_pj`, `logradouro_cliente_pj`, `numero_cliente_pj`, `bairro_cliente_pj`, `cidade_cliente_pj`, `uf_cliente_pj`, `cep_cliente_pj`, `email_cliente_pj`, `id_usuario_cliente_pj`, `entidade_cliente_pj`) VALUES
+(1, 'Luan Leandro Nogueira', '87988457530', '12345678912345', 'Nogueira Serviços', '87988457530', 'São Miguel ', '413', 'boa vista', 'garanhuns', 'pe', 55292400, 'luanleandro1934@gmail.com', 1, 5),
+(2, 'Emanuel Barros Gomes', '87988457530', '78945612312345', 'Comercio De Ferramentas Ltda', '87988457530', 'Florencio Rodrigues De Melo', '203', 'Cohab 2', 'Garanhuns', 'PE', 55292400, 'luanleandro1934@gmail.com', 1, 5);
 
 -- --------------------------------------------------------
 
@@ -131,6 +163,12 @@ INSERT INTO `tb_usuario_adm_pj` (`id_usuario_adm_pj`, `cpf_usuario_adm_pj`, `ema
 --
 
 --
+-- Índices de tabela `tb_clientes_pj`
+--
+ALTER TABLE `tb_clientes_pj`
+  ADD PRIMARY KEY (`id_cliente_pj`);
+
+--
 -- Índices de tabela `tb_entidades`
 --
 ALTER TABLE `tb_entidades`
@@ -159,6 +197,12 @@ ALTER TABLE `tb_usuario_adm_pj`
 --
 -- AUTO_INCREMENT para tabelas despejadas
 --
+
+--
+-- AUTO_INCREMENT de tabela `tb_clientes_pj`
+--
+ALTER TABLE `tb_clientes_pj`
+  MODIFY `id_cliente_pj` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `tb_entidades`

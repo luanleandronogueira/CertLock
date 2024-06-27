@@ -10,7 +10,7 @@ include_once 'controladoresEntidade/controller.php';
 
 $entidade = new Entidades;
 
-$Entidade = $entidade->chamaEntidadeId($_SESSION['id_entidade_usuario_adm_pj'])
+$Entidade = $entidade->chamaEntidadeId($_SESSION['id_entidade_usuario_adm_pj']);
 
 ?>
 
