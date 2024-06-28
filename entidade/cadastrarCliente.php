@@ -28,7 +28,16 @@ $Entidade = $entidade->chamaEntidadeId($_SESSION['id_entidade_usuario_adm_pj'])
             <?php if (isset($_GET['status']) AND isset($_GET['status']) == 'sucesso') { ?>
 
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-               Cliente <strong>cadastrado com sucesso!</strong> 
+               Cliente <strong>cadastrado com sucesso!</strong> <a href="">REGISTRAR NOVA UMA VENDA</a> 
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <?php } ?>
+
+            <?php if (isset($_GET['disponibilidade']) AND isset($_GET['disponibilidade']) == 'Existente') { ?>
+
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            Cliente <strong>já Cadastrado Anteriormente!</strong> <a href="">REGISTRAR NOVA UMA VENDA</a> 
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
 
@@ -112,23 +121,23 @@ $Entidade = $entidade->chamaEntidadeId($_SESSION['id_entidade_usuario_adm_pj'])
                             </div>
         
                             <div id="PF" class="form-section mt-4">
-                                <form action="provedores/CadastraEntidade.php" method="post">
+                                <form action="provedoresEntidade/CadastrarCliente.php" method="post">
                                     <div class="row">
                                         <div class="col-md-6 col-sm-12 col-lg-2 col-xl-2">
                                             <label for="">CPF:</label>
-                                            <input class="form-control" required type="number" name="cpf_entidade_pf" id="cpf_entidade_pf">
+                                            <input class="form-control" required type="number" name="cpf_cliente_pf" id="cpf_entidade_pf">
                                         </div>
                                         <div class="col-md-12 col-sm-12 col-lg-10 col-xl-10">
                                             <label for="">Nome Completo:</label>
-                                            <input class="form-control" required type="text" name="nome_entidade_pf" id="nome_entidade_pf">
+                                            <input class="form-control" required type="text" name="nome_cliente_pf" id="nome_entidade_pf">
                                         </div>
                                         <div class="col-md-12 col-sm-12 col-lg-6 col-xl-6">
                                             <label for="">Email:</label>
-                                            <input class="form-control" required type="text" name="email_entidade_pf" id="email_entidade_pf">
+                                            <input class="form-control" required type="text" name="email_cliente_pf" id="email_entidade_pf">
                                         </div>
                                         <div class="col-md-12 col-sm-12 col-lg-6 col-xl-6">
                                             <label for="">Contato:</label>
-                                            <input class="form-control" required  type="number" name="contato_entidade_pf" id="contato_entidade_pf">
+                                            <input class="form-control" required  type="number" name="contato_cliente_pf" id="contato_entidade_pf">
                                         </div>
                                         <div class="col-md-12 col-sm-12 col-lg-4 col-xl-4 mt-3">
                                             <button class="btn btn-primary" name="btn_submit_pf" id="btn_submit_pf" type="submit">Cadastrar</button>
@@ -142,3 +151,9 @@ $Entidade = $entidade->chamaEntidadeId($_SESSION['id_entidade_usuario_adm_pj'])
         </div>
         </div>
     </main>
+
+<?php 
+
+require_once 'controladoresEntidade/footer.php';
+
+?>

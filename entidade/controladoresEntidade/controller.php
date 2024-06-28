@@ -57,7 +57,7 @@
   </div>
   <nav class="navbar navbar-expand-lg color">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img width="40" height="30" src="https://www.imagensempng.com.br/wp-content/uploads/2021/08/02-51.png" alt=""></a>
+        <a class="navbar-brand" href="dashboard.php"><img width="40" height="30" src="https://www.imagensempng.com.br/wp-content/uploads/2021/08/02-51.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -68,9 +68,7 @@
                         Cadastrar Cliente
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><a class="dropdown-item" href="cadastrarCliente.php">Cadastrar Cliente</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -78,9 +76,8 @@
                         Registrar Vendas
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><a class="dropdown-item" href="#">Registrar Venda de Certificado</a></li>
+                        <li><a class="dropdown-item" href="#">Registrar Outras Vendas</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -99,6 +96,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href=".php">Cadastrar um Usuário</a></li>
+                        <li><a class="dropdown-item" href="cadastrarItens.php">Cadastrar Itens de Venda</a></li>
                     </ul>
                 </li>
             </ul>

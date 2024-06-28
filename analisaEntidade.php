@@ -38,6 +38,8 @@ $Entidade_pf = $Entidades_pf->chamaEntidadePf();
         </div>
 
         <?php } ?>
+
+        
             <div class="card">
                 <div class="card-header">
                     <em>Empresas com CNPJ</em>

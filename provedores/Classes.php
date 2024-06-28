@@ -167,13 +167,14 @@ class Entidades_pf {
 
     }
 
-    public function inserirEntidadePf($nome_entidade_pf, $email_entidade_pf, $contato_entidade_pf, $status_entidade_pf){
+    public function inserirEntidadePf($cpf_entidade_pf, $nome_entidade_pf, $email_entidade_pf, $contato_entidade_pf, $status_entidade_pf){
 
-        $query = "INSERT INTO tb_entidades_pf (nome_entidade_pf, email_entidade_pf, contato_entidade_pf, status_entidade_pf) VALUES (:cpf_entidade_pf, :nome_entidade_pf, :email_entidade_pf, :contato_entidade_pf, :status_entidade_pf)";
+        $query = "INSERT INTO tb_entidades_pf (cpf_entidade_pf, nome_entidade_pf, email_entidade_pf, contato_entidade_pf, status_entidade_pf) VALUES (:cpf_entidade_pf, :nome_entidade_pf, :email_entidade_pf, :contato_entidade_pf, :status_entidade_pf)";
 
         $conn = $this->conexao->Conectar();
 
         $stmt = $conn->prepare($query);
+        $stmt->bindValue(':cpf_entidade_pf', $cpf_entidade_pf);
         $stmt->bindValue(':nome_entidade_pf', $nome_entidade_pf);
         $stmt->bindValue(':email_entidade_pf', $email_entidade_pf);
         $stmt->bindValue(':contato_entidade_pf', $contato_entidade_pf);
@@ -424,6 +425,17 @@ abstract class Clientes {
     protected $id_usuario_cliente_pj;
     protected $entidade_cliente_pj;
 
+    // atributos clientes pf
+
+    protected $id_cliente_pf;
+    protected $cpf_cliente_pf;
+    protected $nome_cliente_pf;
+    protected $email_cliente_pf;
+    protected $contato_cliente_pf;
+    protected $id_usuario_cliente_pf;
+    protected $entidade_cliente_pf;
+
+
     public function __construct() {
 
         $this->conexao = new Conexao();
@@ -431,6 +443,7 @@ abstract class Clientes {
     }
 
     abstract function inserirCliente($dados);
+    abstract function consultaCliente($identificador);
        
 
 }
@@ -448,30 +461,82 @@ class ClientesPj extends Clientes {
     {
         $query = "INSERT INTO tb_clientes_pj (responsavel_cliente_pj, telefone_cliente_pj, cnpj_cliente_pj, nome_cliente_pj, contato_cliente_pj, logradouro_cliente_pj, numero_cliente_pj, bairro_cliente_pj, cidade_cliente_pj, uf_cliente_pj, cep_cliente_pj, email_cliente_pj, id_usuario_cliente_pj, entidade_cliente_pj) VALUES (:responsavel_cliente_pj, :telefone_cliente_pj, :cnpj_cliente_pj, :nome_cliente_pj, :contato_cliente_pj, :logradouro_cliente_pj, :numero_cliente_pj, :bairro_cliente_pj, :cidade_cliente_pj, :uf_cliente_pj, :cep_cliente_pj, :email_cliente_pj, :id_usuario_cliente_pj, :entidade_cliente_pj)";
 
-        extract($dados);
 
         $conexao =  new Conexao;
         $conn = $conexao->Conectar();
  
         $stmt = $conn->prepare($query);
-        $stmt->bindValue(':responsavel_cliente_pj', ucwords($responsavel_cliente_pj));
-        $stmt->bindValue(':telefone_cliente_pj', $telefone_cliente_pj);
-        $stmt->bindValue(':cnpj_cliente_pj', $cnpj_cliente_pj);
-        $stmt->bindValue(':nome_cliente_pj', ucwords($nome_cliente_pj));
-        $stmt->bindValue(':contato_cliente_pj', $contato_cliente_pj);
-        $stmt->bindValue(':logradouro_cliente_pj', ucwords($logradouro_cliente_pj));
-        $stmt->bindValue(':numero_cliente_pj', $numero_cliente_pj);
-        $stmt->bindValue(':bairro_cliente_pj', ucwords($bairro_cliente_pj));
-        $stmt->bindValue(':cidade_cliente_pj', ucwords($cidade_cliente_pj));
-        $stmt->bindValue(':uf_cliente_pj', strtoupper($uf_cliente_pj));
-        $stmt->bindValue(':cep_cliente_pj', $cep_cliente_pj);
-        $stmt->bindValue(':email_cliente_pj', $email_cliente_pj);
-        $stmt->bindValue(':id_usuario_cliente_pj', $id_usuario_cliente_pj);
-        $stmt->bindValue(':entidade_cliente_pj', $entidade_cliente_pj);
+        $stmt->bindValue(':responsavel_cliente_pj', ucwords($dados['responsavel_cliente_pj']));
+        $stmt->bindValue(':telefone_cliente_pj', $dados['telefone_cliente_pj']);
+        $stmt->bindValue(':cnpj_cliente_pj', $dados['cnpj_cliente_pj']);
+        $stmt->bindValue(':nome_cliente_pj', ucwords($dados['nome_cliente_pj']));
+        $stmt->bindValue(':contato_cliente_pj', $dados['contato_cliente_pj']);
+        $stmt->bindValue(':logradouro_cliente_pj', ucwords($dados['logradouro_cliente_pj']));
+        $stmt->bindValue(':numero_cliente_pj', $dados['numero_cliente_pj']);
+        $stmt->bindValue(':bairro_cliente_pj', ucwords($dados['bairro_cliente_pj']));
+        $stmt->bindValue(':cidade_cliente_pj', ucwords($dados['cidade_cliente_pj']));
+        $stmt->bindValue(':uf_cliente_pj', strtoupper($dados['uf_cliente_pj']));
+        $stmt->bindValue(':cep_cliente_pj', $dados['cep_cliente_pj']);
+        $stmt->bindValue(':email_cliente_pj', $dados['email_cliente_pj']);
+        $stmt->bindValue(':id_usuario_cliente_pj', $dados['id_usuario_cliente_pj']);
+        $stmt->bindValue(':entidade_cliente_pj', $dados['entidade_cliente_pj']);
         
         $stmt->execute();
     }
 
+    public function consultaCliente($cnpj_cliente_pj)
+    {
+        // Lógica para verificar usuário PJ
+        $query = "SELECT COUNT(*) AS total FROM tb_clientes_pj WHERE cnpj_cliente_pj = :cnpj_cliente_pj";
 
+        $conexao =  new Conexao;
 
+        $conn = $conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':cnpj_cliente_pj', $cnpj_cliente_pj);
+        
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
+
+class ClientesPf extends Clientes {
+
+
+    public function inserirCliente($dados){
+
+        $query = "INSERT INTO tb_clientes_pf (cpf_cliente_pf, nome_cliente_pf, email_cliente_pf, contato_cliente_pf, id_usuario_cliente_pf, entidade_cliente_pf) VALUES (:cpf_cliente_pf, :nome_cliente_pf, :email_cliente_pf, :contato_cliente_pf, :id_usuario_cliente_pf, :entidade_cliente_pf)";
+
+        $conexao =  new Conexao;
+        $conn = $conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':cpf_cliente_pf', $dados['cpf_cliente_pf']);
+        $stmt->bindValue(':nome_cliente_pf', ucwords($dados['nome_cliente_pf']));
+        $stmt->bindValue(':email_cliente_pf', $dados['email_cliente_pf']);
+        $stmt->bindValue(':contato_cliente_pf', $dados['contato_cliente_pf']);
+        $stmt->bindValue(':id_usuario_cliente_pf', $dados['id_usuario_cliente_pf']);
+        $stmt->bindValue(':entidade_cliente_pf', $dados['entidade_cliente_pf']);
+
+        $stmt->execute();
+
+    }
+
+    public function consultaCliente($cpf_cliente_pf)
+    {
+        // Lógica para verificar usuário PJ
+        $query = "SELECT COUNT(*) AS total FROM tb_clientes_pf WHERE cpf_cliente_pf = :cpf_cliente_pf";
+
+        $conexao =  new Conexao;
+
+        $conn = $conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':cpf_cliente_pf', $cpf_cliente_pf);
+        
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+}
+

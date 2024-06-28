@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27/06/2024 às 02:34
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+-- Tempo de geração: 28-Jun-2024 às 22:24
+-- Versão do servidor: 10.4.32-MariaDB
+-- versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tb_clientes_pj`
+-- Estrutura da tabela `tb_clientes_pf`
+--
+
+CREATE TABLE `tb_clientes_pf` (
+  `id_cliente_pf` int(11) NOT NULL,
+  `cpf_cliente_pf` varchar(14) NOT NULL,
+  `nome_cliente_pf` varchar(200) NOT NULL,
+  `email_cliente_pf` varchar(100) NOT NULL,
+  `contato_cliente_pf` varchar(15) NOT NULL,
+  `id_usuario_cliente_pf` int(11) NOT NULL,
+  `entidade_cliente_pf` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `tb_clientes_pf`
+--
+
+INSERT INTO `tb_clientes_pf` (`id_cliente_pf`, `cpf_cliente_pf`, `nome_cliente_pf`, `email_cliente_pf`, `contato_cliente_pf`, `id_usuario_cliente_pf`, `entidade_cliente_pf`) VALUES
+(3, '11769868488', 'Luan Leandro Nogueira', 'luannogueira093@gmail.com', '87988457530', 1, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tb_clientes_pj`
 --
 
 CREATE TABLE `tb_clientes_pj` (
@@ -46,17 +69,16 @@ CREATE TABLE `tb_clientes_pj` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `tb_clientes_pj`
+-- Extraindo dados da tabela `tb_clientes_pj`
 --
 
 INSERT INTO `tb_clientes_pj` (`id_cliente_pj`, `responsavel_cliente_pj`, `telefone_cliente_pj`, `cnpj_cliente_pj`, `nome_cliente_pj`, `contato_cliente_pj`, `logradouro_cliente_pj`, `numero_cliente_pj`, `bairro_cliente_pj`, `cidade_cliente_pj`, `uf_cliente_pj`, `cep_cliente_pj`, `email_cliente_pj`, `id_usuario_cliente_pj`, `entidade_cliente_pj`) VALUES
-(1, 'Luan Leandro Nogueira', '87988457530', '12345678912345', 'Nogueira Serviços', '87988457530', 'São Miguel ', '413', 'boa vista', 'garanhuns', 'pe', 55292400, 'luanleandro1934@gmail.com', 1, 5),
-(2, 'Emanuel Barros Gomes', '87988457530', '78945612312345', 'Comercio De Ferramentas Ltda', '87988457530', 'Florencio Rodrigues De Melo', '203', 'Cohab 2', 'Garanhuns', 'PE', 55292400, 'luanleandro1934@gmail.com', 1, 5);
+(3, 'Luis Roldão Sobrinho', '87988457530', '11478534000144', 'Câmara Municipal De Garanhuns', '(87) 3761-38', 'Joaquim Távora,  ', '305', 'Heliopólis', 'Garanhuns', 'PE', 55290, 'camaragaranhuns@hotmail.com', 1, 5);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tb_entidades`
+-- Estrutura da tabela `tb_entidades`
 --
 
 CREATE TABLE `tb_entidades` (
@@ -75,19 +97,21 @@ CREATE TABLE `tb_entidades` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `tb_entidades`
+-- Extraindo dados da tabela `tb_entidades`
 --
 
 INSERT INTO `tb_entidades` (`id_entidade`, `cnpj_entidade`, `nome_empresa_entidade`, `contato_entidade`, `logradouro_entidade`, `numero_entidade`, `bairro_entidade`, `cidade_entidade`, `uf_entidade`, `cep_entidade`, `email_entidade`, `status_entidade`) VALUES
-(5, 47972763000168, 'Luan Leandro Nogueira', '8798845753', 'Praça Manoel Luis do Nascimento', '31', 'Boa Vista', 'Garanhuns', 'PE', 55292400, 'luannogueira093@gmail.com', 'A'),
+(5, 47972763000168, 'Luan Leandro Nogueira', '8798845753', 'Praça Manoel Luis do Nascimento', '31', 'Aloisio Pinto', 'Garanhuns', 'PE', 55292400, 'luannogueira093@gmail.com', 'A'),
 (6, 12345678912345, 'Aylla De Kássia Alves Ferreira Nogueira', '8798845753', 'Praça Manoel Luis do Nascimento', '31', 'Boa Vista', 'Garanhuns', 'PE', 55292400, 'luannogueira093@gmail.com', 'A'),
 (7, 12345678912341, 'Camarão Ao LTDA', '8198585474', 'São Pedro', '1345', 'Curado', 'Recife', 'PE', 12345678, 'camaraoao@gmail.com', 'A'),
-(8, 32165498700332, 'Junior Tem De Tudo Ltda', '8198585474', 'São Pedro', '1345', 'Boa Vista', 'Garanhuns', 'PE', 55292400, 'luannogueira093@gmail.com', 'A');
+(8, 32165498700332, 'Junior Tem De Tudo Ltda', '8198585474', 'São Pedro', '1345', 'Boa Vista', 'Garanhuns', 'PE', 55292400, 'luannogueira093@gmail.com', 'A'),
+(9, 12345678900987, 'It Solucões Inteligentes Ltda', '8791234567', 'São Miguel', '413', 'Aloisio Pinto', 'Garanhuns', 'ES', 55292400, 'luannogueira093@gmail.com', 'A'),
+(10, 12344321123234, 'Prefeitura De Alagoinha', '123123123', 'Avenida central', '12313', 'Centro', 'Alagoinha', 'PE', 55291221, 'alagoinha@alagoinha.pe.gov.br', 'A');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tb_entidades_pf`
+-- Estrutura da tabela `tb_entidades_pf`
 --
 
 CREATE TABLE `tb_entidades_pf` (
@@ -101,18 +125,35 @@ CREATE TABLE `tb_entidades_pf` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `tb_entidades_pf`
+-- Extraindo dados da tabela `tb_entidades_pf`
 --
 
 INSERT INTO `tb_entidades_pf` (`id_entidade_pf`, `cpf_entidade_pf`, `nome_entidade_pf`, `email_entidade_pf`, `contato_entidade_pf`, `status_entidade_pf`, `id_entidade_usuario_adm_pf`) VALUES
 (1, '11769868488', 'Luan Leandro Nogueira', 'luannogueira093@gmail.com', '8798845753', 'A', 0),
 (2, '08635248422', 'Aylla de Kássia A. F. Nogueira', 'luannogueira093@gmail.com', '8798845753', 'A', 0),
-(3, '10110110110', 'Elisa Alves Ferreira Nogueira', 'elisa@exemplo.com', '8798546766', 'A', 0);
+(3, '10110110110', 'Elisa Alves Ferreira Nogueira', 'elisa@outlook.com', '8798546766', 'A', 0),
+(4, '12345678977', 'Danilo Espulga', 'danilodamianaespuga@gmail.com', '8798762722', 'A', 0),
+(5, '09913465489', 'Lucas Cajueiro De Lima', 'podquinhas@podquinhas.com', '8798765432', 'A', 0),
+(6, '09898798712', 'Janiel Moreira De Carvalho', 'janiel@janiel.com', '8798767121', 'A', 0);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tb_usuario_adm_pf`
+-- Estrutura da tabela `tb_itens_precos`
+--
+
+CREATE TABLE `tb_itens_precos` (
+  `id_item_preco` int(11) NOT NULL,
+  `modelo_item_preco` varchar(100) NOT NULL,
+  `custo_item_preco` float NOT NULL,
+  `preco_venda_item_preco` float NOT NULL,
+  `id_entidade_item_preco` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tb_usuario_adm_pf`
 --
 
 CREATE TABLE `tb_usuario_adm_pf` (
@@ -126,7 +167,7 @@ CREATE TABLE `tb_usuario_adm_pf` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `tb_usuario_adm_pf`
+-- Extraindo dados da tabela `tb_usuario_adm_pf`
 --
 
 INSERT INTO `tb_usuario_adm_pf` (`id_usuario_adm_pf`, `cpf_usuario_adm_pf`, `email_usuario_adm_pf`, `nome_usuario_adm_pf`, `senha_usuario_adm_pf`, `status_usuario_adm_pf`, `id_entidade_usuario_adm_pf`) VALUES
@@ -135,7 +176,7 @@ INSERT INTO `tb_usuario_adm_pf` (`id_usuario_adm_pf`, `cpf_usuario_adm_pf`, `ema
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tb_usuario_adm_pj`
+-- Estrutura da tabela `tb_usuario_adm_pj`
 --
 
 CREATE TABLE `tb_usuario_adm_pj` (
@@ -149,7 +190,7 @@ CREATE TABLE `tb_usuario_adm_pj` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `tb_usuario_adm_pj`
+-- Extraindo dados da tabela `tb_usuario_adm_pj`
 --
 
 INSERT INTO `tb_usuario_adm_pj` (`id_usuario_adm_pj`, `cpf_usuario_adm_pj`, `email_usuario_adm_pj`, `nome_usuario_adm_pj`, `senha_usuario_adm_pj`, `status_usuario_adm_pj`, `id_entidade_usuario_adm_pj`) VALUES
@@ -163,58 +204,83 @@ INSERT INTO `tb_usuario_adm_pj` (`id_usuario_adm_pj`, `cpf_usuario_adm_pj`, `ema
 --
 
 --
--- Índices de tabela `tb_clientes_pj`
+-- Índices para tabela `tb_clientes_pf`
 --
-ALTER TABLE `tb_clientes_pj`
-  ADD PRIMARY KEY (`id_cliente_pj`);
+ALTER TABLE `tb_clientes_pf`
+  ADD PRIMARY KEY (`id_cliente_pf`);
 
 --
--- Índices de tabela `tb_entidades`
+-- Índices para tabela `tb_clientes_pj`
+--
+ALTER TABLE `tb_clientes_pj`
+  ADD PRIMARY KEY (`id_cliente_pj`),
+  ADD KEY `id_cliente_pj` (`id_cliente_pj`);
+
+--
+-- Índices para tabela `tb_entidades`
 --
 ALTER TABLE `tb_entidades`
   ADD PRIMARY KEY (`id_entidade`);
 
 --
--- Índices de tabela `tb_entidades_pf`
+-- Índices para tabela `tb_entidades_pf`
 --
 ALTER TABLE `tb_entidades_pf`
   ADD PRIMARY KEY (`id_entidade_pf`);
 
 --
--- Índices de tabela `tb_usuario_adm_pf`
+-- Índices para tabela `tb_itens_precos`
+--
+ALTER TABLE `tb_itens_precos`
+  ADD PRIMARY KEY (`id_item_preco`);
+
+--
+-- Índices para tabela `tb_usuario_adm_pf`
 --
 ALTER TABLE `tb_usuario_adm_pf`
   ADD PRIMARY KEY (`id_usuario_adm_pf`),
   ADD KEY `fk_id_entidade_usuario_adm_pf` (`id_entidade_usuario_adm_pf`);
 
 --
--- Índices de tabela `tb_usuario_adm_pj`
+-- Índices para tabela `tb_usuario_adm_pj`
 --
 ALTER TABLE `tb_usuario_adm_pj`
   ADD PRIMARY KEY (`id_usuario_adm_pj`),
   ADD KEY `fk_id_entidade_usuario_adm_pj` (`id_entidade_usuario_adm_pj`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- AUTO_INCREMENT de tabelas despejadas
 --
+
+--
+-- AUTO_INCREMENT de tabela `tb_clientes_pf`
+--
+ALTER TABLE `tb_clientes_pf`
+  MODIFY `id_cliente_pf` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `tb_clientes_pj`
 --
 ALTER TABLE `tb_clientes_pj`
-  MODIFY `id_cliente_pj` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_cliente_pj` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `tb_entidades`
 --
 ALTER TABLE `tb_entidades`
-  MODIFY `id_entidade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_entidade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `tb_entidades_pf`
 --
 ALTER TABLE `tb_entidades_pf`
-  MODIFY `id_entidade_pf` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_entidade_pf` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de tabela `tb_itens_precos`
+--
+ALTER TABLE `tb_itens_precos`
+  MODIFY `id_item_preco` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `tb_usuario_adm_pf`
@@ -229,17 +295,17 @@ ALTER TABLE `tb_usuario_adm_pj`
   MODIFY `id_usuario_adm_pj` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Restrições para tabelas despejadas
+-- Restrições para despejos de tabelas
 --
 
 --
--- Restrições para tabelas `tb_usuario_adm_pf`
+-- Limitadores para a tabela `tb_usuario_adm_pf`
 --
 ALTER TABLE `tb_usuario_adm_pf`
   ADD CONSTRAINT `fk_id_entidade_usuario_adm_pf` FOREIGN KEY (`id_entidade_usuario_adm_pf`) REFERENCES `tb_entidades_pf` (`id_entidade_pf`);
 
 --
--- Restrições para tabelas `tb_usuario_adm_pj`
+-- Limitadores para a tabela `tb_usuario_adm_pj`
 --
 ALTER TABLE `tb_usuario_adm_pj`
   ADD CONSTRAINT `fk_id_entidade_usuario_adm_pj` FOREIGN KEY (`id_entidade_usuario_adm_pj`) REFERENCES `tb_entidades` (`id_entidade`);
