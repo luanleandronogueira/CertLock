@@ -97,6 +97,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href=".php">Cadastrar um Usuário</a></li>
                         <li><a class="dropdown-item" href="cadastrarItens.php">Cadastrar Itens de Venda</a></li>
+                        <li><a class="dropdown-item" href="verItens.php">Ver Itens de Venda</a></li>
                     </ul>
                 </li>
             </ul>

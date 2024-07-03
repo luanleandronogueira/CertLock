@@ -16,6 +16,14 @@ $Entidade = $entidade->chamaEntidadeId($_SESSION['id_entidade_usuario_adm_pj']);
 
 <div class="container mt-3">
     <div class="row">
+    <?php if (isset($_GET['status']) AND isset($_GET['status']) == 'sucesso') { ?>
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Item <strong>cadastrado com sucesso!</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <?php } ?>
         <!-- Card -->
         <div class="col-md-12 col-sm-12 col-12 col-xl-12">
             <div class="card">
@@ -35,7 +43,7 @@ $Entidade = $entidade->chamaEntidadeId($_SESSION['id_entidade_usuario_adm_pj']);
                                     <label for="">Preço de Custo:</label>
                                     <div class="input-group">
                                         <div class="input-group-text" id="btnGroupAddon">R$</div>
-                                        <input type="number" name="custo_item_preco" class="form-control" aria-label="Input group example" aria-describedby="btnGroupAddon">
+                                        <input type="text" name="custo_item_preco" class="form-control money" aria-label="Input group example" aria-describedby="btnGroupAddon">
                                     </div>
                                 </div>
 
@@ -43,11 +51,11 @@ $Entidade = $entidade->chamaEntidadeId($_SESSION['id_entidade_usuario_adm_pj']);
                                     <label for="">Preço de Venda:</label>
                                     <div class="input-group">
                                         <div class="input-group-text" id="btnGroupAddon">R$</div>
-                                        <input type="number" name="preco_venda_item_preco" class="form-control" aria-label="Input group example" aria-describedby="btnGroupAddon">
+                                        <input type="text" id="currency-input" name="preco_venda_item_preco" class="form-control money" aria-label="Input group example" aria-describedby="btnGroupAddon">
                                     </div>
                                 </div>
 
-                                <input type="hidden" value="<?=$_SESSION['id_entidade_usuario_adm_pj']?>">
+                                <input type="hidden" name="id_entidade_item_preco" value="<?=$_SESSION['id_entidade_usuario_adm_pj']?>">
 
                                 <div class="col-md-12 col-sm-12 col-lg-4 col-xl-4 mt-3">
                                     <button class="btn btn-primary" type="submit">Cadastrar</button>
@@ -61,10 +69,10 @@ $Entidade = $entidade->chamaEntidadeId($_SESSION['id_entidade_usuario_adm_pj']);
     </div>
 </div>
 
-
-
-
-
-
+<script>
+$(document).ready(function(){
+  $('#currency-input').mask('000.000.000.000.000,00', {reverse: true});
+});
+</script>
 
 <?php require_once 'controladoresEntidade/footer.php'; ?>

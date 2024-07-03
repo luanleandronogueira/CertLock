@@ -134,8 +134,6 @@ function verificarCampoCNPJ(){
         document.getElementById('email_entidade').disabled = false  
     }
 
-
-
 }
 
     

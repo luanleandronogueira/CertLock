@@ -540,3 +540,39 @@ class ClientesPf extends Clientes {
     }
 }
 
+class Itens {
+
+    private $id_item_preco;
+    private $conexao;
+    private $modelo_item_preco;
+    private $custo_item_preco;
+    private $preco_venda_item_preco;
+    private $id_entidade_item_preco;
+
+
+    public function __construct() {
+
+        $this->conexao = new Conexao();
+
+    }
+
+    public function inserirItem($modelo_item_preco, $custo_item_preco, $preco_venda_item_preco, $id_entidade_item_preco){
+
+        $query = "INSERT INTO tb_itens_precos (modelo_item_preco, custo_item_preco, preco_venda_item_preco, id_entidade_item_preco) VALUES (:modelo_item_preco, :custo_item_preco, :preco_venda_item_preco, :id_entidade_item_preco)";
+
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':modelo_item_preco', strtoupper($modelo_item_preco));
+        $stmt->bindValue(':custo_item_preco', $custo_item_preco);
+        $stmt->bindValue(':preco_venda_item_preco', $preco_venda_item_preco);
+        $stmt->bindValue(':id_entidade_item_preco', $id_entidade_item_preco);
+
+        $stmt->execute();
+
+    }
+
+
+
+}
+

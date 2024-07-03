@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28-Jun-2024 às 22:24
+-- Tempo de geração: 03-Jul-2024 às 21:45
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -145,10 +145,19 @@ INSERT INTO `tb_entidades_pf` (`id_entidade_pf`, `cpf_entidade_pf`, `nome_entida
 CREATE TABLE `tb_itens_precos` (
   `id_item_preco` int(11) NOT NULL,
   `modelo_item_preco` varchar(100) NOT NULL,
-  `custo_item_preco` float NOT NULL,
-  `preco_venda_item_preco` float NOT NULL,
+  `custo_item_preco` varchar(220) NOT NULL,
+  `preco_venda_item_preco` varchar(20) NOT NULL,
   `id_entidade_item_preco` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `tb_itens_precos`
+--
+
+INSERT INTO `tb_itens_precos` (`id_item_preco`, `modelo_item_preco`, `custo_item_preco`, `preco_venda_item_preco`, `id_entidade_item_preco`) VALUES
+(5, 'CERTIFICADO DIGITAL A3 PJ', '67,50', '230,45', 5),
+(6, 'CERTIFICADO DIGITAL A3 PJ', '67,50', '230,45', 5),
+(7, 'SMART CARD + LEITORA DIGITAL', '80,00', '300,00', 5);
 
 -- --------------------------------------------------------
 
@@ -280,7 +289,7 @@ ALTER TABLE `tb_entidades_pf`
 -- AUTO_INCREMENT de tabela `tb_itens_precos`
 --
 ALTER TABLE `tb_itens_precos`
-  MODIFY `id_item_preco` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_item_preco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `tb_usuario_adm_pf`

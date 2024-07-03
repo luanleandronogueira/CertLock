@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="controladores/css/style.css">
     <script src="controladores/js/script.js"></script>
+    
     <style>
       /* Adicione um estilo específico para telas menores, como celulares */
       @media (max-width: 767px) {
