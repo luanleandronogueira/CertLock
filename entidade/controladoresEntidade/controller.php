@@ -76,8 +76,7 @@
                         Registrar Vendas
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Registrar Venda de Certificado</a></li>
-                        <li><a class="dropdown-item" href="#">Registrar Outras Vendas</a></li>
+                        <li><a class="dropdown-item" href="registrarVenda.php">Registrar Venda</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">

@@ -67,6 +67,6 @@
           });
         });
     </script>
-    <script src="controladores/js/script.js"></script>
+    <script src="../controladores/js/script.js"></script>
   </body>
 </html>

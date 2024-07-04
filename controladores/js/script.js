@@ -136,7 +136,38 @@ function verificarCampoCNPJ(){
 
 }
 
+function buscaCliente(){
+
+    const identificador = document.getElementById("identificador").value;
+    const msgErro = document.getElementById('msgErro');
     
+
+    if(identificador.length == 11) {
+        
+        msgErro.classList.remove('text-danger')
+        msgErro.textContent = "Cliente Pessoa Física";
+        msgErro.classList.add('text-success')
+
+        console.log("O cliente é PF " + identificador);
+
+    } else if (identificador.length == 14) {
+
+        msgErro.classList.remove('text-danger')
+        msgErro.textContent = "Cliente Pessoa Jurídica";
+        msgErro.classList.add('text-success')
+        console.log("O cliente é PJ " + identificador);
+
+    } else {
+
+        msgErro.textContent = "Digite o CNPJ ou CPF";
+        msgErro.classList.add('text-danger')
+        console.log('Vazio');
+
+    }
+
+
+
+}  
 
 
     
