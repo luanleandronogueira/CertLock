@@ -572,6 +572,39 @@ class Itens {
 
     }
 
+    public function chamaItens($id_entidade){
+
+        $query = "SELECT * FROM tb_itens_precos WHERE id_entidade_item_preco = :id_entidade";
+
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':id_entidade', $id_entidade);
+
+        $stmt->execute();
+
+        $r = [];
+
+        return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function atualizaItem($modelo_item_preco, $custo_item_preco, $preco_venda_item_preco, $id_item_preco) {
+
+        $query = "UPDATE tb_itens_precos SET modelo_item_preco = :modelo_item_preco, custo_item_preco = :custo_item_preco, preco_venda_item_preco = :preco_venda_item_preco WHERE id_item_preco = :id_item_preco";
+
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+
+        $stmt->bindValue(':modelo_item_preco', strtoupper($modelo_item_preco));
+        $stmt->bindValue(':custo_item_preco', $custo_item_preco);
+        $stmt->bindValue(':preco_venda_item_preco', $preco_venda_item_preco);
+        $stmt->bindValue(':id_item_preco', $id_item_preco);
+
+        $stmt->execute();
+
+    }
+
 
 
 }
