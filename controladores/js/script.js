@@ -140,30 +140,44 @@ function buscaCliente(){
 
     const identificador = document.getElementById("identificador").value;
     const msgErro = document.getElementById('msgErro');
-    
+    var pj = document.getElementById('PJ')
 
-    if(identificador.length == 11) {
+    fetch('../entidade/provedoresEntidade/BuscaCliente.php?identificador='+identificador)
+
+        .then(response => {
+            console.log('Response', response)
+            return response.json()
+        })
+        .then(dados => {
+             console.log('Dados', dados);
+        })
+        .catch(error => {
+            console.log(error)
+        })
+
+    // if(identificador.length == 11) {
+
         
-        msgErro.classList.remove('text-danger')
-        msgErro.textContent = "Cliente Pessoa Física";
-        msgErro.classList.add('text-success')
+    //     msgErro.classList.remove('text-danger')
+    //     msgErro.textContent = "Cliente Pessoa Física";
+    //     msgErro.classList.add('text-success')
 
-        console.log("O cliente é PF " + identificador);
+    //     console.log("O cliente é PF " + identificador);
 
-    } else if (identificador.length == 14) {
+    // } else if (identificador.length == 14) {
 
-        msgErro.classList.remove('text-danger')
-        msgErro.textContent = "Cliente Pessoa Jurídica";
-        msgErro.classList.add('text-success')
-        console.log("O cliente é PJ " + identificador);
+    //     msgErro.classList.remove('text-danger')
+    //     msgErro.textContent = "Cliente Pessoa Jurídica";
+    //     msgErro.classList.add('text-success')
+    //     console.log("O cliente é PJ " + identificador);
 
-    } else {
+    // } else {
 
-        msgErro.textContent = "Digite o CNPJ ou CPF";
-        msgErro.classList.add('text-danger')
-        console.log('Vazio');
+    //     msgErro.textContent = "Digite o CNPJ ou CPF";
+    //     msgErro.classList.add('text-danger')
+    //     console.log('Vazio');
 
-    }
+    // }
 
 
 

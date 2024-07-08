@@ -34,6 +34,8 @@ include_once 'controladoresEntidade/controller.php';
 
                     <center>Dados do Cliente</center>
 
+                    <span class="form-section" id="PJ">Dados do CNPJ</span>
+
                 </div>
             </div>
         </div>

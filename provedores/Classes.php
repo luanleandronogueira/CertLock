@@ -444,6 +444,7 @@ abstract class Clientes {
 
     abstract function inserirCliente($dados);
     abstract function consultaCliente($identificador);
+    abstract function BuscaCliente($cnpj_cliente);
        
 
 }
@@ -499,6 +500,22 @@ class ClientesPj extends Clientes {
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function BuscaCliente($cnpj_cliente_pj)
+    {
+        // Lógica para verificar usuário PJ
+        $query = "SELECT * FROM tb_clientes_pj WHERE cnpj_cliente_pj = :cnpj_cliente_pj";
+
+        $conexao =  new Conexao;
+
+        $conn = $conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':cnpj_cliente_pj', $cnpj_cliente_pj);
+        
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 
 class ClientesPf extends Clientes {
@@ -527,6 +544,22 @@ class ClientesPf extends Clientes {
     {
         // Lógica para verificar usuário PJ
         $query = "SELECT COUNT(*) AS total FROM tb_clientes_pf WHERE cpf_cliente_pf = :cpf_cliente_pf";
+
+        $conexao =  new Conexao;
+
+        $conn = $conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':cpf_cliente_pf', $cpf_cliente_pf);
+        
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function BuscaCliente($cpf_cliente_pf)
+    {
+        // Lógica para verificar usuário PJ
+        $query = "SELECT * FROM tb_clientes_pf WHERE cpf_cliente_pf = :cpf_cliente_pf";
 
         $conexao =  new Conexao;
 
