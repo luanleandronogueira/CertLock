@@ -24,7 +24,7 @@ if (!empty($_GET)) {
 
         } else {
 
-            echo json_encode(['error' => 'Cliente PF não encontrado']);
+            echo json_encode(['error' => 'VAZIO']);
 
         }
 
@@ -39,7 +39,7 @@ if (!empty($_GET)) {
 
         } else {
 
-            echo json_encode(['error' => 'Cliente PJ não encontrado']);
+            echo json_encode(['error' => 'VAZIO']);
             
         }
 

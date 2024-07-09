@@ -140,14 +140,34 @@ function buscaCliente(){
 
     const identificador = document.getElementById("identificador").value;
     const msgErro = document.getElementById('msgErro');
+    const msgCliente = document.getElementById('msgCliente');
 
     // dados para cliente pf
     const cpf_cliente_pf = document.getElementById('cpf_cliente_pf');
     const nome_cliente_pf = document.getElementById('nome_cliente_pf');
     const email_cliente_pf = document.getElementById('email_cliente_pf');
     const contato_cliente_pf = document.getElementById('contato_cliente_pf');
-    const entidade_cliente_pf = null;
-    const id_cliente_pf = null;
+    const entidade_cliente_pf = document.getElementById('entidade_cliente_pf');
+    const id_usuario_cliente_pf = document.getElementById('id_usuario_cliente_pf');
+    const id_cliente_pf = document.getElementById('id_cliente_pf');
+
+    // dados para cliente pj
+    const bairro_cliente_pj = document.getElementById('bairro_cliente_pj');
+    const cep_cliente_pj = document.getElementById('cep_cliente_pj');
+    const cidade_cliente_pj = document.getElementById('cidade_cliente_pj');
+    const cnpj_cliente_pj = document.getElementById('cnpj_cliente_pj');
+    const contato_cliente_pj = document.getElementById('contato_cliente_pj');
+    const email_cliente_pj = document.getElementById('email_cliente_pj');
+    const entidade_cliente_pj = document.getElementById('entidade_cliente_pj');
+    const id_cliente_pj = document.getElementById('id_cliente_pj');
+    const id_usuario_cliente_pj = document.getElementById('id_usuario_cliente_pj');
+    const logradouro_cliente_pj = document.getElementById('logradouro_cliente_pj');
+    const nome_cliente_pj = document.getElementById('nome_cliente_pj');
+    const numero_cliente_pj = document.getElementById('numero_cliente_pj');
+    const responsavel_cliente_pj = document.getElementById('responsavel_cliente_pj');
+    const telefone_cliente_pj = document.getElementById('telefone_cliente_pj');
+    const uf_cliente_pj = document.getElementById('uf_cliente_pj');
+
 
     var pj = document.getElementById('PJ');
     var pf = document.getElementById('PF');
@@ -167,6 +187,48 @@ function buscaCliente(){
                 nome_cliente_pf.value = dados.nome_cliente_pf;
                 email_cliente_pf.value = dados.email_cliente_pf;
                 contato_cliente_pf.value = dados.contato_cliente_pf;
+                entidade_cliente_pf.value = dados.entidade_cliente_pf;
+                id_usuario_cliente_pf.value = dados.id_usuario_cliente_pf;
+                id_cliente_pf.value = dados.id_cliente_pf;
+
+                msgCliente.style.display = 'none'
+
+             } else if(dados.identificador == 'PJ') {
+
+                bairro_cliente_pj.value = dados.bairro_cliente_pj
+                cep_cliente_pj.value = dados.cep_cliente_pj
+                cidade_cliente_pj.value = dados.cidade_cliente_pj
+                cnpj_cliente_pj.value = dados.cnpj_cliente_pj
+                contato_cliente_pj.value = dados.email_cliente_pj
+                email_cliente_pj.value = dados.email_cliente_pj
+                entidade_cliente_pj.value = dados.entidade_cliente_pj
+                id_cliente_pj.value = dados.id_cliente_pj
+                id_usuario_cliente_pj.value = dados.id_usuario_cliente_pj
+                logradouro_cliente_pj.value = dados.logradouro_cliente_pj                
+                nome_cliente_pj.value = dados.nome_cliente_pj
+                numero_cliente_pj.value = dados.numero_cliente_pj
+                responsavel_cliente_pj.value = dados.responsavel_cliente_pj
+                telefone_cliente_pj.value = dados.telefone_cliente_pj
+                uf_cliente_pj.value = dados.uf_cliente_pj
+
+                msgCliente.style.display = 'none'
+
+             } else if(dados.error == 'VAZIO') {
+
+                if(identificador.length == 11) {
+
+                    msgCliente.style.display = 'block'
+                    pf.style.display = 'block'
+                } else {
+
+                    msgCliente.style.display = 'block'
+                    pj.style.display = 'block' 
+                    
+                }
+             } else {
+
+                msgErro.textContent = 'Digite o CPF ou CNPJ Corretamente'
+                msgErro.classList.add('text-danger')
 
              }
         })
@@ -190,13 +252,8 @@ function buscaCliente(){
            msgErro.classList.remove('text-danger')
            msgErro.textContent = "Cliente Pessoa Jurídica";
            msgErro.classList.add('text-success')
-        }
+        } 
     
-
-    
-
-
-
 }  
 
 

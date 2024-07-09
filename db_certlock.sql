@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 04-Jul-2024 às 21:40
+-- Tempo de geração: 09-Jul-2024 às 22:06
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -160,7 +160,8 @@ INSERT INTO `tb_itens_precos` (`id_item_preco`, `modelo_item_preco`, `custo_item
 (7, 'SMART CARD + LEITORA DIGITAL', '80,00', '300,00', 5),
 (8, 'TOKKEN SAFE ID', '77,68', '350,00', 5),
 (9, 'CERTIFICADO DIGITAL A1 PF', '65,00', '190,00', 5),
-(10, 'CEBOLA NO PESO', '11,01', '31,01', 5);
+(10, 'CEBOLA NO PESO', '11,01', '31,01', 5),
+(11, 'CERTIFICADO DIGITAL A3 PJJ', '65,00', '190,00', 5);
 
 -- --------------------------------------------------------
 
@@ -210,6 +211,25 @@ INSERT INTO `tb_usuario_adm_pj` (`id_usuario_adm_pj`, `cpf_usuario_adm_pj`, `ema
 (2, '08635248422', 'luannogueira093@gmail.com', 'Aylla Alves', '$2y$10$OZsTP/zZfaKXz50sSkS6m.pZLRGdPGryK7VxA16TexCvfz9vBSuZO', 'A', 5),
 (3, '12345678900', 'Elisa@gmail.com', 'Elisa Alves Ferreira Nogueira', '$2y$10$5de4Y7H8Q6iBRoH6XxX5TOO.kBXRLjvs1rmlFcaMRE67X7h4a9bXu', 'A', 6),
 (4, '74185296311', 'grupoj@gmail.com', 'Jucelino Ferreira Leite Junior', '$2y$10$EK58XnzLgnPsyevM5CgMqO1BmOaz2QocWL7wbXDbGxlV5/utpadm2', 'A', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tb_vendas`
+--
+
+CREATE TABLE `tb_vendas` (
+  `id_venda` int(11) NOT NULL,
+  `id_usuario_venda` int(11) NOT NULL,
+  `id_entidade_venda` int(11) NOT NULL,
+  `id_produto_venda` int(11) NOT NULL,
+  `item_produto_venda` varchar(200) NOT NULL,
+  `preco_custo_venda` float NOT NULL,
+  `preco_venda_venda` float NOT NULL,
+  `preco_vendido_venda` float NOT NULL,
+  `status_custo_venda` varchar(10) NOT NULL,
+  `status_pg_cliente_venda` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Índices para tabelas despejadas
@@ -261,6 +281,12 @@ ALTER TABLE `tb_usuario_adm_pj`
   ADD KEY `fk_id_entidade_usuario_adm_pj` (`id_entidade_usuario_adm_pj`);
 
 --
+-- Índices para tabela `tb_vendas`
+--
+ALTER TABLE `tb_vendas`
+  ADD PRIMARY KEY (`id_venda`);
+
+--
 -- AUTO_INCREMENT de tabelas despejadas
 --
 
@@ -292,7 +318,7 @@ ALTER TABLE `tb_entidades_pf`
 -- AUTO_INCREMENT de tabela `tb_itens_precos`
 --
 ALTER TABLE `tb_itens_precos`
-  MODIFY `id_item_preco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_item_preco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `tb_usuario_adm_pf`
@@ -305,6 +331,12 @@ ALTER TABLE `tb_usuario_adm_pf`
 --
 ALTER TABLE `tb_usuario_adm_pj`
   MODIFY `id_usuario_adm_pj` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de tabela `tb_vendas`
+--
+ALTER TABLE `tb_vendas`
+  MODIFY `id_venda` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restrições para despejos de tabelas
