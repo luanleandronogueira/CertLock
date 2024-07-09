@@ -140,8 +140,18 @@ function buscaCliente(){
 
     const identificador = document.getElementById("identificador").value;
     const msgErro = document.getElementById('msgErro');
-    var pj = document.getElementById('PJ')
 
+    // dados para cliente pf
+    const cpf_cliente_pf = document.getElementById('cpf_cliente_pf');
+    const nome_cliente_pf = document.getElementById('nome_cliente_pf');
+    const email_cliente_pf = document.getElementById('email_cliente_pf');
+    const contato_cliente_pf = document.getElementById('contato_cliente_pf');
+    const entidade_cliente_pf = null;
+    const id_cliente_pf = null;
+
+    var pj = document.getElementById('PJ');
+    var pf = document.getElementById('PF');
+ 
     fetch('../entidade/provedoresEntidade/BuscaCliente.php?identificador='+identificador)
 
         .then(response => {
@@ -150,34 +160,40 @@ function buscaCliente(){
         })
         .then(dados => {
              console.log('Dados', dados);
+
+             if(dados.identificador == 'PF') {
+
+                cpf_cliente_pf.value = dados.cpf_cliente_pf;
+                nome_cliente_pf.value = dados.nome_cliente_pf;
+                email_cliente_pf.value = dados.email_cliente_pf;
+                contato_cliente_pf.value = dados.contato_cliente_pf;
+
+             }
         })
         .catch(error => {
             console.log(error)
         })
 
-    // if(identificador.length == 11) {
+        if(identificador.length == 11){
 
-        
-    //     msgErro.classList.remove('text-danger')
-    //     msgErro.textContent = "Cliente Pessoa Física";
-    //     msgErro.classList.add('text-success')
+            pf.style.display = 'block';
+            pj.style.display = 'none';
+            msgErro.classList.remove('text-danger')
+            msgErro.textContent = "Cliente Pessoa Física";
+            msgErro.classList.add('text-success')
 
-    //     console.log("O cliente é PF " + identificador);
 
-    // } else if (identificador.length == 14) {
+        } else {
 
-    //     msgErro.classList.remove('text-danger')
-    //     msgErro.textContent = "Cliente Pessoa Jurídica";
-    //     msgErro.classList.add('text-success')
-    //     console.log("O cliente é PJ " + identificador);
+           pj.style.display = 'block'; 
+           pf.style.display = 'none';
+           msgErro.classList.remove('text-danger')
+           msgErro.textContent = "Cliente Pessoa Jurídica";
+           msgErro.classList.add('text-success')
+        }
+    
 
-    // } else {
-
-    //     msgErro.textContent = "Digite o CNPJ ou CPF";
-    //     msgErro.classList.add('text-danger')
-    //     console.log('Vazio');
-
-    // }
+    
 
 
 

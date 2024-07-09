@@ -1,10 +1,10 @@
 <?php 
 
-echo '<pre>';
+// echo '<pre>';
 
-    print_r($_POST);
+//     print_r($_POST);
 
-echo '</pre>';
+// echo '</pre>';
 
 
 include 'Classes.php';
@@ -13,7 +13,7 @@ if (!empty($_POST)){
    
     if(isset($_POST['btn_editar_pj'])){
 
-        $Entidades = new Entidades;
+        $Entidades = new Entidades();
 
         extract($_POST);
 

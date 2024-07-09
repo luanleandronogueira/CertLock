@@ -19,6 +19,7 @@ if (!empty($_GET)) {
 
         if ($PF) {
 
+            $PF['identificador'] = 'PF';
             echo json_encode($PF);
 
         } else {
@@ -33,6 +34,7 @@ if (!empty($_GET)) {
 
         if ($PJ) {
 
+            $PJ['identificador'] = 'PJ';
             echo json_encode($PJ);
 
         } else {
