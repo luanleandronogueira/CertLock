@@ -139,6 +139,7 @@ function verificarCampoCNPJ(){
 function buscaCliente(){
 
     const identificador = document.getElementById("identificador").value;
+    // const entidade = document.getElementById('entidade').value;
     const msgErro = document.getElementById('msgErro');
     const msgCliente = document.getElementById('msgCliente');
 

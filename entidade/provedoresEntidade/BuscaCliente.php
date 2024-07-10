@@ -12,7 +12,7 @@ $identificador = [];
 if (!empty($_GET)) {
 
     $identificador = $_GET['identificador'];
-
+   
     if (strlen($identificador) == 11) {
 
         $PF = $Cliente_pf->BuscaCliente($identificador);

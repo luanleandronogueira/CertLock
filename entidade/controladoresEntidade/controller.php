@@ -91,12 +91,31 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Financeiro
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Administrador
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href=".php">Cadastrar um Usuário</a></li>
                         <li><a class="dropdown-item" href="cadastrarItens.php">Cadastrar Itens de Venda</a></li>
                         <li><a class="dropdown-item" href="verItens.php">Ver Itens de Venda</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Configurações
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href=".php">Suporte</a></li>
+                        <li><a class="dropdown-item" href="cadastrarItens.php">Sair</a></li>
                     </ul>
                 </li>
             </ul>

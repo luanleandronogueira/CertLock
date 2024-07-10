@@ -4,14 +4,14 @@ session_start();
 include '../provedores/Classes.php';
 include_once 'controladoresEntidade/controller.php';
 
-echo '<pre>';
-print_r($_POST);
-echo '</pre>';
+// echo '<pre>';
+// print_r($_POST);
+// echo '</pre>';
 
 extract($_POST);
 $item_v = explode('-', $item_venda);
 
-print_r($item_v);
+// print_r($item_v);
 ?>
 
 <?php if (isset($_POST['btn_submit_pf'])) { ?>

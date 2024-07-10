@@ -687,3 +687,41 @@ class Vendas implements InterfaceVendas {
 
 }
 
+class Vendas_Pespectivas implements InterfaceVendasPespectivas {
+
+    private $id_venda_pespectiva;
+    private $conexao;
+    private $id_usuario_venda_pespectiva;
+    private $id_entidade_venda_pespectiva;
+    private $id_produto_venda_pespectiva;
+    private $data_venda_pespectiva;
+    private $item_venda_pespectiva;
+    private $preco_venda_pespectiva;
+    private $data_prevista_venda_pespectiva;
+
+    public function __construct() {
+
+        $this->conexao = new Conexao();
+    }
+
+    public function inserirVendaPespectiva($dados){
+
+        $query = 'INSERT INTO tb_vendas_pespectivas (id_usuario_venda_pespectiva, id_entidade_venda_pespectiva, id_produto_venda_pespectiva, data_venda_pespectiva, item_venda_pespectiva, preco_venda_pespectiva, data_prevista_venda_pespectiva) VALUES (:id_usuario_venda_pespectiva, :id_entidade_venda_pespectiva, :id_produto_venda_pespectiva, :data_venda_pespectiva, :item_venda_pespectiva, :preco_venda_pespectiva, :data_prevista_venda_pespectiva)';
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':id_usuario_venda_pespectiva', $dados['id_usuario_venda_pespectiva']);
+        $stmt->bindValue(':id_entidade_venda_pespectiva', $dados['id_entidade_venda_pespectiva']);
+        $stmt->bindValue(':id_produto_venda_pespectiva', $dados['id_produto_venda_pespectiva']);
+        $stmt->bindValue(':data_venda_pespectiva', $dados['data_venda_pespectiva']);
+        $stmt->bindValue(':item_venda_pespectiva', $dados['item_venda_pespectiva']);
+        $stmt->bindValue(':preco_venda_pespectiva', $dados['preco_venda_pespectiva']);
+        $stmt->bindValue(':data_prevista_venda_pespectiva', $dados['data_prevista_venda_pespectiva']);
+    
+        $stmt->execute();
+
+
+    }
+
+}
+

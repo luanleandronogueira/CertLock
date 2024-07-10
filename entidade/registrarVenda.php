@@ -16,6 +16,14 @@ $Itens = $Item->chamaItens($_SESSION['id_entidade_usuario_adm_pj']);
 
 <div class="container mt-3 mb-5">
     <div class="row">
+        <?php if (isset($_GET['status']) and isset($_GET['status']) == 'sucesso') { ?>
+
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Venda <strong>registrada com sucesso!</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+        <?php } ?>
 
         <div class="col-12">
             <div class="card">
@@ -124,7 +132,7 @@ $Itens = $Item->chamaItens($_SESSION['id_entidade_usuario_adm_pj']);
                                     <select class="form-control" name="item_venda" id="">
                                         <?php foreach ($Itens as $I) { ?>
 
-                                            <option value="<?= $I['id_item_preco'] . ' - ' . $I['preco_venda_item_preco'] . ' - ' . $I['modelo_item_preco'] . ' - ' . $I['custo_item_preco'] . ' - ' . $I['validade_item_preco'] . ' - ' . $I['categoria_validade_item_preco']?>"><?= $I['modelo_item_preco'] ?></option>
+                                            <option value="<?= $I['id_item_preco'] . ' - ' . $I['preco_venda_item_preco'] . ' - ' . $I['modelo_item_preco'] . ' - ' . $I['custo_item_preco'] . ' - ' . $I['validade_item_preco'] . ' - ' . $I['categoria_validade_item_preco'] ?>"><?= $I['modelo_item_preco'] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -174,7 +182,7 @@ $Itens = $Item->chamaItens($_SESSION['id_entidade_usuario_adm_pj']);
                                     <select class="form-control" name="item_venda" id="">
                                         <?php foreach ($Itens as $I) { ?>
 
-                                            <option value="<?= $I['id_item_preco'] . ' - ' . $I['preco_venda_item_preco'] . ' - ' . $I['modelo_item_preco'] . ' - ' . $I['custo_item_preco'] . ' - ' . $I['validade_item_preco'] . ' - ' . $I['categoria_validade_item_preco']?>"><?= $I['modelo_item_preco'] ?></option>
+                                            <option value="<?= $I['id_item_preco'] . ' - ' . $I['preco_venda_item_preco'] . ' - ' . $I['modelo_item_preco'] . ' - ' . $I['custo_item_preco'] . ' - ' . $I['validade_item_preco'] . ' - ' . $I['categoria_validade_item_preco'] ?>"><?= $I['modelo_item_preco'] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>

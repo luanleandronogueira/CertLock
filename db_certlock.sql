@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10-Jul-2024 às 19:34
+-- Tempo de geração: 10-Jul-2024 às 21:42
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -42,7 +42,8 @@ CREATE TABLE `tb_clientes_pf` (
 --
 
 INSERT INTO `tb_clientes_pf` (`id_cliente_pf`, `cpf_cliente_pf`, `nome_cliente_pf`, `email_cliente_pf`, `contato_cliente_pf`, `id_usuario_cliente_pf`, `entidade_cliente_pf`) VALUES
-(3, '11769868488', 'Luan Leandro Nogueira', 'luannogueira093@gmail.com', '87988457530', 1, 5);
+(3, '11769868488', 'Luan Leandro Nogueira', 'luannogueira093@gmail.com', '87988457530', 1, 5),
+(4, '08635248422', 'Aylla De Kássia', 'aylla@aylla.com', '87982212121', 5, 7);
 
 -- --------------------------------------------------------
 
@@ -164,7 +165,9 @@ INSERT INTO `tb_itens_precos` (`id_item_preco`, `modelo_item_preco`, `custo_item
 (17, 'TOKKEN SAFE ID', '67,50', '190,00', 3, 'ANO', 5),
 (18, 'TOKKEN SAFE ID', '67,50', '190,00', 3, 'ANO', 5),
 (19, 'SMART CARD + LEITORA DIGITAL', '140,10', '300,00', 3, 'ANO', 5),
-(20, 'ITEM COM MES DE VALIDADE', '1,00', '30', 2, 'MES', 5);
+(20, 'ITEM COM MES DE VALIDADE', '1,00', '30', 2, 'MES', 5),
+(21, 'CAMARAO FRESCO', '12,00', '100,00', 1, 'ANO', 7),
+(22, 'NETFLIX TRIMESTRAL', '14,00', '100,00', 3, 'MES', 7);
 
 -- --------------------------------------------------------
 
@@ -213,7 +216,8 @@ INSERT INTO `tb_usuario_adm_pj` (`id_usuario_adm_pj`, `cpf_usuario_adm_pj`, `ema
 (1, '11769868488', 'luannogueira093@gmail.com', 'Luan Leandro Nogueira', '$2y$10$ovTPZRrsPFjux1XjeyKSJePB7CBSV6NyCX7ug5z9.oVfKa7Vzl3c.', 'A', 5),
 (2, '08635248422', 'luannogueira093@gmail.com', 'Aylla Alves', '$2y$10$OZsTP/zZfaKXz50sSkS6m.pZLRGdPGryK7VxA16TexCvfz9vBSuZO', 'A', 5),
 (3, '12345678900', 'Elisa@gmail.com', 'Elisa Alves Ferreira Nogueira', '$2y$10$5de4Y7H8Q6iBRoH6XxX5TOO.kBXRLjvs1rmlFcaMRE67X7h4a9bXu', 'A', 6),
-(4, '74185296311', 'grupoj@gmail.com', 'Jucelino Ferreira Leite Junior', '$2y$10$EK58XnzLgnPsyevM5CgMqO1BmOaz2QocWL7wbXDbGxlV5/utpadm2', 'A', 8);
+(4, '74185296311', 'grupoj@gmail.com', 'Jucelino Ferreira Leite Junior', '$2y$10$EK58XnzLgnPsyevM5CgMqO1BmOaz2QocWL7wbXDbGxlV5/utpadm2', 'A', 8),
+(5, '99999999999', 'camarao@camarao.com', 'Loira Teste', '$2y$10$0F0b003pqLNzh9jfhEYaReSztlkls88w86fpc5yTN.dwWD8t8T5AK', 'A', 7);
 
 -- --------------------------------------------------------
 
@@ -243,7 +247,12 @@ CREATE TABLE `tb_vendas` (
 INSERT INTO `tb_vendas` (`id_venda`, `id_usuario_venda`, `id_entidade_venda`, `id_produto_venda`, `data_venda`, `codigo_venda`, `item_produto_venda`, `preco_custo_venda`, `desconto_venda`, `preco_vendido_venda`, `status_custo_venda`, `status_pg_cliente_venda`) VALUES
 (10, 1, 5, 13, '2024-07-10', '1421241', ' CERTIFICADO DIGITAL A1 PJ ', 0, 40, 150, 'ABERTO', 'ABERTO'),
 (11, 1, 5, 18, '2024-07-10', '1421241', ' TOKKEN SAFE ID ', 67, 54.33, 135.67, 'ABERTO', 'ABERTO'),
-(12, 1, 5, 18, '2024-07-10', '1421241', ' TOKKEN SAFE ID ', 67, 1, 189, 'ABERTO', 'ABERTO');
+(12, 1, 5, 18, '2024-07-10', '1421241', ' TOKKEN SAFE ID ', 67, 1, 189, 'ABERTO', 'ABERTO'),
+(13, 1, 5, 15, '2024-12-10', '232', ' CERTIFICADO DIGITAL A1 PF ', 65, 3.22, 176.78, 'ABERTO', 'ABERTO'),
+(14, 5, 7, 21, '2024-07-10', '123123', ' CAMARAO FRESCO ', 12, 12, 88, 'ABERTO', 'ABERTO'),
+(15, 5, 7, 21, '2024-07-10', '123123', ' CAMARAO FRESCO ', 12, 2, 98, 'ABERTO', 'ABERTO'),
+(16, 5, 7, 21, '2024-07-10', '123123', ' CAMARAO FRESCO ', 12, 2, 98, 'ABERTO', 'ABERTO'),
+(17, 1, 5, 22, '2024-07-10', '001', ' NETFLIX TRIMESTRAL ', 14, 2, 98, 'ABERTO', 'ABERTO');
 
 -- --------------------------------------------------------
 
@@ -261,6 +270,15 @@ CREATE TABLE `tb_vendas_pespectivas` (
   `preco_venda_pespectiva` float NOT NULL,
   `data_prevista_venda_pespectiva` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `tb_vendas_pespectivas`
+--
+
+INSERT INTO `tb_vendas_pespectivas` (`id_venda_pespectiva`, `id_usuario_venda_pespectiva`, `id_entidade_venda_pespectiva`, `id_produto_venda_pespectiva`, `data_venda_pespectiva`, `item_venda_pespectiva`, `preco_venda_pespectiva`, `data_prevista_venda_pespectiva`) VALUES
+(1, 5, 7, 21, '2024-07-10', ' CAMARAO FRESCO ', 98, '2025-07-10'),
+(2, 5, 7, 21, '2024-07-10', ' CAMARAO FRESCO ', 98, '2025-07-10'),
+(3, 1, 5, 22, '2024-07-10', ' NETFLIX TRIMESTRAL ', 98, '2024-10-10');
 
 --
 -- Índices para tabelas despejadas
@@ -331,7 +349,7 @@ ALTER TABLE `tb_vendas_pespectivas`
 -- AUTO_INCREMENT de tabela `tb_clientes_pf`
 --
 ALTER TABLE `tb_clientes_pf`
-  MODIFY `id_cliente_pf` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_cliente_pf` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `tb_clientes_pj`
@@ -355,7 +373,7 @@ ALTER TABLE `tb_entidades_pf`
 -- AUTO_INCREMENT de tabela `tb_itens_precos`
 --
 ALTER TABLE `tb_itens_precos`
-  MODIFY `id_item_preco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_item_preco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de tabela `tb_usuario_adm_pf`
@@ -367,19 +385,19 @@ ALTER TABLE `tb_usuario_adm_pf`
 -- AUTO_INCREMENT de tabela `tb_usuario_adm_pj`
 --
 ALTER TABLE `tb_usuario_adm_pj`
-  MODIFY `id_usuario_adm_pj` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_usuario_adm_pj` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `tb_vendas`
 --
 ALTER TABLE `tb_vendas`
-  MODIFY `id_venda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_venda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de tabela `tb_vendas_pespectivas`
 --
 ALTER TABLE `tb_vendas_pespectivas`
-  MODIFY `id_venda_pespectiva` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_venda_pespectiva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restrições para despejos de tabelas

@@ -16,3 +16,9 @@ interface InterfaceVendas {
     public function inserirVenda($dados);
 
 }
+
+interface InterfaceVendasPespectivas {
+
+    public function inserirVendaPespectiva($dados);
+
+}
