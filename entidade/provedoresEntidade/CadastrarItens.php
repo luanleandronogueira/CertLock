@@ -9,7 +9,7 @@ if (!empty($_POST)){
 
     extract($_POST);
 
-    $Item->inserirItem($modelo_item_preco, $custo_item_preco, $preco_venda_item_preco, $id_entidade_item_preco);
+    $Item->inserirItem($modelo_item_preco, $custo_item_preco, $preco_venda_item_preco, $validade_item_preco, $categoria_validade_item_preco, $id_entidade_item_preco);
 
     header("Location: ../cadastrarItens.php?status=sucesso&&cadastrarItens");
 
@@ -18,6 +18,5 @@ if (!empty($_POST)){
 
     header("Location: ../index.php?&&cadastrarItens");
     die();
-
 
 }

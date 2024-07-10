@@ -1,6 +1,7 @@
 <?php 
 
 include 'Conexao.php';
+include 'Interfaces.php';
 $conexao = new Conexao;
 date_default_timezone_set('America/Sao_Paulo');
 
@@ -573,7 +574,7 @@ class ClientesPf extends Clientes {
     }
 }
 
-class Itens {
+class Itens implements InterfaceItens{
 
     private $id_item_preco;
     private $conexao;
@@ -589,9 +590,9 @@ class Itens {
 
     }
 
-    public function inserirItem($modelo_item_preco, $custo_item_preco, $preco_venda_item_preco, $id_entidade_item_preco){
+    public function inserirItem($modelo_item_preco, $custo_item_preco, $preco_venda_item_preco, $validade_item_preco, $categoria_validade_item_preco, $id_entidade_item_preco){
 
-        $query = "INSERT INTO tb_itens_precos (modelo_item_preco, custo_item_preco, preco_venda_item_preco, id_entidade_item_preco) VALUES (:modelo_item_preco, :custo_item_preco, :preco_venda_item_preco, :id_entidade_item_preco)";
+        $query = "INSERT INTO tb_itens_precos (modelo_item_preco, custo_item_preco, preco_venda_item_preco, validade_item_preco, categoria_validade_item_preco, id_entidade_item_preco) VALUES (:modelo_item_preco, :custo_item_preco, :preco_venda_item_preco, :validade_item_preco, :categoria_validade_item_preco, :id_entidade_item_preco)";
 
         $conn = $this->conexao->Conectar();
 
@@ -599,6 +600,8 @@ class Itens {
         $stmt->bindValue(':modelo_item_preco', strtoupper($modelo_item_preco));
         $stmt->bindValue(':custo_item_preco', $custo_item_preco);
         $stmt->bindValue(':preco_venda_item_preco', $preco_venda_item_preco);
+        $stmt->bindValue(':validade_item_preco', $validade_item_preco);
+        $stmt->bindValue(':categoria_validade_item_preco', $categoria_validade_item_preco);
         $stmt->bindValue(':id_entidade_item_preco', $id_entidade_item_preco);
 
         $stmt->execute();

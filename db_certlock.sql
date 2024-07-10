@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 09-Jul-2024 às 22:06
+-- Tempo de geração: 10-Jul-2024 às 15:11
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -147,6 +147,8 @@ CREATE TABLE `tb_itens_precos` (
   `modelo_item_preco` varchar(100) NOT NULL,
   `custo_item_preco` varchar(220) NOT NULL,
   `preco_venda_item_preco` varchar(20) NOT NULL,
+  `validade_item_preco` int(11) NOT NULL,
+  `categoria_validade_item_preco` varchar(15) NOT NULL,
   `id_entidade_item_preco` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -154,14 +156,14 @@ CREATE TABLE `tb_itens_precos` (
 -- Extraindo dados da tabela `tb_itens_precos`
 --
 
-INSERT INTO `tb_itens_precos` (`id_item_preco`, `modelo_item_preco`, `custo_item_preco`, `preco_venda_item_preco`, `id_entidade_item_preco`) VALUES
-(5, 'CEBOLA NO KG', '4,00', '30,00', 5),
-(6, 'CERTIFICADO DIGITAL A3 PJ', '67,50', '230,45', 5),
-(7, 'SMART CARD + LEITORA DIGITAL', '80,00', '300,00', 5),
-(8, 'TOKKEN SAFE ID', '77,68', '350,00', 5),
-(9, 'CERTIFICADO DIGITAL A1 PF', '65,00', '190,00', 5),
-(10, 'CEBOLA NO PESO', '11,01', '31,01', 5),
-(11, 'CERTIFICADO DIGITAL A3 PJJ', '65,00', '190,00', 5);
+INSERT INTO `tb_itens_precos` (`id_item_preco`, `modelo_item_preco`, `custo_item_preco`, `preco_venda_item_preco`, `validade_item_preco`, `categoria_validade_item_preco`, `id_entidade_item_preco`) VALUES
+(13, 'CERTIFICADO DIGITAL A1 PJ', '65,00', '190,00', 1, 'ANO', 5),
+(14, 'CERTIFICADO DIGITAL A3 PJ', '65,00', '300,00', 3, 'ANO', 5),
+(15, 'CERTIFICADO DIGITAL A1 PF', '65,00', '180,00', 1, 'ANO', 5),
+(16, 'PROVEDOR TEMPORáRIO', '12,00', '30,00', 4, 'MES', 5),
+(17, 'TOKKEN SAFE ID', '67,50', '190,00', 3, 'ANO', 5),
+(18, 'TOKKEN SAFE ID', '67,50', '190,00', 3, 'ANO', 5),
+(19, 'SMART CARD + LEITORA DIGITAL', '140,10', '300,00', 3, 'ANO', 5);
 
 -- --------------------------------------------------------
 
@@ -318,7 +320,7 @@ ALTER TABLE `tb_entidades_pf`
 -- AUTO_INCREMENT de tabela `tb_itens_precos`
 --
 ALTER TABLE `tb_itens_precos`
-  MODIFY `id_item_preco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_item_preco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de tabela `tb_usuario_adm_pf`
