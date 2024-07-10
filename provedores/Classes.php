@@ -640,8 +640,50 @@ class Itens implements InterfaceItens{
         $stmt->execute();
 
     }
+}
 
+class Vendas implements InterfaceVendas {
 
+    protected $id_venda;
+    protected $conexao;
+    protected $id_usuario_venda;
+    protected $id_entidade_venda;
+    protected $id_produto_venda;
+    protected $data_venda;
+    protected $codigo_venda;
+    protected $item_produto_venda;
+    protected $preco_custo_venda;
+    protected $desconto_venda;
+    protected $preco_vendido_venda;
+    protected $status_custo_venda;
+    protected $status_pg_cliente_venda;
+
+    public function __construct() {
+
+        $this->conexao = new Conexao();
+    }
+
+    public function inserirVenda($dados){
+
+        $query = "INSERT INTO tb_vendas (id_usuario_venda, id_entidade_venda, id_produto_venda, data_venda, codigo_venda, item_produto_venda, preco_custo_venda, desconto_venda, preco_vendido_venda, status_custo_venda, status_pg_cliente_venda) VALUES (:id_usuario_venda, :id_entidade_venda, :id_produto_venda, :data_venda, :codigo_venda, :item_produto_venda, :preco_custo_venda, :desconto_venda, :preco_vendido_venda, :status_custo_venda, :status_pg_cliente_venda)";
+
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':id_usuario_venda', $dados['id_usuario_venda']);
+        $stmt->bindValue(':id_entidade_venda', $dados['id_entidade_venda']);
+        $stmt->bindValue(':id_produto_venda', $dados['id_produto_venda']);
+        $stmt->bindValue(':data_venda', $dados['data_venda']);
+        $stmt->bindValue(':codigo_venda', $dados['codigo_venda']);
+        $stmt->bindValue(':item_produto_venda', $dados['item_produto_venda']);
+        $stmt->bindValue(':preco_custo_venda', $dados['preco_custo_venda']);
+        $stmt->bindValue(':desconto_venda', floatval(str_replace(',', '.', $dados['desconto_venda'])));
+        $stmt->bindValue(':preco_vendido_venda', $dados['preco_vendido_venda']);
+        $stmt->bindValue(':status_custo_venda', strtoupper($dados['status_custo_venda']));
+        $stmt->bindValue(':status_pg_cliente_venda', strtoupper($dados['status_pg_cliente_venda']));
+        $stmt->execute();
+
+    }
 
 }
 

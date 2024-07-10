@@ -61,12 +61,6 @@ $Entidade = $entidade->chamaEntidadeId($_SESSION['id_entidade_usuario_adm_pj']);
                             </div>
 
                             <div class="col-md-6 col-sm-12 col-lg-2 col-xl-2 mt-2 float-xl-end">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="categoria_validade_item_preco" value="DIA" >
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        <strong>Dias</strong>
-                                    </label>
-                                </div>
 
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="categoria_validade_item_preco" value="MES" >

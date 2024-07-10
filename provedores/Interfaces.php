@@ -10,3 +10,9 @@ interface InterfaceItens {
     
 
 }
+
+interface InterfaceVendas {
+
+    public function inserirVenda($dados);
+
+}
