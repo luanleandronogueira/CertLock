@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10-Jul-2024 às 21:42
+-- Tempo de geração: 11-Jul-2024 às 17:29
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -74,7 +74,8 @@ CREATE TABLE `tb_clientes_pj` (
 --
 
 INSERT INTO `tb_clientes_pj` (`id_cliente_pj`, `responsavel_cliente_pj`, `telefone_cliente_pj`, `cnpj_cliente_pj`, `nome_cliente_pj`, `contato_cliente_pj`, `logradouro_cliente_pj`, `numero_cliente_pj`, `bairro_cliente_pj`, `cidade_cliente_pj`, `uf_cliente_pj`, `cep_cliente_pj`, `email_cliente_pj`, `id_usuario_cliente_pj`, `entidade_cliente_pj`) VALUES
-(3, 'Luis Roldão Sobrinho', '87988457530', '12345678901234', 'Câmara Municipal De Garanhuns', '(87) 3761-38', 'Joaquim Távora,  ', '305', 'Heliopólis', 'Garanhuns', 'PE', 55290, 'camaragaranhuns@hotmail.com', 1, 5);
+(3, 'Luis Roldão Sobrinho', '87988457530', '12345678901234', 'Câmara Municipal De Garanhuns', '(87) 3761-38', 'Joaquim Távora,  ', '305', 'Heliopólis', 'Garanhuns', 'PE', 55290, 'camaragaranhuns@hotmail.com', 1, 5),
+(4, 'André Luiz Gonçalves', '87988762111', '58199449000100', 'E-TICONS EMPRESA DE TECNOLOGIA DA INFORMAÇÃO & CONSULTORIA LTDA', '87988762111', 'São Miguel', '206', 'Brejo', 'Garanhuns', 'PE', 55291, 'ticons@gmail.com.br', 5, 7);
 
 -- --------------------------------------------------------
 
@@ -167,7 +168,10 @@ INSERT INTO `tb_itens_precos` (`id_item_preco`, `modelo_item_preco`, `custo_item
 (19, 'SMART CARD + LEITORA DIGITAL', '140,10', '300,00', 3, 'ANO', 5),
 (20, 'ITEM COM MES DE VALIDADE', '1,00', '30', 2, 'MES', 5),
 (21, 'CAMARAO FRESCO', '12,00', '100,00', 1, 'ANO', 7),
-(22, 'NETFLIX TRIMESTRAL', '14,00', '100,00', 3, 'MES', 7);
+(22, 'NETFLIX TRIMESTRAL', '14,00', '100,00', 3, 'MES', 7),
+(23, '1º TESTE DE VENDA', '65,00', '300,00', 1, 'MES', 7),
+(24, '2º TESTE DE VENDA', '65,00', '300,00', 2, 'MES', 7),
+(25, '3º TESTE DE VENDA', '65,00', '300,00', 3, 'MES', 7);
 
 -- --------------------------------------------------------
 
@@ -252,7 +256,15 @@ INSERT INTO `tb_vendas` (`id_venda`, `id_usuario_venda`, `id_entidade_venda`, `i
 (14, 5, 7, 21, '2024-07-10', '123123', ' CAMARAO FRESCO ', 12, 12, 88, 'ABERTO', 'ABERTO'),
 (15, 5, 7, 21, '2024-07-10', '123123', ' CAMARAO FRESCO ', 12, 2, 98, 'ABERTO', 'ABERTO'),
 (16, 5, 7, 21, '2024-07-10', '123123', ' CAMARAO FRESCO ', 12, 2, 98, 'ABERTO', 'ABERTO'),
-(17, 1, 5, 22, '2024-07-10', '001', ' NETFLIX TRIMESTRAL ', 14, 2, 98, 'ABERTO', 'ABERTO');
+(17, 1, 5, 22, '2024-07-10', '001', ' NETFLIX TRIMESTRAL ', 14, 2, 98, 'ABERTO', 'ABERTO'),
+(18, 1, 5, 22, '2024-07-11', '1321', ' NETFLIX TRIMESTRAL ', 14, 50, 50, 'ABERTO', 'ABERTO'),
+(19, 5, 7, 22, '2024-07-11', '00123#', ' NETFLIX TRIMESTRAL ', 14, 28.33, 71.67, 'ABERTO', 'ABERTO'),
+(20, 1, 5, 21, '2024-07-11', '55292400', ' CAMARAO FRESCO ', 12, 12, 88, 'ABERTO', 'ABERTO'),
+(21, 1, 5, 22, '2024-07-09', '55291-100', ' NETFLIX TRIMESTRAL ', 14, 2, 98, 'ABERTO', 'ABERTO'),
+(22, 1, 5, 22, '2024-07-11', '55292400', ' NETFLIX TRIMESTRAL ', 14, 54.33, 45.67, 'ABERTO', 'ABERTO'),
+(23, 5, 7, 23, '2024-07-11', '55291-100', ' 1º TESTE DE VENDA ', 65, 28.33, 271.67, 'ABERTO', 'ABERTO'),
+(24, 5, 7, 24, '2024-07-11', '1231', ' 2º TESTE DE VENDA ', 65, 54.33, 245.67, 'ABERTO', 'ABERTO'),
+(25, 5, 7, 25, '2024-07-11', '432', ' 3º TESTE DE VENDA ', 65, 123.14, 176.86, 'ABERTO', 'ABERTO');
 
 -- --------------------------------------------------------
 
@@ -265,6 +277,8 @@ CREATE TABLE `tb_vendas_pespectivas` (
   `id_usuario_venda_pespectiva` int(11) NOT NULL,
   `id_entidade_venda_pespectiva` int(11) NOT NULL,
   `id_produto_venda_pespectiva` int(11) NOT NULL,
+  `nome_venda_pespectiva` varchar(220) NOT NULL,
+  `telefone_venda_pespectiva` varchar(20) NOT NULL,
   `data_venda_pespectiva` date NOT NULL,
   `item_venda_pespectiva` varchar(200) NOT NULL,
   `preco_venda_pespectiva` float NOT NULL,
@@ -275,10 +289,10 @@ CREATE TABLE `tb_vendas_pespectivas` (
 -- Extraindo dados da tabela `tb_vendas_pespectivas`
 --
 
-INSERT INTO `tb_vendas_pespectivas` (`id_venda_pespectiva`, `id_usuario_venda_pespectiva`, `id_entidade_venda_pespectiva`, `id_produto_venda_pespectiva`, `data_venda_pespectiva`, `item_venda_pespectiva`, `preco_venda_pespectiva`, `data_prevista_venda_pespectiva`) VALUES
-(1, 5, 7, 21, '2024-07-10', ' CAMARAO FRESCO ', 98, '2025-07-10'),
-(2, 5, 7, 21, '2024-07-10', ' CAMARAO FRESCO ', 98, '2025-07-10'),
-(3, 1, 5, 22, '2024-07-10', ' NETFLIX TRIMESTRAL ', 98, '2024-10-10');
+INSERT INTO `tb_vendas_pespectivas` (`id_venda_pespectiva`, `id_usuario_venda_pespectiva`, `id_entidade_venda_pespectiva`, `id_produto_venda_pespectiva`, `nome_venda_pespectiva`, `telefone_venda_pespectiva`, `data_venda_pespectiva`, `item_venda_pespectiva`, `preco_venda_pespectiva`, `data_prevista_venda_pespectiva`) VALUES
+(9, 5, 7, 23, 'Aylla De Kássia', '87982212121', '2024-07-11', ' 1º TESTE DE VENDA ', 271.67, '2024-08-11'),
+(10, 5, 7, 24, 'Aylla De Kássia', '87982212121', '2024-07-11', ' 2º TESTE DE VENDA ', 245.67, '2024-09-11'),
+(11, 5, 7, 25, 'Aylla De Kássia', '87982212121', '2024-07-11', ' 3º TESTE DE VENDA ', 176.86, '2024-10-11');
 
 --
 -- Índices para tabelas despejadas
@@ -355,7 +369,7 @@ ALTER TABLE `tb_clientes_pf`
 -- AUTO_INCREMENT de tabela `tb_clientes_pj`
 --
 ALTER TABLE `tb_clientes_pj`
-  MODIFY `id_cliente_pj` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_cliente_pj` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `tb_entidades`
@@ -373,7 +387,7 @@ ALTER TABLE `tb_entidades_pf`
 -- AUTO_INCREMENT de tabela `tb_itens_precos`
 --
 ALTER TABLE `tb_itens_precos`
-  MODIFY `id_item_preco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_item_preco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de tabela `tb_usuario_adm_pf`
@@ -391,13 +405,13 @@ ALTER TABLE `tb_usuario_adm_pj`
 -- AUTO_INCREMENT de tabela `tb_vendas`
 --
 ALTER TABLE `tb_vendas`
-  MODIFY `id_venda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_venda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de tabela `tb_vendas_pespectivas`
 --
 ALTER TABLE `tb_vendas_pespectivas`
-  MODIFY `id_venda_pespectiva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_venda_pespectiva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restrições para despejos de tabelas
