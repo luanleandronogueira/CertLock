@@ -8,7 +8,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../controladores/css/style.css">
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
     <script src="../controladores/js/script.js"></script>
+    <script src="../controladores/js/core/locales-all.global.min.js"></script>
+ 
     <style>
       /* Adicione um estilo específico para telas menores, como celulares */
       @media (max-width: 767px) {
@@ -84,7 +87,7 @@
                         Projeção de Vendas
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="vendasPespectivas.php">Vendas em Pespectivas</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>

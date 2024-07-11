@@ -65,7 +65,8 @@
           });
         });
     </script>
-    <script src="../../controladores/js/script.js"></script>
+    <script src="../controladores/js/script.js"></script>
+
     <script>
         $('.money').mask('000.000.000.000.000,00', {reverse: true})
     </script>

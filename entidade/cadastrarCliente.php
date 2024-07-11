@@ -28,7 +28,7 @@ $Entidade = $entidade->chamaEntidadeId($_SESSION['id_entidade_usuario_adm_pj'])
             <?php if (isset($_GET['status']) AND isset($_GET['status']) == 'sucesso') { ?>
 
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-               Cliente <strong>cadastrado com sucesso!</strong> <a href="">REGISTRAR NOVA UMA VENDA</a> 
+               Cliente <strong>cadastrado com sucesso!</strong> <a href="registrarVenda.php">REGISTRAR NOVA UMA VENDA</a> 
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
 

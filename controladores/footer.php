@@ -68,5 +68,6 @@
         });
     </script>
     <script src="controladores/js/script.js"></script>
+    <script src="controladores/js/core/locales-all.global.min.js"></script>
   </body>
 </html>

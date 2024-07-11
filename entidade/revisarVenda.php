@@ -31,6 +31,7 @@ $item_v = explode('-', $item_venda);
                             <strong>Item a ser vendido:</strong> <?= $item_v[2] ?></br>
                             <strong>Preço de Venda: </strong> <?= $item_v[1] ?></br>
                             <strong>Código da Venda:</strong> <?= $_POST['codigo_venda'] ?>
+                            <strong>Contato:</strong> <?=$_POST['contato_cliente_pf'] ?>
                             <hr>
                             Deseja dar Algum Desconto?
                             <div class="col-3 col-xl-3 col-lg-3">
@@ -47,6 +48,8 @@ $item_v = explode('-', $item_venda);
                             <input type="hidden" name="preco_custo_venda" value="<?= $item_v[3] ?>">
                             <input type="hidden" name="tempo_validade" value="<?=$item_v[4]?>">
                             <input type="hidden" name="modalidade_validade" value="<?=$item_v[5]?>">
+                            <input type="hidden" name="cliente_validade" value="<?= $_POST['nome_cliente_pf']?>">
+                            <input type="hidden" name="contato_validade" value="<?= $_POST['contato_cliente_pf']?>">
 
                             <div class="col-md-12 col-sm-12 col-lg-4 col-xl-4 mt-3">
                                 <button class="btn btn-primary" name="btn_submit_pf" id="btn_submit_pf" type="submit">Registrar</button>
@@ -72,7 +75,8 @@ $item_v = explode('-', $item_venda);
                         <form action="provedoresEntidade/RegistrarVenda.php" method="post">
                             <strong>Responsável:</strong> <?= $_POST['responsavel_cliente_pj'] ?></br>
                             <strong>Empresa:</strong> <?= $_POST['nome_cliente_pj'] . '<strong> CNPJ: </strong>' . $_POST['cnpj_cliente_pj'] ?></br>
-                            <strong>Data da Venda:</strong> <?= $_POST['data_venda'] ?>
+                            <strong>Data da Venda:</strong> <?= $_POST['data_venda'] ?></br>
+                            <strong>Contato:</strong> <?=$_POST['telefone_cliente_pj'] ?>
                             <hr>
                             <strong>Item a ser vendido:</strong> <?= $item_v[2] ?></br>
                             <strong>Preço de Venda: </strong> <?= $item_v[1] ?></br>
@@ -93,6 +97,8 @@ $item_v = explode('-', $item_venda);
                             <input type="hidden" name="preco_custo_venda" value="<?= $item_v[3] ?>">
                             <input type="hidden" name="tempo_validade" value="<?= $item_v[4] ?>">
                             <input type="hidden" name="modalidade_validade" value="<?= $item_v[5] ?>">
+                            <input type="hidden" name="cliente_validade" value="<?= $_POST['nome_cliente_pj']?>">
+                            <input type="hidden" name="contato_validade" value="<?= $_POST['telefone_cliente_pj']?>">
 
 
                             <div class="col-md-12 col-sm-12 col-lg-4 col-xl-4 mt-3">

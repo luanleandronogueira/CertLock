@@ -1,11 +1,12 @@
-<?php 
+<?php
 
 include 'Conexao.php';
 include 'Interfaces.php';
 $conexao = new Conexao;
 date_default_timezone_set('America/Sao_Paulo');
 
-class Entidades {
+class Entidades
+{
 
     private $id_entidade;
     private $conexao;
@@ -21,13 +22,14 @@ class Entidades {
     private $email_entidade;
     private $status_entidade;
 
-    public function __construct() {
-        
-        $this->conexao = new Conexao();
+    public function __construct()
+    {
 
+        $this->conexao = new Conexao();
     }
 
-    public function inserirEntidade($cnpj_entidade, $nome_empresa_entidade, $contato_entidade, $logradouro_entidade, $numero_entidade, $bairro_entidade, $cidade_entidade, $uf_entidade, $cep_entidade, $email_entidade, $status_entidade){
+    public function inserirEntidade($cnpj_entidade, $nome_empresa_entidade, $contato_entidade, $logradouro_entidade, $numero_entidade, $bairro_entidade, $cidade_entidade, $uf_entidade, $cep_entidade, $email_entidade, $status_entidade)
+    {
 
         // logica de inserir os dados no db (pausa para assistir o jogo e almoçar)
 
@@ -49,10 +51,10 @@ class Entidades {
         $stmt->bindValue(':status_entidade', $status_entidade);
 
         $stmt->execute();
-
     }
 
-    public function chamaEntidade(){
+    public function chamaEntidade()
+    {
 
         $query = "SELECT * FROM tb_entidades";
         $conn = $this->conexao->Conectar();
@@ -64,7 +66,6 @@ class Entidades {
         $r = [];
 
         return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     }
 
     public function chamaEntidadeId($id)
@@ -77,12 +78,13 @@ class Entidades {
 
         $stmt = $conn->prepare($query);
         $stmt->bindValue(':id', $id);
-        
+
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function chamaEntidadeAtivas(){
+    public function chamaEntidadeAtivas()
+    {
 
         $query = "SELECT id_entidade, nome_empresa_entidade, cnpj_entidade FROM tb_entidades WHERE status_entidade = 'A'";
         $conn = $this->conexao->Conectar();
@@ -94,10 +96,10 @@ class Entidades {
         $r = [];
 
         return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     }
 
-    public function atualizarEntidade($cnpj_entidade, $nome_empresa_entidade, $contato_entidade, $logradouro_entidade, $numero_entidade, $bairro_entidade, $cidade_entidade, $uf_entidade, $cep_entidade, $email_entidade, $status_entidade) {
+    public function atualizarEntidade($cnpj_entidade, $nome_empresa_entidade, $contato_entidade, $logradouro_entidade, $numero_entidade, $bairro_entidade, $cidade_entidade, $uf_entidade, $cep_entidade, $email_entidade, $status_entidade)
+    {
 
         $query = "UPDATE tb_entidades SET 
                     nome_empresa_entidade = :nome_empresa_entidade,
@@ -111,9 +113,9 @@ class Entidades {
                     email_entidade = :email_entidade,
                     status_entidade = :status_entidade
                   WHERE cnpj_entidade = :cnpj_entidade";
-    
+
         $conn = $this->conexao->Conectar();
-    
+
         $stmt = $conn->prepare($query);
         $stmt->bindValue(':cnpj_entidade', $cnpj_entidade);
         $stmt->bindValue(':nome_empresa_entidade', $nome_empresa_entidade);
@@ -126,13 +128,14 @@ class Entidades {
         $stmt->bindValue(':cep_entidade', $cep_entidade);
         $stmt->bindValue(':email_entidade', $email_entidade);
         $stmt->bindValue(':status_entidade', $status_entidade);
-    
+
         $stmt->execute();
     }
-    
-    
 
-    public function verificaEntidade($cnpj_entidade) {
+
+
+    public function verificaEntidade($cnpj_entidade)
+    {
 
         $query = 'SELECT COUNT(*) AS total FROM tb_entidades WHERE cnpj_entidade = :cnpj_entidade';
 
@@ -146,13 +149,11 @@ class Entidades {
         $r = [];
 
         return $r = $stmt->fetch(PDO::FETCH_ASSOC);
-
-
     }
-
 }
 
-class Entidades_pf {
+class Entidades_pf
+{
 
     private $id_entidade_pf;
     private $conexao;
@@ -162,13 +163,14 @@ class Entidades_pf {
     private $contato_entidade_pf;
     private $status_entidade_pf;
 
-    public function __construct() {
-        
-        $this->conexao = new Conexao();
+    public function __construct()
+    {
 
+        $this->conexao = new Conexao();
     }
 
-    public function inserirEntidadePf($cpf_entidade_pf, $nome_entidade_pf, $email_entidade_pf, $contato_entidade_pf, $status_entidade_pf){
+    public function inserirEntidadePf($cpf_entidade_pf, $nome_entidade_pf, $email_entidade_pf, $contato_entidade_pf, $status_entidade_pf)
+    {
 
         $query = "INSERT INTO tb_entidades_pf (cpf_entidade_pf, nome_entidade_pf, email_entidade_pf, contato_entidade_pf, status_entidade_pf) VALUES (:cpf_entidade_pf, :nome_entidade_pf, :email_entidade_pf, :contato_entidade_pf, :status_entidade_pf)";
 
@@ -182,10 +184,10 @@ class Entidades_pf {
         $stmt->bindValue(':status_entidade_pf', $status_entidade_pf);
 
         $stmt->execute();
-
     }
 
-    public function chamaEntidadePf(){
+    public function chamaEntidadePf()
+    {
 
         $query = "SELECT * FROM tb_entidades_pf";
         $conn = $this->conexao->Conectar();
@@ -197,10 +199,10 @@ class Entidades_pf {
         $r = [];
 
         return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     }
 
-    public function chamaEntidadePfAtiva(){
+    public function chamaEntidadePfAtiva()
+    {
 
         $query = "SELECT * FROM tb_entidades_pf WHERE status_entidade_pf = 'A'";
         $conn = $this->conexao->Conectar();
@@ -212,10 +214,10 @@ class Entidades_pf {
         $r = [];
 
         return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     }
 
-    public function atualizarEntidadePf($cpf_entidade_pf, $nome_entidade_pf, $email_entidade_pf, $contato_entidade_pf, $status_entidade_pf) {
+    public function atualizarEntidadePf($cpf_entidade_pf, $nome_entidade_pf, $email_entidade_pf, $contato_entidade_pf, $status_entidade_pf)
+    {
 
         $query = "UPDATE tb_entidades_pf SET 
                     nome_entidade_pf = :nome_entidade_pf,
@@ -223,22 +225,23 @@ class Entidades_pf {
                     contato_entidade_pf = :contato_entidade_pf,
                     status_entidade_pf = :status_entidade_pf
                   WHERE cpf_entidade_pf = :cpf_entidade_pf";
-    
+
         $conn = $this->conexao->Conectar();
-    
+
         $stmt = $conn->prepare($query);
         $stmt->bindValue(':cpf_entidade_pf', $cpf_entidade_pf);
         $stmt->bindValue(':nome_entidade_pf', $nome_entidade_pf);
         $stmt->bindValue(':email_entidade_pf', $email_entidade_pf);
         $stmt->bindValue(':contato_entidade_pf', $contato_entidade_pf);
         $stmt->bindValue(':status_entidade_pf', $status_entidade_pf);
-    
+
         $stmt->execute();
     }
-    
-    
 
-    public function verificaEntidadePF($cpf_entidade_pf) {
+
+
+    public function verificaEntidadePF($cpf_entidade_pf)
+    {
 
         $query = 'SELECT COUNT(*) AS total FROM tb_entidades_pf WHERE cpf_entidade_pf = :cpf_entidade_pf';
 
@@ -252,12 +255,11 @@ class Entidades_pf {
         $r = [];
 
         return $r = $stmt->fetch(PDO::FETCH_ASSOC);
-
     }
-
 }
 
-abstract class UsuarioAdm {
+abstract class UsuarioAdm
+{
 
     protected $conexao;
     protected $id_usuario_adm_pj;
@@ -267,7 +269,7 @@ abstract class UsuarioAdm {
     protected $senha_usuario_adm_pj;
     protected $status_usuario_adm_pj;
     protected $id_entidade_usuario_adm_pj;
-    
+
     //dados para usuario pessoa física
 
     protected $id_usuario_adm_pf;
@@ -278,10 +280,10 @@ abstract class UsuarioAdm {
     protected $status_usuario_adm_pf;
     protected $id_entidade_usuario_adm_pf;
 
-    public function __construct() {
+    public function __construct()
+    {
 
         $this->conexao = new Conexao();
-
     }
 
     abstract function inserirUsuario($dados);
@@ -292,10 +294,12 @@ abstract class UsuarioAdm {
 }
 
 
-class UsuarioAdmPj extends UsuarioAdm {
+class UsuarioAdmPj extends UsuarioAdm
+{
 
 
-    public function inserirUsuario($dados) {
+    public function inserirUsuario($dados)
+    {
         // Lógica para inserir usuário PJ
         $query = "INSERT INTO tb_usuario_adm_pj (cpf_usuario_adm_pj, email_usuario_adm_pj, nome_usuario_adm_pj, senha_usuario_adm_pj, status_usuario_adm_pj, id_entidade_usuario_adm_pj) VALUES (:cpf_usuario_adm_pj, :email_usuario_adm_pj, :nome_usuario_adm_pj, :senha_usuario_adm_pj, :status_usuario_adm_pj, :id_entidade_usuario_adm_pj)";
 
@@ -310,11 +314,12 @@ class UsuarioAdmPj extends UsuarioAdm {
         $stmt->bindValue(':senha_usuario_adm_pj', $dados['senha_usuario_adm_pj']);
         $stmt->bindValue(':status_usuario_adm_pj', $dados['status_usuario_adm_pj']);
         $stmt->bindValue(':id_entidade_usuario_adm_pj', $dados['id_entidade_usuario_adm_pj']);
-        
+
         $stmt->execute();
     }
 
-    public function chamaUsuario($email_usuario_adm_pj){
+    public function chamaUsuario($email_usuario_adm_pj)
+    {
 
         $query = 'SELECT * FROM tb_usuario_adm_pj WHERE email_usuario_adm_pj = :email_usuario_adm_pj';
         $conexao =  new Conexao;
@@ -323,14 +328,14 @@ class UsuarioAdmPj extends UsuarioAdm {
 
         $stmt = $conn->prepare($query);
         $stmt->bindValue(':email_usuario_adm_pj', $email_usuario_adm_pj);
-        
+
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
-
     }
 
 
-    public function verificaUsuario($dados) {
+    public function verificaUsuario($dados)
+    {
         // Lógica para verificar usuário PJ
         $query = "SELECT COUNT(*) AS total FROM tb_usuario_adm_pj WHERE cpf_usuario_adm_pj = :cpf_usuario_adm_pj";
 
@@ -340,13 +345,14 @@ class UsuarioAdmPj extends UsuarioAdm {
 
         $stmt = $conn->prepare($query);
         $stmt->bindValue(':cpf_usuario_adm_pj', $dados);
-        
+
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
 
-class UsuarioAdmPf extends UsuarioAdm {
+class UsuarioAdmPf extends UsuarioAdm
+{
 
     public function inserirUsuario($dados)
     {
@@ -363,11 +369,12 @@ class UsuarioAdmPf extends UsuarioAdm {
         $stmt->bindValue(':senha_usuario_adm_pf', $dados['senha_usuario_adm_pf']);
         $stmt->bindValue(':status_usuario_adm_pf', $dados['status_usuario_adm_pf']);
         $stmt->bindValue(':id_entidade_usuario_adm_pf', $dados['id_entidade_usuario_adm_pf']);
-        
+
         $stmt->execute();
     }
 
-    public function chamaUsuario($email_usuario_adm_pf){
+    public function chamaUsuario($email_usuario_adm_pf)
+    {
 
         $query = 'SELECT * FROM tb_usuario_adm_pf WHERE tb_usuario_adm_pf = :email_usuario_adm_pf';
         $conexao =  new Conexao;
@@ -376,38 +383,34 @@ class UsuarioAdmPf extends UsuarioAdm {
 
         $stmt = $conn->prepare($query);
         $stmt->bindValue(':email_usuario_adm_pf', $email_usuario_adm_pf);
-        
+
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
-
     }
 
     public function chamaEntidade($id)
     {
-        
     }
 
     public function verificaUsuario($dados)
     {
-         // Lógica para verificar usuário PJ
-         $query = "SELECT COUNT(*) AS total FROM tb_usuario_adm_pf WHERE cpf_usuario_adm_pf = :cpf_usuario_adm_pf";
+        // Lógica para verificar usuário PJ
+        $query = "SELECT COUNT(*) AS total FROM tb_usuario_adm_pf WHERE cpf_usuario_adm_pf = :cpf_usuario_adm_pf";
 
-         $conexao =  new Conexao;
- 
-         $conn = $conexao->Conectar();
- 
-         $stmt = $conn->prepare($query);
-         $stmt->bindValue(':cpf_usuario_adm_pf', $dados);
-         
-         $stmt->execute();
-         return $stmt->fetch(PDO::FETCH_ASSOC);
+        $conexao =  new Conexao;
+
+        $conn = $conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':cpf_usuario_adm_pf', $dados);
+
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-
-
-
 }
 
-abstract class Clientes {
+abstract class Clientes
+{
 
     protected $id_cliente_pj;
     protected $conexao;
@@ -437,28 +440,27 @@ abstract class Clientes {
     protected $entidade_cliente_pf;
 
 
-    public function __construct() {
+    public function __construct()
+    {
 
         $this->conexao = new Conexao();
-
     }
 
     abstract function inserirCliente($dados);
     abstract function consultaCliente($identificador);
     abstract function BuscaCliente($cnpj_cliente);
-       
-
 }
 
-class ClientesPj extends Clientes {
+class ClientesPj extends Clientes
+{
 
 
-    public function __construct() {
+    public function __construct()
+    {
 
         $this->conexao = new Conexao();
-
     }
-    
+
     public function inserirCliente($dados)
     {
         $query = "INSERT INTO tb_clientes_pj (responsavel_cliente_pj, telefone_cliente_pj, cnpj_cliente_pj, nome_cliente_pj, contato_cliente_pj, logradouro_cliente_pj, numero_cliente_pj, bairro_cliente_pj, cidade_cliente_pj, uf_cliente_pj, cep_cliente_pj, email_cliente_pj, id_usuario_cliente_pj, entidade_cliente_pj) VALUES (:responsavel_cliente_pj, :telefone_cliente_pj, :cnpj_cliente_pj, :nome_cliente_pj, :contato_cliente_pj, :logradouro_cliente_pj, :numero_cliente_pj, :bairro_cliente_pj, :cidade_cliente_pj, :uf_cliente_pj, :cep_cliente_pj, :email_cliente_pj, :id_usuario_cliente_pj, :entidade_cliente_pj)";
@@ -466,7 +468,7 @@ class ClientesPj extends Clientes {
 
         $conexao =  new Conexao;
         $conn = $conexao->Conectar();
- 
+
         $stmt = $conn->prepare($query);
         $stmt->bindValue(':responsavel_cliente_pj', ucwords($dados['responsavel_cliente_pj']));
         $stmt->bindValue(':telefone_cliente_pj', $dados['telefone_cliente_pj']);
@@ -482,7 +484,7 @@ class ClientesPj extends Clientes {
         $stmt->bindValue(':email_cliente_pj', $dados['email_cliente_pj']);
         $stmt->bindValue(':id_usuario_cliente_pj', $dados['id_usuario_cliente_pj']);
         $stmt->bindValue(':entidade_cliente_pj', $dados['entidade_cliente_pj']);
-        
+
         $stmt->execute();
     }
 
@@ -497,7 +499,7 @@ class ClientesPj extends Clientes {
 
         $stmt = $conn->prepare($query);
         $stmt->bindValue(':cnpj_cliente_pj', $cnpj_cliente_pj);
-        
+
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
@@ -513,16 +515,18 @@ class ClientesPj extends Clientes {
 
         $stmt = $conn->prepare($query);
         $stmt->bindValue(':cnpj_cliente_pj', $cnpj_cliente_pj);
-        
+
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
 
-class ClientesPf extends Clientes {
+class ClientesPf extends Clientes
+{
 
 
-    public function inserirCliente($dados){
+    public function inserirCliente($dados)
+    {
 
         $query = "INSERT INTO tb_clientes_pf (cpf_cliente_pf, nome_cliente_pf, email_cliente_pf, contato_cliente_pf, id_usuario_cliente_pf, entidade_cliente_pf) VALUES (:cpf_cliente_pf, :nome_cliente_pf, :email_cliente_pf, :contato_cliente_pf, :id_usuario_cliente_pf, :entidade_cliente_pf)";
 
@@ -538,7 +542,6 @@ class ClientesPf extends Clientes {
         $stmt->bindValue(':entidade_cliente_pf', $dados['entidade_cliente_pf']);
 
         $stmt->execute();
-
     }
 
     public function consultaCliente($cpf_cliente_pf)
@@ -552,7 +555,7 @@ class ClientesPf extends Clientes {
 
         $stmt = $conn->prepare($query);
         $stmt->bindValue(':cpf_cliente_pf', $cpf_cliente_pf);
-        
+
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
@@ -568,13 +571,14 @@ class ClientesPf extends Clientes {
 
         $stmt = $conn->prepare($query);
         $stmt->bindValue(':cpf_cliente_pf', $cpf_cliente_pf);
-        
+
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
 
-class Itens implements InterfaceItens{
+class Itens implements InterfaceItens
+{
 
     private $id_item_preco;
     private $conexao;
@@ -584,13 +588,14 @@ class Itens implements InterfaceItens{
     private $id_entidade_item_preco;
 
 
-    public function __construct() {
+    public function __construct()
+    {
 
         $this->conexao = new Conexao();
-
     }
 
-    public function inserirItem($modelo_item_preco, $custo_item_preco, $preco_venda_item_preco, $validade_item_preco, $categoria_validade_item_preco, $id_entidade_item_preco){
+    public function inserirItem($modelo_item_preco, $custo_item_preco, $preco_venda_item_preco, $validade_item_preco, $categoria_validade_item_preco, $id_entidade_item_preco)
+    {
 
         $query = "INSERT INTO tb_itens_precos (modelo_item_preco, custo_item_preco, preco_venda_item_preco, validade_item_preco, categoria_validade_item_preco, id_entidade_item_preco) VALUES (:modelo_item_preco, :custo_item_preco, :preco_venda_item_preco, :validade_item_preco, :categoria_validade_item_preco, :id_entidade_item_preco)";
 
@@ -605,10 +610,10 @@ class Itens implements InterfaceItens{
         $stmt->bindValue(':id_entidade_item_preco', $id_entidade_item_preco);
 
         $stmt->execute();
-
     }
 
-    public function chamaItens($id_entidade){
+    public function chamaItens($id_entidade)
+    {
 
         $query = "SELECT * FROM tb_itens_precos WHERE id_entidade_item_preco = :id_entidade";
 
@@ -624,7 +629,8 @@ class Itens implements InterfaceItens{
         return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function atualizaItem($modelo_item_preco, $custo_item_preco, $preco_venda_item_preco, $id_item_preco) {
+    public function atualizaItem($modelo_item_preco, $custo_item_preco, $preco_venda_item_preco, $id_item_preco)
+    {
 
         $query = "UPDATE tb_itens_precos SET modelo_item_preco = :modelo_item_preco, custo_item_preco = :custo_item_preco, preco_venda_item_preco = :preco_venda_item_preco WHERE id_item_preco = :id_item_preco";
 
@@ -638,11 +644,11 @@ class Itens implements InterfaceItens{
         $stmt->bindValue(':id_item_preco', $id_item_preco);
 
         $stmt->execute();
-
     }
 }
 
-class Vendas implements InterfaceVendas {
+class Vendas implements InterfaceVendas
+{
 
     protected $id_venda;
     protected $conexao;
@@ -658,12 +664,14 @@ class Vendas implements InterfaceVendas {
     protected $status_custo_venda;
     protected $status_pg_cliente_venda;
 
-    public function __construct() {
+    public function __construct()
+    {
 
         $this->conexao = new Conexao();
     }
 
-    public function inserirVenda($dados){
+    public function inserirVenda($dados)
+    {
 
         $query = "INSERT INTO tb_vendas (id_usuario_venda, id_entidade_venda, id_produto_venda, data_venda, codigo_venda, item_produto_venda, preco_custo_venda, desconto_venda, preco_vendido_venda, status_custo_venda, status_pg_cliente_venda) VALUES (:id_usuario_venda, :id_entidade_venda, :id_produto_venda, :data_venda, :codigo_venda, :item_produto_venda, :preco_custo_venda, :desconto_venda, :preco_vendido_venda, :status_custo_venda, :status_pg_cliente_venda)";
 
@@ -682,46 +690,75 @@ class Vendas implements InterfaceVendas {
         $stmt->bindValue(':status_custo_venda', strtoupper($dados['status_custo_venda']));
         $stmt->bindValue(':status_pg_cliente_venda', strtoupper($dados['status_pg_cliente_venda']));
         $stmt->execute();
-
     }
-
 }
 
-class Vendas_Pespectivas implements InterfaceVendasPespectivas {
+class Vendas_Pespectivas implements InterfaceVendasPespectivas
+{
 
     private $id_venda_pespectiva;
     private $conexao;
     private $id_usuario_venda_pespectiva;
     private $id_entidade_venda_pespectiva;
     private $id_produto_venda_pespectiva;
+    private $nome_venda_pespectiva;
+    private $telefone_venda_pespectiva;
     private $data_venda_pespectiva;
     private $item_venda_pespectiva;
     private $preco_venda_pespectiva;
     private $data_prevista_venda_pespectiva;
 
-    public function __construct() {
+    public function __construct()
+    {
 
         $this->conexao = new Conexao();
     }
 
-    public function inserirVendaPespectiva($dados){
+    public function inserirVendaPespectiva($dados)
+    {
 
-        $query = 'INSERT INTO tb_vendas_pespectivas (id_usuario_venda_pespectiva, id_entidade_venda_pespectiva, id_produto_venda_pespectiva, data_venda_pespectiva, item_venda_pespectiva, preco_venda_pespectiva, data_prevista_venda_pespectiva) VALUES (:id_usuario_venda_pespectiva, :id_entidade_venda_pespectiva, :id_produto_venda_pespectiva, :data_venda_pespectiva, :item_venda_pespectiva, :preco_venda_pespectiva, :data_prevista_venda_pespectiva)';
+        $query = 'INSERT INTO tb_vendas_pespectivas (id_usuario_venda_pespectiva, id_entidade_venda_pespectiva, id_produto_venda_pespectiva, nome_venda_pespectiva, telefone_venda_pespectiva, data_venda_pespectiva, item_venda_pespectiva, preco_venda_pespectiva, data_prevista_venda_pespectiva) VALUES (:id_usuario_venda_pespectiva, :id_entidade_venda_pespectiva, :id_produto_venda_pespectiva, :nome_venda_pespectiva, :telefone_venda_pespectiva, :data_venda_pespectiva, :item_venda_pespectiva, :preco_venda_pespectiva, :data_prevista_venda_pespectiva)';
         $conn = $this->conexao->Conectar();
 
         $stmt = $conn->prepare($query);
         $stmt->bindValue(':id_usuario_venda_pespectiva', $dados['id_usuario_venda_pespectiva']);
         $stmt->bindValue(':id_entidade_venda_pespectiva', $dados['id_entidade_venda_pespectiva']);
         $stmt->bindValue(':id_produto_venda_pespectiva', $dados['id_produto_venda_pespectiva']);
+        $stmt->bindValue(':nome_venda_pespectiva', $dados['nome_venda_pespectiva']);
+        $stmt->bindValue(':telefone_venda_pespectiva', $dados['telefone_venda_pespectiva']);
         $stmt->bindValue(':data_venda_pespectiva', $dados['data_venda_pespectiva']);
         $stmt->bindValue(':item_venda_pespectiva', $dados['item_venda_pespectiva']);
         $stmt->bindValue(':preco_venda_pespectiva', $dados['preco_venda_pespectiva']);
         $stmt->bindValue(':data_prevista_venda_pespectiva', $dados['data_prevista_venda_pespectiva']);
-    
+
         $stmt->execute();
-
-
     }
 
-}
+    public function ChamaVendasPespectivas($id_usuario_venda_pespectiva, $id_entidade_venda_pespectiva)
+    {
 
+        $query = "SELECT id_venda_pespectiva, nome_venda_pespectiva, telefone_venda_pespectiva, data_venda_pespectiva, item_venda_pespectiva, preco_venda_pespectiva, data_prevista_venda_pespectiva FROM tb_vendas_pespectivas WHERE id_usuario_venda_pespectiva = :id_usuario_venda_pespectiva AND id_entidade_venda_pespectiva = :id_entidade_venda_pespectiva";
+
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':id_usuario_venda_pespectiva', $id_usuario_venda_pespectiva);
+        $stmt->bindValue(':id_entidade_venda_pespectiva', $id_entidade_venda_pespectiva);
+
+        $stmt->execute();
+
+        $r = [];
+
+        return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function ChamaVendasPespectivasMes($id_usuario_venda_pespectiva, $id_entidade_venda_pespectiva, $data) {
+
+        $query = "SELECT id_venda_pespectiva, nome_venda_pespectiva
+        FROM tb_vendas_pespectivas
+        WHERE id_usuario_venda_pespectiva = :id_usuario_venda_pespectiva
+        AND id_entidade_venda_pespectiva = :id_entidade_venda_pespectiva
+        AND data_venda_pespectiva BETWEEN DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01') AND LAST_DAY(DATE_SUB(CURDATE(), INTERVAL 1 MONTH));
+";
+    }
+}

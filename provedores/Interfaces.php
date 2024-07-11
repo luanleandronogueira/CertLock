@@ -20,5 +20,7 @@ interface InterfaceVendas {
 interface InterfaceVendasPespectivas {
 
     public function inserirVendaPespectiva($dados);
+    public function ChamaVendasPespectivas($id_usuario_venda_pespectiva, $id_entidade_venda_pespectiva);
+    public function ChamaVendasPespectivasMes($id_usuario_venda_pespectiva, $id_entidade_venda_pespectiva, $data);
 
 }

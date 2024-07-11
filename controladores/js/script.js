@@ -257,6 +257,39 @@ function buscaCliente(){
     
 }  
 
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+        locale: 'pt-br',
+        navLinks: true,
+        selectable: true,
+        selectMirror: true,
+        editable: true,
+        dayMaxEvents: true,
+        events: 'provedoresEntidade/ChamaVendasPespectivas.php',
+        eventClick: function(info) {
+            // Preencher os detalhes do evento no modal
+            document.getElementById('modalItem').textContent = info.event.title;
+            document.getElementById('modalDataVenda').textContent = info.event.start.toISOString().split('T')[0];
+            document.getElementById('modalDataPrevista').textContent = info.event.end ? info.event.end.toISOString().split('T')[0] : 'N/A';
+            document.getElementById('modalPreco').textContent = info.event.extendedProps.preco;
+
+            // Exibir o modal
+            var eventModal = new bootstrap.Modal(document.getElementById('eventModal'));
+            eventModal.show();
+        }
+    });
+
+    calendar.render();
+});
+
+
 
     
 
