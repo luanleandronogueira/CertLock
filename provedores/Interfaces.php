@@ -14,6 +14,7 @@ interface InterfaceItens {
 interface InterfaceVendas {
 
     public function inserirVenda($dados);
+    public function chamaVendaPorId($id_usuario_venda, $id_entidade_venda);
 
 }
 

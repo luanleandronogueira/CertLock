@@ -4,8 +4,13 @@ session_start();
 include '../provedores/Classes.php';
 include_once 'controladoresEntidade/controller.php';
 
-// print_r($_SESSION);
+$VendasPespectivas = new Vendas_Pespectivas;
 
+$Vendas = $VendasPespectivas->ChamaVendasPespectivasMes($_SESSION['id_usuario_adm_pj'], $_SESSION['id_entidade_usuario_adm_pj'], date('m'));
+
+// echo '<pre>';
+// print_r($Vendas);
+// echo '</pre>';
 ?>
 
 
@@ -35,12 +40,15 @@ include_once 'controladoresEntidade/controller.php';
                             <tr>
                                 <th>#</th>
                                 <th>Razão Social</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- <?php foreach($Entidade as $E) {?> -->
+                            <!-- <?php foreach($Vendas as $V) {?> -->
                             <tr>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint praesentium, tempore quas dolore quis iste molestias ullam distinctio eaque corporis est beatae earum consequuntur nisi neque non dolorem nihil velit!
+                                <td><?=$V['id_venda_pespectiva']?></td>
+                                <td><?=$V['nome_venda_pespectiva']?></td>
+                                <td><a href="">Ver</a></td>
                                 
                             </tr>
                             <!-- <?php } ?> -->

@@ -691,6 +691,24 @@ class Vendas implements InterfaceVendas
         $stmt->bindValue(':status_pg_cliente_venda', strtoupper($dados['status_pg_cliente_venda']));
         $stmt->execute();
     }
+
+    public function chamaVendaPorId($id_usuario_venda, $id_entidade_venda){
+
+        $query = "SELECT data_venda, codigo_venda, item_produto_venda, preco_vendido_venda, status_custo_venda FROM tb_vendas WHERE id_usuario_venda = :id_usuario_venda AND id_entidade_venda = :id_entidade_venda";
+
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':id_usuario_venda', $id_usuario_venda);
+        $stmt->bindValue(':id_entidade_venda', $id_entidade_venda);
+
+        $stmt->execute();
+
+        $r = [];
+
+        return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
 }
 
 class Vendas_Pespectivas implements InterfaceVendasPespectivas
@@ -752,13 +770,26 @@ class Vendas_Pespectivas implements InterfaceVendasPespectivas
         return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function ChamaVendasPespectivasMes($id_usuario_venda_pespectiva, $id_entidade_venda_pespectiva, $data) {
+    public function ChamaVendasPespectivasMes($id_usuario_venda_pespectiva, $id_entidade_venda_pespectiva, $data)
+    {
 
         $query = "SELECT id_venda_pespectiva, nome_venda_pespectiva
         FROM tb_vendas_pespectivas
         WHERE id_usuario_venda_pespectiva = :id_usuario_venda_pespectiva
         AND id_entidade_venda_pespectiva = :id_entidade_venda_pespectiva
-        AND data_venda_pespectiva BETWEEN DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01') AND LAST_DAY(DATE_SUB(CURDATE(), INTERVAL 1 MONTH));
+        AND data_venda_pespectiva BETWEEN DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01') AND LAST_DAY(DATE_SUB(CURDATE(), INTERVAL 1 MONTH))
 ";
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+
+        $stmt->bindValue(':id_usuario_venda_pespectiva', $id_usuario_venda_pespectiva);
+        $stmt->bindValue(':id_entidade_venda_pespectiva', $id_entidade_venda_pespectiva);
+
+        $stmt->execute();
+
+        $r = [];
+
+        return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

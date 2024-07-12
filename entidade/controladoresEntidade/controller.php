@@ -88,7 +88,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="vendasPespectivas.php">Vendas em Pespectivas</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="historicoVendas.php">Histórico de Vendas</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </li>
@@ -118,7 +118,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href=".php">Suporte</a></li>
-                        <li><a class="dropdown-item" href="cadastrarItens.php">Sair</a></li>
+                        <li><a class="dropdown-item" href="provedoresEntidade/Sair.php">Sair</a></li>
                     </ul>
                 </li>
             </ul>
