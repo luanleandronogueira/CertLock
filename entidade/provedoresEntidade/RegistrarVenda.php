@@ -54,6 +54,8 @@ if (!empty($_POST)) {
                     'item_venda_pespectiva' => $item_produto_venda,
                     'preco_venda_pespectiva' => $precoVenda,
                     'data_prevista_venda_pespectiva' => $data_prevista,
+                    'mes_venda_pespectiva' => date('m'),
+                    'ano_venda_pespectiva' => date('Y')
                 ];
 
                 $VendaPespectiva->inserirVendaPespectiva($dadosValidade);

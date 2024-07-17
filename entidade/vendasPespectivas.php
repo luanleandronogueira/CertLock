@@ -6,14 +6,12 @@ include_once 'controladoresEntidade/controller.php';
 
 $VendasPespectivas = new Vendas_Pespectivas;
 
-$Vendas = $VendasPespectivas->ChamaVendasPespectivasMes($_SESSION['id_usuario_adm_pj'], $_SESSION['id_entidade_usuario_adm_pj'], date('m'));
+$Vendas = $VendasPespectivas->ChamaVendasPespectivasMes($_SESSION['id_usuario_adm_pj'], $_SESSION['id_entidade_usuario_adm_pj'], date('m'), date('Y'));
 
 // echo '<pre>';
 // print_r($Vendas);
 // echo '</pre>';
 ?>
-
-
 
 <div class="container mt-5">
     <div class="row">
@@ -44,14 +42,14 @@ $Vendas = $VendasPespectivas->ChamaVendasPespectivasMes($_SESSION['id_usuario_ad
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- <?php foreach($Vendas as $V) {?> -->
+                            <?php foreach($Vendas as $V) {?>
                             <tr>
                                 <td><?=$V['id_venda_pespectiva']?></td>
                                 <td><?=$V['nome_venda_pespectiva']?></td>
                                 <td><a href="">Ver</a></td>
                                 
                             </tr>
-                            <!-- <?php } ?> -->
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
@@ -72,13 +70,15 @@ $Vendas = $VendasPespectivas->ChamaVendasPespectivasMes($_SESSION['id_usuario_ad
             <div class="modal-body">
                 <!-- Conteúdo do Modal -->
                 <p><strong>Item:</strong> <span id="modalItem"></span></p>
-                <p><strong>Data de Venda:</strong> <span id="modalDataVenda"></span></p>
-                <p><strong>Data Prevista:</strong> <span id="modalDataPrevista"></span></p>
-                <p><strong>Preço:</strong> <span id="modalPreco"></span></p>
+                <p><strong>Cliente: </strong> <span id="modalCliente"></span></p>
+                <p><strong>Contato: </strong> <span id="modalTelefone"></span></p>
+                <p><strong>Ultima Venda Desde Item: </strong> <span id="ultimaVenda"></span></p>
+                <p><strong>Data da Proxima Venda:</strong> <span id="modalDataVenda"></span></p>
+                <p><strong>Valor da Venda:</strong> <span id="modalPreco"></span></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary">Ir para Venda</button>
             </div>
         </div>
     </div>

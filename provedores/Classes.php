@@ -692,7 +692,8 @@ class Vendas implements InterfaceVendas
         $stmt->execute();
     }
 
-    public function chamaVendaPorId($id_usuario_venda, $id_entidade_venda){
+    public function chamaVendaPorId($id_usuario_venda, $id_entidade_venda)
+    {
 
         $query = "SELECT data_venda, codigo_venda, item_produto_venda, preco_vendido_venda, status_custo_venda FROM tb_vendas WHERE id_usuario_venda = :id_usuario_venda AND id_entidade_venda = :id_entidade_venda";
 
@@ -707,7 +708,6 @@ class Vendas implements InterfaceVendas
         $r = [];
 
         return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     }
 }
 
@@ -725,6 +725,8 @@ class Vendas_Pespectivas implements InterfaceVendasPespectivas
     private $item_venda_pespectiva;
     private $preco_venda_pespectiva;
     private $data_prevista_venda_pespectiva;
+    private $mes_venda_pespectiva;
+    private $ano_venda_pespectiva;
 
     public function __construct()
     {
@@ -735,7 +737,7 @@ class Vendas_Pespectivas implements InterfaceVendasPespectivas
     public function inserirVendaPespectiva($dados)
     {
 
-        $query = 'INSERT INTO tb_vendas_pespectivas (id_usuario_venda_pespectiva, id_entidade_venda_pespectiva, id_produto_venda_pespectiva, nome_venda_pespectiva, telefone_venda_pespectiva, data_venda_pespectiva, item_venda_pespectiva, preco_venda_pespectiva, data_prevista_venda_pespectiva) VALUES (:id_usuario_venda_pespectiva, :id_entidade_venda_pespectiva, :id_produto_venda_pespectiva, :nome_venda_pespectiva, :telefone_venda_pespectiva, :data_venda_pespectiva, :item_venda_pespectiva, :preco_venda_pespectiva, :data_prevista_venda_pespectiva)';
+        $query = 'INSERT INTO tb_vendas_pespectivas (id_usuario_venda_pespectiva, id_entidade_venda_pespectiva, id_produto_venda_pespectiva, nome_venda_pespectiva, telefone_venda_pespectiva, data_venda_pespectiva, item_venda_pespectiva, preco_venda_pespectiva, data_prevista_venda_pespectiva, mes_venda_pespectiva, ano_venda_pespectiva) VALUES (:id_usuario_venda_pespectiva, :id_entidade_venda_pespectiva, :id_produto_venda_pespectiva, :nome_venda_pespectiva, :telefone_venda_pespectiva, :data_venda_pespectiva, :item_venda_pespectiva, :preco_venda_pespectiva, :data_prevista_venda_pespectiva, :mes_venda_pespectiva, :ano_venda_pespectiva)';
         $conn = $this->conexao->Conectar();
 
         $stmt = $conn->prepare($query);
@@ -748,6 +750,9 @@ class Vendas_Pespectivas implements InterfaceVendasPespectivas
         $stmt->bindValue(':item_venda_pespectiva', $dados['item_venda_pespectiva']);
         $stmt->bindValue(':preco_venda_pespectiva', $dados['preco_venda_pespectiva']);
         $stmt->bindValue(':data_prevista_venda_pespectiva', $dados['data_prevista_venda_pespectiva']);
+        $stmt->bindValue(':mes_venda_pespectiva', $dados['mes_venda_pespectiva']);
+        $stmt->bindValue(':ano_venda_pespectiva', $dados['ano_venda_pespectiva']);
+
 
         $stmt->execute();
     }
@@ -770,21 +775,23 @@ class Vendas_Pespectivas implements InterfaceVendasPespectivas
         return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function ChamaVendasPespectivasMes($id_usuario_venda_pespectiva, $id_entidade_venda_pespectiva, $data)
+    public function ChamaVendasPespectivasMes($id_usuario_venda_pespectiva, $id_entidade_venda_pespectiva, $mes , $ano)
     {
 
         $query = "SELECT id_venda_pespectiva, nome_venda_pespectiva
         FROM tb_vendas_pespectivas
         WHERE id_usuario_venda_pespectiva = :id_usuario_venda_pespectiva
         AND id_entidade_venda_pespectiva = :id_entidade_venda_pespectiva
-        AND data_venda_pespectiva BETWEEN DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01') AND LAST_DAY(DATE_SUB(CURDATE(), INTERVAL 1 MONTH))
-";
+        AND mes_venda_pespectiva = :mes AND ano_venda_pespectiva = :ano";
+
         $conn = $this->conexao->Conectar();
 
         $stmt = $conn->prepare($query);
 
         $stmt->bindValue(':id_usuario_venda_pespectiva', $id_usuario_venda_pespectiva);
         $stmt->bindValue(':id_entidade_venda_pespectiva', $id_entidade_venda_pespectiva);
+        $stmt->bindValue(':mes', $mes);
+        $stmt->bindValue(':ano', $ano);
 
         $stmt->execute();
 

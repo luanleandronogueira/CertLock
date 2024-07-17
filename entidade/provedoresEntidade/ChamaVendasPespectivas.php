@@ -22,8 +22,12 @@ if(!empty($_SESSION)) {
             'title' => $venda['item_venda_pespectiva'],
             'start' => $venda['data_prevista_venda_pespectiva'],
             'end' => $venda['data_prevista_venda_pespectiva'],
-            'preco' => $venda['preco_venda_pespectiva'] // Adicionando campo preço
-
+            'extendedProps' => array(
+                'ultimaVenda' => $venda['data_venda_pespectiva'],
+                'preco' => $venda['preco_venda_pespectiva'],
+                'cliente' => $venda['nome_venda_pespectiva'],
+                'telefone' => $venda['telefone_venda_pespectiva']
+            )
         );
     }
     

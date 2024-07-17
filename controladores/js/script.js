@@ -276,9 +276,11 @@ document.addEventListener('DOMContentLoaded', function() {
         eventClick: function(info) {
             // Preencher os detalhes do evento no modal
             document.getElementById('modalItem').textContent = info.event.title;
+            document.getElementById('modalCliente').textContent = info.event.extendedProps.cliente; // Acessa o cliente nos extendedProps
+            document.getElementById('modalTelefone').textContent = info.event.extendedProps.telefone;
+            document.getElementById('ultimaVenda').textContent = info.event.extendedProps.ultimaVenda;
             document.getElementById('modalDataVenda').textContent = info.event.start.toISOString().split('T')[0];
-            document.getElementById('modalDataPrevista').textContent = info.event.end ? info.event.end.toISOString().split('T')[0] : 'N/A';
-            document.getElementById('modalPreco').textContent = info.event.extendedProps.preco;
+            document.getElementById('modalPreco').textContent = info.event.extendedProps.preco; // Acessa o preço nos extendedProps
 
             // Exibir o modal
             var eventModal = new bootstrap.Modal(document.getElementById('eventModal'));
@@ -288,6 +290,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     calendar.render();
 });
+
 
 
 
