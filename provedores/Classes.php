@@ -519,6 +519,22 @@ class ClientesPj extends Clientes
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function BuscaClienteNomePj($nome_cliente_pj)
+    {
+        // Lógica para verificar usuário PJ
+        $query = "SELECT cnpj_cliente_pj FROM tb_clientes_pj WHERE nome_cliente_pj = :nome_cliente_pj";
+
+        $conexao =  new Conexao;
+
+        $conn = $conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':nome_cliente_pj', $nome_cliente_pj);
+
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 
 class ClientesPf extends Clientes
@@ -571,6 +587,22 @@ class ClientesPf extends Clientes
 
         $stmt = $conn->prepare($query);
         $stmt->bindValue(':cpf_cliente_pf', $cpf_cliente_pf);
+
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function BuscaClienteNomePf($nome_cliente_pf)
+    {
+        // Lógica para verificar usuário PJ
+        $query = "SELECT cpf_cliente_pf FROM tb_clientes_pf WHERE nome_cliente_pf = :nome_cliente_pf";
+
+        $conexao =  new Conexao;
+
+        $conn = $conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':nome_cliente_pf', $nome_cliente_pf);
 
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -709,6 +741,8 @@ class Vendas implements InterfaceVendas
 
         return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    
 }
 
 class Vendas_Pespectivas implements InterfaceVendasPespectivas

@@ -46,8 +46,7 @@ $Vendas = $VendasPespectivas->ChamaVendasPespectivasMes($_SESSION['id_usuario_ad
                             <tr>
                                 <td><?=$V['id_venda_pespectiva']?></td>
                                 <td><?=$V['nome_venda_pespectiva']?></td>
-                                <td><a href="">Ver</a></td>
-                                
+                                <td></td>
                             </tr>
                             <?php } ?>
                         </tbody>
@@ -78,7 +77,7 @@ $Vendas = $VendasPespectivas->ChamaVendasPespectivasMes($_SESSION['id_usuario_ad
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary">Ir para Venda</button>
+                <a href="registrarVendaPespectiva.php?nome=<?=$V['nome_venda_pespectiva']?>" class="btn btn-primary">Ir para Venda</a>
             </div>
         </div>
     </div>
