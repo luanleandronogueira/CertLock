@@ -43,6 +43,7 @@ $item_v = explode('-', $item_venda);
                             <input type="hidden" name="id_produto_venda" value="<?= $item_v[0] ?>">
                             <input type="hidden" name="data_venda" value="<?= $_POST['data_venda'] ?>">
                             <input type="hidden" name="codigo_venda" value="<?= $_POST['codigo_venda'] ?>">
+                            <input type="hidden" name="nome_cliente_venda" value="<?= $_POST['nome_cliente_pf']?>">
                             <input type="hidden" name="preco_vendido_venda" value="<?= $item_v[1] ?>">
                             <input type="hidden" name="item_produto_venda" value="<?= $item_v[2] ?>">
                             <input type="hidden" name="preco_custo_venda" value="<?= $item_v[3] ?>">
@@ -92,6 +93,7 @@ $item_v = explode('-', $item_venda);
                             <input type="hidden" name="id_produto_venda" value="<?= $item_v[0] ?>">
                             <input type="hidden" name="data_venda" value="<?= $_POST['data_venda'] ?>">
                             <input type="hidden" name="codigo_venda" value="<?= $_POST['codigo_venda'] ?>">
+                            <input type="hidden" name="nome_cliente_venda" value="<?= $_POST['nome_cliente_pj']?>">
                             <input type="hidden" name="preco_vendido_venda" value="<?= $item_v[1] ?>">
                             <input type="hidden" name="item_produto_venda" value="<?= $item_v[2] ?>">
                             <input type="hidden" name="preco_custo_venda" value="<?= $item_v[3] ?>">

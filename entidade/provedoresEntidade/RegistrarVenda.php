@@ -21,6 +21,7 @@ if (!empty($_POST)) {
             'id_produto_venda' => $id_produto_venda,
             'data_venda' => $data_venda,
             'codigo_venda' => $codigo_venda,
+            'nome_cliente_venda' => $nome_cliente_venda,
             'item_produto_venda' => $item_produto_venda,
             'preco_custo_venda' => $preco_custo_venda,
             'desconto_venda' => $desconto_venda,
@@ -59,8 +60,6 @@ if (!empty($_POST)) {
                 ];
 
                 $VendaPespectiva->inserirVendaPespectiva($dadosValidade);
-
-
             } else if (trim($modalidade_validade) === 'MES') {
 
                 $data_manipulada = new DateTime($data_venda);
@@ -84,21 +83,20 @@ if (!empty($_POST)) {
                 ];
 
                 $VendaPespectiva->inserirVendaPespectiva($dadosValidade);
-
             }
         }
         $Venda->inserirVenda($dados);
 
         header('Location: ../registrarVenda.php?status=sucesso');
-
     } else {
 
         session_destroy();
         header('Location: ../index.php');
         die();
-
     }
 } else {
 
-    
+    session_destroy();
+    header('Location: ../index.php');
+    die();
 }

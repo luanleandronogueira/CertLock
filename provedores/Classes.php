@@ -689,6 +689,7 @@ class Vendas implements InterfaceVendas
     protected $id_produto_venda;
     protected $data_venda;
     protected $codigo_venda;
+    protected $nome_cliente_venda;
     protected $item_produto_venda;
     protected $preco_custo_venda;
     protected $desconto_venda;
@@ -705,7 +706,7 @@ class Vendas implements InterfaceVendas
     public function inserirVenda($dados)
     {
 
-        $query = "INSERT INTO tb_vendas (id_usuario_venda, id_entidade_venda, id_produto_venda, data_venda, codigo_venda, item_produto_venda, preco_custo_venda, desconto_venda, preco_vendido_venda, status_custo_venda, status_pg_cliente_venda) VALUES (:id_usuario_venda, :id_entidade_venda, :id_produto_venda, :data_venda, :codigo_venda, :item_produto_venda, :preco_custo_venda, :desconto_venda, :preco_vendido_venda, :status_custo_venda, :status_pg_cliente_venda)";
+        $query = "INSERT INTO tb_vendas (id_usuario_venda, id_entidade_venda, id_produto_venda, data_venda, codigo_venda, nome_cliente_venda, item_produto_venda, preco_custo_venda, desconto_venda, preco_vendido_venda, status_custo_venda, status_pg_cliente_venda) VALUES (:id_usuario_venda, :id_entidade_venda, :id_produto_venda, :data_venda, :codigo_venda, :nome_cliente_venda, :item_produto_venda, :preco_custo_venda, :desconto_venda, :preco_vendido_venda, :status_custo_venda, :status_pg_cliente_venda)";
 
         $conn = $this->conexao->Conectar();
 
@@ -715,6 +716,7 @@ class Vendas implements InterfaceVendas
         $stmt->bindValue(':id_produto_venda', $dados['id_produto_venda']);
         $stmt->bindValue(':data_venda', $dados['data_venda']);
         $stmt->bindValue(':codigo_venda', $dados['codigo_venda']);
+        $stmt->bindValue(':nome_cliente_venda', $dados['nome_cliente_venda']);
         $stmt->bindValue(':item_produto_venda', $dados['item_produto_venda']);
         $stmt->bindValue(':preco_custo_venda', $dados['preco_custo_venda']);
         $stmt->bindValue(':desconto_venda', floatval(str_replace(',', '.', $dados['desconto_venda'])));
