@@ -291,7 +291,82 @@ document.addEventListener('DOMContentLoaded', function() {
     calendar.render();
 });
 
+function historicoVendas(){
 
+    const id_usuario = document.getElementById('id_usuario').value;
+    const id_entidade = document.getElementById('id_entidade').value;
+    const dataIncial = document.getElementById('dataInicial').value;
+    const dataFinal = document.getElementById('dataFinal').value;
+    const hist = document.getElementById('hist-vendas')
+    const conteudoErro = document.getElementById('conteudoErro')
+    const conteudo = document.getElementById('conteudo')
+    
+   
+
+    const API = "provedoresEntidade/ChamaHistoricoVendas.php?id_usuario="+id_usuario+"&&id_entidade="+id_entidade+"&&dataIncial="+dataIncial+"&&dataFinal="+dataFinal;
+
+    fetch(API)
+    .then(response => {
+
+        console.log('Response', response)
+        return response.json()
+    }).then(Dados => {
+
+        console.log('Dados', Dados)
+        hist.style.display = 'block';
+
+        if(Dados.error == "VAZIO"){
+
+            conteudoErro.style.display = 'block'
+            conteudo.style.display = 'none'
+
+        } else {
+
+            conteudo.style.display = 'block'
+            conteudoErro.style.display = 'none'
+           
+
+            Dados.forEach(dado => {
+                const vendaDiv = document.createElement('div');
+                vendaDiv.innerHTML = `        
+                <h5>Cliente: ${dado.nome_cliente_venda}</h5>
+                <strong>Item: </strong>${dado.item_produto_venda}<br>
+                <strong>Data: </strong>${dado.data_venda}<br>
+                <strong>Código de Venda: </strong>${dado.codigo_venda}<br>
+                <strong>Preço de Venda: </strong>${dado.preco_vendido_venda}<br>
+                <strong><hr></strong>
+                `;
+
+                conteudo.appendChild(vendaDiv);
+            });
+
+           
+        }
+        
+    }).catch(error => {
+        console.log(error)
+    })
+}
+
+function ExportaExcel() {
+
+    const id_usuario = document.getElementById('id_usuario').value;
+    const id_entidade = document.getElementById('id_entidade').value;
+    const dataIncial = document.getElementById('dataInicial').value;
+    const dataFinal = document.getElementById('dataFinal').value; 
+
+    const API = "provedoresEntidade/ExportaExcel.php?id_usuario="+id_usuario+"&&id_entidade="+id_entidade+"&&dataIncial="+dataIncial+"&&dataFinal="+dataFinal;
+
+    fetch(API);
+
+    const link = document.createElement('a');
+    link.href = API;
+    link.download = 'historico_venda.csv';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+}
 
 
     

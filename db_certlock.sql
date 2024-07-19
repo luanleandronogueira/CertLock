@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 17-Jul-2024 às 21:59
+-- Tempo de geração: 19-Jul-2024 às 22:26
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -225,6 +225,7 @@ CREATE TABLE `tb_vendas` (
   `id_produto_venda` int(11) NOT NULL,
   `data_venda` date NOT NULL,
   `codigo_venda` varchar(100) NOT NULL,
+  `nome_cliente_venda` varchar(220) NOT NULL,
   `item_produto_venda` varchar(200) NOT NULL,
   `preco_custo_venda` float NOT NULL,
   `desconto_venda` float NOT NULL,
@@ -237,12 +238,10 @@ CREATE TABLE `tb_vendas` (
 -- Extraindo dados da tabela `tb_vendas`
 --
 
-INSERT INTO `tb_vendas` (`id_venda`, `id_usuario_venda`, `id_entidade_venda`, `id_produto_venda`, `data_venda`, `codigo_venda`, `item_produto_venda`, `preco_custo_venda`, `desconto_venda`, `preco_vendido_venda`, `status_custo_venda`, `status_pg_cliente_venda`) VALUES
-(29, 5, 7, 26, '2024-07-12', '123123', ' CERTIFICADO DIGITAL A2 PF ', 65, 23, 167, 'ABERTO', 'ABERTO'),
-(30, 5, 7, 26, '2024-06-12', '3212', ' CERTIFICADO DIGITAL A2 PF ', 65, 3.21, 186.79, 'ABERTO', 'ABERTO'),
-(31, 5, 7, 23, '2024-07-17', '1234', ' 1º TESTE DE VENDA ', 65, 20, 280, 'ABERTO', 'ABERTO'),
-(32, 5, 7, 27, '2024-07-17', '23141211', ' CERTIFICADO DIGITAL A1 PF ', 65, 20, 170, 'ABERTO', 'ABERTO'),
-(33, 5, 7, 27, '2023-07-17', '424242', ' CERTIFICADO DIGITAL A1 PF ', 65, 0, 190, 'ABERTO', 'ABERTO');
+INSERT INTO `tb_vendas` (`id_venda`, `id_usuario_venda`, `id_entidade_venda`, `id_produto_venda`, `data_venda`, `codigo_venda`, `nome_cliente_venda`, `item_produto_venda`, `preco_custo_venda`, `desconto_venda`, `preco_vendido_venda`, `status_custo_venda`, `status_pg_cliente_venda`) VALUES
+(36, 1, 5, 27, '2024-07-19', '123456', 'Câmara Municipal De Garanhuns', ' CERTIFICADO DIGITAL A1 PF ', 65, 10, 180, 'ABERTO', 'ABERTO'),
+(37, 5, 7, 27, '2024-07-27', '123456', 'E-TICONS EMPRESA DE TECNOLOGIA DA INFORMAÇÃO & CONSULTORIA LTDA', ' CERTIFICADO DIGITAL A1 PF ', 65, 10, 180, 'ABERTO', 'ABERTO'),
+(38, 5, 7, 27, '2024-07-19', '2312', 'Luan Leandro Nogueira', ' CERTIFICADO DIGITAL A1 PF ', 65, 0, 190, 'ABERTO', 'ABERTO');
 
 -- --------------------------------------------------------
 
@@ -271,7 +270,13 @@ CREATE TABLE `tb_vendas_pespectivas` (
 
 INSERT INTO `tb_vendas_pespectivas` (`id_venda_pespectiva`, `id_usuario_venda_pespectiva`, `id_entidade_venda_pespectiva`, `id_produto_venda_pespectiva`, `nome_venda_pespectiva`, `telefone_venda_pespectiva`, `data_venda_pespectiva`, `item_venda_pespectiva`, `preco_venda_pespectiva`, `data_prevista_venda_pespectiva`, `mes_venda_pespectiva`, `ano_venda_pespectiva`) VALUES
 (18, 5, 7, 27, 'Luan Leandro Nogueira', '87988457530', '2024-07-17', ' CERTIFICADO DIGITAL A1 PF ', 170, '2025-07-17', 7, 2025),
-(19, 5, 7, 27, 'Luan Leandro Nogueira', '87988457530', '2023-07-17', ' CERTIFICADO DIGITAL A1 PF ', 190, '2024-07-17', 7, 2024);
+(19, 5, 7, 27, 'Luan Leandro Nogueira', '87988457530', '2023-07-17', ' CERTIFICADO DIGITAL A1 PF ', 190, '2024-07-17', 7, 2024),
+(20, 5, 7, 27, 'Luan Leandro Nogueira', '87988457530', '2024-07-19', ' CERTIFICADO DIGITAL A1 PF ', 178, '2025-07-19', 7, 2024),
+(21, 5, 7, 27, 'Luan Leandro Nogueira', '87988457530', '2024-07-17', ' CERTIFICADO DIGITAL A1 PF ', 178, '2025-07-17', 7, 2024),
+(22, 5, 7, 27, 'Luan Leandro Nogueira', '87988457530', '2024-07-17', ' CERTIFICADO DIGITAL A1 PF ', 178, '2025-07-17', 7, 2024),
+(23, 1, 5, 27, 'Câmara Municipal De Garanhuns', '87988457530', '2024-07-19', ' CERTIFICADO DIGITAL A1 PF ', 180, '2025-07-19', 7, 2024),
+(24, 5, 7, 27, 'E-TICONS EMPRESA DE TECNOLOGIA DA INFORMAÇÃO & CONSULTORIA LTDA', '87988762111', '2024-07-27', ' CERTIFICADO DIGITAL A1 PF ', 180, '2025-07-27', 7, 2024),
+(25, 5, 7, 27, 'Luan Leandro Nogueira', '87988457530', '2024-07-19', ' CERTIFICADO DIGITAL A1 PF ', 190, '2025-07-19', 7, 2024);
 
 --
 -- Índices para tabelas despejadas
@@ -384,13 +389,13 @@ ALTER TABLE `tb_usuario_adm_pj`
 -- AUTO_INCREMENT de tabela `tb_vendas`
 --
 ALTER TABLE `tb_vendas`
-  MODIFY `id_venda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_venda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de tabela `tb_vendas_pespectivas`
 --
 ALTER TABLE `tb_vendas_pespectivas`
-  MODIFY `id_venda_pespectiva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_venda_pespectiva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Restrições para despejos de tabelas

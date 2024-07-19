@@ -80,6 +80,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="registrarVenda.php">Registrar Venda</a></li>
+                        <li><a class="dropdown-item" href="registrarVendaParceladas.php">Registrar Venda Parceladas/Recorrentes</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -88,8 +89,8 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="vendasPespectivas.php">Vendas em Pespectivas</a></li>
+                        <li><a class="dropdown-item" href=".php">Clientes sem Renovação</a></li>
                         <li><a class="dropdown-item" href="historicoVendas.php">Histórico de Vendas</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -97,9 +98,10 @@
                         Financeiro
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><a class="dropdown-item" href="#">Movimentação Financeira</a></li>
+                        <li><a class="dropdown-item" href="#">Controle de Receitas/Depesas</a></li>
+                        <li><a class="dropdown-item" href="#">Histórico de Caixa</a></li>
+                        <li><a class="dropdown-item" href="#">Administrar Despesas</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">

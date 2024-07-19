@@ -15,6 +15,7 @@ interface InterfaceVendas {
 
     public function inserirVenda($dados);
     public function chamaVendaPorId($id_usuario_venda, $id_entidade_venda);
+    public function chamaHistoricoVendas($id_usuario_venda, $id_entidade_venda, $dataInicial, $dataFinal);
 
 }
 

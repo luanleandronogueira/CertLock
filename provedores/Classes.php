@@ -744,7 +744,29 @@ class Vendas implements InterfaceVendas
         return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    
+    public function chamaHistoricoVendas($id_usuario_venda, $id_entidade_venda, $dataInicial, $dataFinal)
+    {
+
+        $query = "SELECT * FROM tb_vendas 
+                    WHERE id_usuario_venda = :id_usuario_venda 
+                    AND id_entidade_venda = :id_entidade_venda 
+                    AND data_venda BETWEEN :dataInicial AND :dataFinal ORDER BY data_venda DESC";
+
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+
+        $stmt->bindParam(':id_usuario_venda', $id_usuario_venda);
+        $stmt->bindParam(':id_entidade_venda', $id_entidade_venda);
+        $stmt->bindParam(':dataInicial', $dataInicial);
+        $stmt->bindParam(':dataFinal', $dataFinal);
+
+        $stmt->execute();
+
+        $r = [];
+
+        return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 class Vendas_Pespectivas implements InterfaceVendasPespectivas
@@ -811,7 +833,7 @@ class Vendas_Pespectivas implements InterfaceVendasPespectivas
         return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function ChamaVendasPespectivasMes($id_usuario_venda_pespectiva, $id_entidade_venda_pespectiva, $mes , $ano)
+    public function ChamaVendasPespectivasMes($id_usuario_venda_pespectiva, $id_entidade_venda_pespectiva, $mes, $ano)
     {
 
         $query = "SELECT id_venda_pespectiva, nome_venda_pespectiva
