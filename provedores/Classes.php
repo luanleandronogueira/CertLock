@@ -767,6 +767,54 @@ class Vendas implements InterfaceVendas
 
         return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
+    public function chamaMovimentacaoVendasMes($id_usuario_venda, $id_entidade_venda, $dataInicial, $dataFinal)
+    {
+        $query = "SELECT 
+            *,
+            (SELECT SUM(preco_custo_venda) 
+             FROM tb_vendas 
+             WHERE id_usuario_venda = :id_usuario_venda 
+             AND id_entidade_venda = :id_entidade_venda 
+             AND data_venda BETWEEN :dataInicial AND :dataFinal) AS total_preco_custo,
+
+             (SELECT SUM(desconto_venda) 
+             FROM tb_vendas 
+             WHERE id_usuario_venda = :id_usuario_venda 
+             AND id_entidade_venda = :id_entidade_venda 
+             AND data_venda BETWEEN :dataInicial AND :dataFinal) AS total_desconto_venda,
+
+             (SELECT SUM(preco_vendido_venda) 
+             FROM tb_vendas 
+             WHERE id_usuario_venda = :id_usuario_venda 
+             AND id_entidade_venda = :id_entidade_venda 
+             AND data_venda BETWEEN :dataInicial AND :dataFinal) AS total_preco_vendido_venda
+
+        FROM 
+            tb_vendas 
+        WHERE 
+            id_usuario_venda = :id_usuario_venda 
+            AND id_entidade_venda = :id_entidade_venda 
+            AND data_venda BETWEEN :dataInicial AND :dataFinal
+        ORDER BY 
+            data_venda DESC";
+
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+
+        $stmt->bindParam(':id_usuario_venda', $id_usuario_venda);
+        $stmt->bindParam(':id_entidade_venda', $id_entidade_venda);
+        $stmt->bindParam(':dataInicial', $dataInicial);
+        $stmt->bindParam(':dataFinal', $dataFinal);
+
+        $stmt->execute();
+
+        $r = [];
+
+        return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 class Vendas_Pespectivas implements InterfaceVendasPespectivas

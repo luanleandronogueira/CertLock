@@ -98,7 +98,7 @@
                         Financeiro
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Movimentação Financeira</a></li>
+                        <li><a class="dropdown-item" href="movimentacaoFinanceira.php">Movimentação Financeira</a></li>
                         <li><a class="dropdown-item" href="#">Controle de Receitas/Depesas</a></li>
                         <li><a class="dropdown-item" href="#">Histórico de Caixa</a></li>
                         <li><a class="dropdown-item" href="#">Administrar Despesas</a></li>

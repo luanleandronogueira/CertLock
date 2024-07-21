@@ -367,6 +367,72 @@ function ExportaExcel() {
     document.body.removeChild(link);
 
 }
+function MovimentacaoFinanceira(){
+
+    const id_usuario = document.getElementById('id_usuario').value;
+    const id_entidade = document.getElementById('id_entidade').value;
+    const dataIncial = document.getElementById('dataInicial').value;
+    const dataFinal = document.getElementById('dataFinal').value;
+    const movimentacao = document.getElementById('movimentacao')
+    const movimentacaoSucesso = document.getElementById('movimentacaoSucesso')
+    const movimentacaoVazia = document.getElementById('movimentacaoVazia')
+    const custo = document.getElementById('custo')
+    const desconto = document.getElementById('desconto')
+    const venda = document.getElementById('venda')
+    const lucro = document.getElementById('lucro')
+    const movimentacaoMonetaria = document.getElementById('movimentacaoMonetaria')
+
+    const API = "provedoresEntidade/MovimentacaoFinanceira.php?id_usuario="+id_usuario+"&&id_entidade="+id_entidade+"&&dataIncial="+dataIncial+"&&dataFinal="+dataFinal;
+
+    fetch(API)
+        .then(response => {
+
+            console.log('Response', response)
+            return response.json()
+            
+        }).then(Dados => {
+
+            console.log('Dados', Dados)
+
+            if(Array.isArray(Dados) && Dados.length > 0){
+
+                movimentacao.style.display = 'block';
+                movimentacaoSucesso.style.display = 'block'
+                movimentacaoVazia.style.display = 'none'
+
+                // Limpar o conteúdo anterior
+                movimentacaoSucesso.innerHTML = '';
+                
+                Dados.forEach(Dado => {
+                    const movimentacaoMensal = document.createElement('div')
+                    movimentacaoMensal.innerHTML = `
+                    <p><strong>Código: </strong>#${Dado.codigo_venda} | <strong>Cliente: </strong>${Dado.nome_cliente_venda} | <strong>Item: </strong>${Dado.item_produto_venda} | <strong>Preço Custo: </strong>${parseFloat(Dado.preco_custo_venda).toFixed(2)} | <strong>Desconto: </strong>${parseFloat(Dado.desconto_venda).toFixed(2)} | <strong>Preço Venda: </strong>${parseFloat(Dado.preco_vendido_venda).toFixed(2)}</p>  
+                    <hr>`;
+                    movimentacaoSucesso.appendChild(movimentacaoMensal);
+                })
+
+                const totais = Dados[0];
+                custo.textContent = parseFloat(totais.total_preco_custo).toFixed(2);
+                desconto.textContent = parseFloat(totais.total_desconto_venda).toFixed(2);
+                venda.textContent = parseFloat(totais.total_preco_vendido_venda).toFixed(2);
+                let Soma = parseFloat(totais.total_preco_vendido_venda).toFixed(2) - parseFloat(totais.total_desconto_venda).toFixed(2) - parseFloat(totais.total_preco_custo).toFixed(2)
+                lucro.textContent = parseFloat(Soma).toFixed(2)
+                movimentacaoMonetaria.style.display = 'block'
+
+            } else if(Dados.error == 'VAZIO'){
+                movimentacao.style.display = 'block';
+                movimentacaoSucesso.style.display = 'none'
+                movimentacaoVazia.style.display = 'block'
+                movimentacaoMonetaria.style.display = 'none'
+            }
+
+        }).catch(error => {
+
+            console.log('erro', error)
+        })
+
+}
+
 
 
     
