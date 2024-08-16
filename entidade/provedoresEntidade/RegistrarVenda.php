@@ -7,6 +7,7 @@ if (!empty($_POST)) {
 
     $Venda = new Vendas;
     $VendaPespectiva = new Vendas_Pespectivas;
+    $ReceitasDespesas = new ReceitasDespesas;
 
     $precoVenda = floatval(str_replace(',', '.', $_POST['preco_vendido_venda'])) - floatval(str_replace(',', '.', $_POST['desconto_venda']));
 
@@ -60,6 +61,7 @@ if (!empty($_POST)) {
                 ];
 
                 $VendaPespectiva->inserirVendaPespectiva($dadosValidade);
+
             } else if (trim($modalidade_validade) === 'MES') {
 
                 $data_manipulada = new DateTime($data_venda);
@@ -85,9 +87,22 @@ if (!empty($_POST)) {
                 $VendaPespectiva->inserirVendaPespectiva($dadosValidade);
             }
         }
+
+        //Separando as string de mês e ano
+        $data_mensal_anual = explode("-", $data_venda);
+        $data_mensal_receita_despesa = $data_mensal_anual[0] . "-" . $data_mensal_anual[1];
+
+        // aqui insere a venda;
         $Venda->inserirVenda($dados);
 
+        // inserir Receita
+        $ReceitasDespesas->inserirReceitaDespesa($id_usuario_venda, $id_entidade_venda, $item_produto_venda, 'R', $precoVenda, $data_venda, $data_mensal_receita_despesa);
+
+        // inserir Despesas
+        $ReceitasDespesas->inserirReceitaDespesa($id_usuario_venda, $id_entidade_venda, $item_produto_venda, 'D', $preco_custo_venda, $data_venda, $data_mensal_receita_despesa);
+
         header('Location: ../registrarVenda.php?status=sucesso');
+
     } else {
 
         session_destroy();

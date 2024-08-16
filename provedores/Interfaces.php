@@ -24,3 +24,10 @@ interface InterfaceVendasPespectivas {
     public function ChamaVendasPespectivasMes($id_usuario_venda_pespectiva, $id_entidade_venda_pespectiva, $mes , $ano);
 
 }
+
+interface InterfaceReceitasDespesas {
+
+    public function inserirReceitaDespesa($id_usuario_receita_despesa, $id_entidade_receita_despesa, $titulo_receita_despesa, $categoria_receita_despesa, $valor_receita_despesa, $data_receita_despesa, $data_mensal_receita_despesa);
+    public function chamaReceitaDespesa($categoria_receita_despesa, $id_usuario_receita_despesa, $id_entidade_receita_despesa);
+
+}

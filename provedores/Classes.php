@@ -388,9 +388,7 @@ class UsuarioAdmPf extends UsuarioAdm
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function chamaEntidade($id)
-    {
-    }
+    public function chamaEntidade($id) {}
 
     public function verificaUsuario($dados)
     {
@@ -836,7 +834,6 @@ class Vendas_Pespectivas implements InterfaceVendasPespectivas
 
     public function __construct()
     {
-
         $this->conexao = new Conexao();
     }
 
@@ -904,5 +901,69 @@ class Vendas_Pespectivas implements InterfaceVendasPespectivas
         $r = [];
 
         return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+}
+
+class ReceitasDespesas implements InterfaceReceitasDespesas
+{
+
+    private $id_receita_despesa;
+    private $conexao;
+    private $id_usuario_receita_despesa;
+    private $id_entidade_receita_despesa;
+    private $titulo_receita_despesa;
+    private $categoria_receita_despesa;
+    private $valor_receita_despesa;
+    private $data_receita_despesa;
+    private $data_mensal_receita_despesa;
+
+    public function __construct()
+    {
+        $this->conexao = new Conexao();
+    }
+
+    public function inserirReceitaDespesa($id_usuario_receita_despesa, $id_entidade_receita_despesa, $titulo_receita_despesa, $categoria_receita_despesa, $valor_receita_despesa, $data_receita_despesa, $data_mensal_receita_despesa)
+    {
+
+        $query = "INSERT INTO tb_receitas_despesas (id_usuario_receita_despesa, id_entidade_receita_despesa, titulo_receita_despesa, categoria_receita_despesa, valor_receita_despesa, data_receita_despesa, data_mensal_receita_despesa) VALUES (:id_usuario_receita_despesa, :id_entidade_receita_despesa, :titulo_receita_despesa, :categoria_receita_despesa, :valor_receita_despesa, :data_receita_despesa, :data_mensal_receita_despesa)";
+
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+
+        $stmt->bindValue(':id_usuario_receita_despesa', $id_usuario_receita_despesa);
+        $stmt->bindValue(':id_entidade_receita_despesa', $id_entidade_receita_despesa);
+        $stmt->bindValue(':titulo_receita_despesa', $titulo_receita_despesa);
+        $stmt->bindValue(':categoria_receita_despesa', $categoria_receita_despesa);
+        $stmt->bindValue(':valor_receita_despesa', $valor_receita_despesa);
+        $stmt->bindValue(':data_receita_despesa', $data_receita_despesa);
+        $stmt->bindValue(':data_mensal_receita_despesa', $data_mensal_receita_despesa);
+
+        $stmt->execute();
+    }
+
+    public function chamaReceitaDespesa($categoria_receita_despesa, $id_usuario_receita_despesa, $id_entidade_receita_despesa)
+    {
+        try {
+            $dataMes = date('Y-m');
+            $query = "SELECT *, (SELECT SUM(valor_receita_despesa) FROM tb_receitas_despesas WHERE data_mensal_receita_despesa = :dataMes AND categoria_receita_despesa = :categoria_receita_despesa) AS total_valor_receita_despesa FROM tb_receitas_despesas WHERE data_mensal_receita_despesa = :dataMes AND categoria_receita_despesa = :categoria_receita_despesa AND id_usuario_receita_despesa = :id_usuario_receita_despesa AND  id_entidade_receita_despesa = :id_entidade_receita_despesa";
+
+            $conn = $this->conexao->Conectar();
+
+            $stmt = $conn->prepare($query);
+            $stmt->bindValue(':dataMes', $dataMes);
+            $stmt->bindValue(':categoria_receita_despesa', $categoria_receita_despesa);
+            $stmt->bindValue(':id_usuario_receita_despesa', $id_usuario_receita_despesa);
+            $stmt->bindValue(':id_entidade_receita_despesa', $id_entidade_receita_despesa);
+
+            $stmt->execute();
+
+            $r = [];
+
+            return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            // Exibe a mensagem de erro
+            echo "Erro: " . $e->getMessage();
+        }
     }
 }

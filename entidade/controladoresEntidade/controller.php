@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>CertLock - Controle de Vendas</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
@@ -99,7 +99,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="movimentacaoFinanceira.php">Movimentação Financeira</a></li>
-                        <li><a class="dropdown-item" href="#">Controle de Receitas/Depesas</a></li>
+                        <li><a class="dropdown-item" href="controleReceitaDespesas.php">Controle de Receitas/Depesas</a></li>
                         <li><a class="dropdown-item" href="#">Histórico de Caixa</a></li>
                         <li><a class="dropdown-item" href="#">Administrar Despesas</a></li>
                     </ul>

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21/07/2024 às 04:23
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+-- Tempo de geração: 16-Ago-2024 às 21:36
+-- Versão do servidor: 10.4.32-MariaDB
+-- versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tb_clientes_pf`
+-- Estrutura da tabela `tb_clientes_pf`
 --
 
 CREATE TABLE `tb_clientes_pf` (
@@ -38,7 +38,7 @@ CREATE TABLE `tb_clientes_pf` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `tb_clientes_pf`
+-- Extraindo dados da tabela `tb_clientes_pf`
 --
 
 INSERT INTO `tb_clientes_pf` (`id_cliente_pf`, `cpf_cliente_pf`, `nome_cliente_pf`, `email_cliente_pf`, `contato_cliente_pf`, `id_usuario_cliente_pf`, `entidade_cliente_pf`) VALUES
@@ -48,7 +48,7 @@ INSERT INTO `tb_clientes_pf` (`id_cliente_pf`, `cpf_cliente_pf`, `nome_cliente_p
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tb_clientes_pj`
+-- Estrutura da tabela `tb_clientes_pj`
 --
 
 CREATE TABLE `tb_clientes_pj` (
@@ -70,7 +70,7 @@ CREATE TABLE `tb_clientes_pj` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `tb_clientes_pj`
+-- Extraindo dados da tabela `tb_clientes_pj`
 --
 
 INSERT INTO `tb_clientes_pj` (`id_cliente_pj`, `responsavel_cliente_pj`, `telefone_cliente_pj`, `cnpj_cliente_pj`, `nome_cliente_pj`, `contato_cliente_pj`, `logradouro_cliente_pj`, `numero_cliente_pj`, `bairro_cliente_pj`, `cidade_cliente_pj`, `uf_cliente_pj`, `cep_cliente_pj`, `email_cliente_pj`, `id_usuario_cliente_pj`, `entidade_cliente_pj`) VALUES
@@ -81,7 +81,7 @@ INSERT INTO `tb_clientes_pj` (`id_cliente_pj`, `responsavel_cliente_pj`, `telefo
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tb_entidades`
+-- Estrutura da tabela `tb_entidades`
 --
 
 CREATE TABLE `tb_entidades` (
@@ -100,7 +100,7 @@ CREATE TABLE `tb_entidades` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `tb_entidades`
+-- Extraindo dados da tabela `tb_entidades`
 --
 
 INSERT INTO `tb_entidades` (`id_entidade`, `cnpj_entidade`, `nome_empresa_entidade`, `contato_entidade`, `logradouro_entidade`, `numero_entidade`, `bairro_entidade`, `cidade_entidade`, `uf_entidade`, `cep_entidade`, `email_entidade`, `status_entidade`) VALUES
@@ -114,7 +114,7 @@ INSERT INTO `tb_entidades` (`id_entidade`, `cnpj_entidade`, `nome_empresa_entida
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tb_entidades_pf`
+-- Estrutura da tabela `tb_entidades_pf`
 --
 
 CREATE TABLE `tb_entidades_pf` (
@@ -128,7 +128,7 @@ CREATE TABLE `tb_entidades_pf` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `tb_entidades_pf`
+-- Extraindo dados da tabela `tb_entidades_pf`
 --
 
 INSERT INTO `tb_entidades_pf` (`id_entidade_pf`, `cpf_entidade_pf`, `nome_entidade_pf`, `email_entidade_pf`, `contato_entidade_pf`, `status_entidade_pf`, `id_entidade_usuario_adm_pf`) VALUES
@@ -142,7 +142,7 @@ INSERT INTO `tb_entidades_pf` (`id_entidade_pf`, `cpf_entidade_pf`, `nome_entida
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tb_itens_precos`
+-- Estrutura da tabela `tb_itens_precos`
 --
 
 CREATE TABLE `tb_itens_precos` (
@@ -156,7 +156,7 @@ CREATE TABLE `tb_itens_precos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `tb_itens_precos`
+-- Extraindo dados da tabela `tb_itens_precos`
 --
 
 INSERT INTO `tb_itens_precos` (`id_item_preco`, `modelo_item_preco`, `custo_item_preco`, `preco_venda_item_preco`, `validade_item_preco`, `categoria_validade_item_preco`, `id_entidade_item_preco`) VALUES
@@ -166,7 +166,34 @@ INSERT INTO `tb_itens_precos` (`id_item_preco`, `modelo_item_preco`, `custo_item
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tb_usuario_adm_pf`
+-- Estrutura da tabela `tb_receitas_despesas`
+--
+
+CREATE TABLE `tb_receitas_despesas` (
+  `id_receita_despesa` int(11) NOT NULL,
+  `id_usuario_receita_despesa` int(11) NOT NULL,
+  `id_entidade_receita_despesa` int(11) NOT NULL,
+  `titulo_receita_despesa` varchar(220) NOT NULL,
+  `categoria_receita_despesa` varchar(1) NOT NULL,
+  `valor_receita_despesa` float NOT NULL,
+  `data_receita_despesa` date NOT NULL,
+  `data_mensal_receita_despesa` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `tb_receitas_despesas`
+--
+
+INSERT INTO `tb_receitas_despesas` (`id_receita_despesa`, `id_usuario_receita_despesa`, `id_entidade_receita_despesa`, `titulo_receita_despesa`, `categoria_receita_despesa`, `valor_receita_despesa`, `data_receita_despesa`, `data_mensal_receita_despesa`) VALUES
+(1, 5, 7, ' CERTIFICADO DIGITAL A1 PF ', 'R', 178, '2024-08-16', '2024-08'),
+(2, 5, 7, ' CERTIFICADO DIGITAL A1 PF ', 'D', 65, '2024-08-16', '2024-08'),
+(3, 5, 7, ' CERTIFICADO DIGITAL A1 PF ', 'R', 177.66, '2024-08-15', '2024-08'),
+(4, 5, 7, ' CERTIFICADO DIGITAL A1 PF ', 'D', 65, '2024-08-15', '2024-08');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tb_usuario_adm_pf`
 --
 
 CREATE TABLE `tb_usuario_adm_pf` (
@@ -180,7 +207,7 @@ CREATE TABLE `tb_usuario_adm_pf` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `tb_usuario_adm_pf`
+-- Extraindo dados da tabela `tb_usuario_adm_pf`
 --
 
 INSERT INTO `tb_usuario_adm_pf` (`id_usuario_adm_pf`, `cpf_usuario_adm_pf`, `email_usuario_adm_pf`, `nome_usuario_adm_pf`, `senha_usuario_adm_pf`, `status_usuario_adm_pf`, `id_entidade_usuario_adm_pf`) VALUES
@@ -189,7 +216,7 @@ INSERT INTO `tb_usuario_adm_pf` (`id_usuario_adm_pf`, `cpf_usuario_adm_pf`, `ema
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tb_usuario_adm_pj`
+-- Estrutura da tabela `tb_usuario_adm_pj`
 --
 
 CREATE TABLE `tb_usuario_adm_pj` (
@@ -203,7 +230,7 @@ CREATE TABLE `tb_usuario_adm_pj` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `tb_usuario_adm_pj`
+-- Extraindo dados da tabela `tb_usuario_adm_pj`
 --
 
 INSERT INTO `tb_usuario_adm_pj` (`id_usuario_adm_pj`, `cpf_usuario_adm_pj`, `email_usuario_adm_pj`, `nome_usuario_adm_pj`, `senha_usuario_adm_pj`, `status_usuario_adm_pj`, `id_entidade_usuario_adm_pj`) VALUES
@@ -216,7 +243,7 @@ INSERT INTO `tb_usuario_adm_pj` (`id_usuario_adm_pj`, `cpf_usuario_adm_pj`, `ema
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tb_vendas`
+-- Estrutura da tabela `tb_vendas`
 --
 
 CREATE TABLE `tb_vendas` (
@@ -236,7 +263,7 @@ CREATE TABLE `tb_vendas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `tb_vendas`
+-- Extraindo dados da tabela `tb_vendas`
 --
 
 INSERT INTO `tb_vendas` (`id_venda`, `id_usuario_venda`, `id_entidade_venda`, `id_produto_venda`, `data_venda`, `codigo_venda`, `nome_cliente_venda`, `item_produto_venda`, `preco_custo_venda`, `desconto_venda`, `preco_vendido_venda`, `status_custo_venda`, `status_pg_cliente_venda`) VALUES
@@ -245,12 +272,19 @@ INSERT INTO `tb_vendas` (`id_venda`, `id_usuario_venda`, `id_entidade_venda`, `i
 (43, 5, 7, 27, '2024-07-25', '13121', 'Luan Leandro Nogueira', ' CERTIFICADO DIGITAL A1 PF ', 65, 50, 140, 'ABERTO', 'ABERTO'),
 (44, 5, 7, 27, '2024-07-28', '4232', 'E-TICONS EMPRESA DE TECNOLOGIA DA INFORMAÇÃO & CONSULTORIA LTDA', ' CERTIFICADO DIGITAL A1 PF ', 65, 15, 175, 'ABERTO', 'ABERTO'),
 (45, 5, 7, 27, '2024-07-24', '969584', 'Luan Leandro Nogueira', ' CERTIFICADO DIGITAL A1 PF ', 65, 16.57, 173.43, 'ABERTO', 'ABERTO'),
-(46, 5, 7, 27, '2024-07-08', '0123456', 'E&E Calçados', ' CERTIFICADO DIGITAL A1 PF ', 65, 14.98, 175.02, 'ABERTO', 'ABERTO');
+(46, 5, 7, 27, '2024-07-08', '0123456', 'E&E Calçados', ' CERTIFICADO DIGITAL A1 PF ', 65, 14.98, 175.02, 'ABERTO', 'ABERTO'),
+(47, 5, 7, 27, '2024-08-16', '1231231', 'Luan Leandro Nogueira', ' CERTIFICADO DIGITAL A1 PF ', 65, 12, 178, 'ABERTO', 'ABERTO'),
+(48, 5, 7, 27, '2024-08-16', '1231231', 'Luan Leandro Nogueira', ' CERTIFICADO DIGITAL A1 PF ', 65, 12, 178, 'ABERTO', 'ABERTO'),
+(49, 5, 7, 27, '2024-08-16', '1231231', 'Luan Leandro Nogueira', ' CERTIFICADO DIGITAL A1 PF ', 65, 12, 178, 'ABERTO', 'ABERTO'),
+(50, 5, 7, 27, '2024-08-16', '1231231', 'Luan Leandro Nogueira', ' CERTIFICADO DIGITAL A1 PF ', 65, 12, 178, 'ABERTO', 'ABERTO'),
+(51, 5, 7, 27, '2024-08-16', '1231231', 'Luan Leandro Nogueira', ' CERTIFICADO DIGITAL A1 PF ', 65, 12, 178, 'ABERTO', 'ABERTO'),
+(52, 5, 7, 27, '2024-08-16', '1231231', 'Luan Leandro Nogueira', ' CERTIFICADO DIGITAL A1 PF ', 65, 12, 178, 'ABERTO', 'ABERTO'),
+(53, 1, 5, 27, '2024-08-15', '2312', 'Câmara Municipal De Garanhuns', ' CERTIFICADO DIGITAL A1 PF ', 65, 12.34, 177.66, 'ABERTO', 'ABERTO');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tb_vendas_pespectivas`
+-- Estrutura da tabela `tb_vendas_pespectivas`
 --
 
 CREATE TABLE `tb_vendas_pespectivas` (
@@ -269,7 +303,7 @@ CREATE TABLE `tb_vendas_pespectivas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `tb_vendas_pespectivas`
+-- Extraindo dados da tabela `tb_vendas_pespectivas`
 --
 
 INSERT INTO `tb_vendas_pespectivas` (`id_venda_pespectiva`, `id_usuario_venda_pespectiva`, `id_entidade_venda_pespectiva`, `id_produto_venda_pespectiva`, `nome_venda_pespectiva`, `telefone_venda_pespectiva`, `data_venda_pespectiva`, `item_venda_pespectiva`, `preco_venda_pespectiva`, `data_prevista_venda_pespectiva`, `mes_venda_pespectiva`, `ano_venda_pespectiva`) VALUES
@@ -279,71 +313,84 @@ INSERT INTO `tb_vendas_pespectivas` (`id_venda_pespectiva`, `id_usuario_venda_pe
 (30, 5, 7, 27, 'Luan Leandro Nogueira', '87988457530', '2024-07-25', ' CERTIFICADO DIGITAL A1 PF ', 140, '2025-07-25', 7, 2024),
 (31, 5, 7, 27, 'E-TICONS EMPRESA DE TECNOLOGIA DA INFORMAÇÃO & CONSULTORIA LTDA', '87988762111', '2024-07-28', ' CERTIFICADO DIGITAL A1 PF ', 175, '2025-07-28', 7, 2024),
 (32, 5, 7, 27, 'Luan Leandro Nogueira', '87988457530', '2024-07-24', ' CERTIFICADO DIGITAL A1 PF ', 173.43, '2025-07-24', 7, 2024),
-(33, 5, 7, 27, 'E&E Calçados', '87988457530', '2024-07-08', ' CERTIFICADO DIGITAL A1 PF ', 175.02, '2025-07-08', 7, 2024);
+(33, 5, 7, 27, 'E&E Calçados', '87988457530', '2024-07-08', ' CERTIFICADO DIGITAL A1 PF ', 175.02, '2025-07-08', 7, 2024),
+(34, 5, 7, 27, 'Luan Leandro Nogueira', '87988457530', '2024-08-16', ' CERTIFICADO DIGITAL A1 PF ', 178, '2025-08-16', 8, 2024),
+(35, 5, 7, 27, 'Luan Leandro Nogueira', '87988457530', '2024-08-16', ' CERTIFICADO DIGITAL A1 PF ', 178, '2025-08-16', 8, 2024),
+(36, 5, 7, 27, 'Luan Leandro Nogueira', '87988457530', '2024-08-16', ' CERTIFICADO DIGITAL A1 PF ', 178, '2025-08-16', 8, 2024),
+(37, 5, 7, 27, 'Luan Leandro Nogueira', '87988457530', '2024-08-16', ' CERTIFICADO DIGITAL A1 PF ', 178, '2025-08-16', 8, 2024),
+(38, 5, 7, 27, 'Luan Leandro Nogueira', '87988457530', '2024-08-16', ' CERTIFICADO DIGITAL A1 PF ', 178, '2025-08-16', 8, 2024),
+(39, 5, 7, 27, 'Luan Leandro Nogueira', '87988457530', '2024-08-16', ' CERTIFICADO DIGITAL A1 PF ', 178, '2025-08-16', 8, 2024),
+(40, 1, 5, 27, 'Câmara Municipal De Garanhuns', '87988457530', '2024-08-15', ' CERTIFICADO DIGITAL A1 PF ', 177.66, '2025-08-15', 8, 2024);
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices de tabela `tb_clientes_pf`
+-- Índices para tabela `tb_clientes_pf`
 --
 ALTER TABLE `tb_clientes_pf`
   ADD PRIMARY KEY (`id_cliente_pf`);
 
 --
--- Índices de tabela `tb_clientes_pj`
+-- Índices para tabela `tb_clientes_pj`
 --
 ALTER TABLE `tb_clientes_pj`
   ADD PRIMARY KEY (`id_cliente_pj`),
   ADD KEY `id_cliente_pj` (`id_cliente_pj`);
 
 --
--- Índices de tabela `tb_entidades`
+-- Índices para tabela `tb_entidades`
 --
 ALTER TABLE `tb_entidades`
   ADD PRIMARY KEY (`id_entidade`);
 
 --
--- Índices de tabela `tb_entidades_pf`
+-- Índices para tabela `tb_entidades_pf`
 --
 ALTER TABLE `tb_entidades_pf`
   ADD PRIMARY KEY (`id_entidade_pf`);
 
 --
--- Índices de tabela `tb_itens_precos`
+-- Índices para tabela `tb_itens_precos`
 --
 ALTER TABLE `tb_itens_precos`
   ADD PRIMARY KEY (`id_item_preco`);
 
 --
--- Índices de tabela `tb_usuario_adm_pf`
+-- Índices para tabela `tb_receitas_despesas`
+--
+ALTER TABLE `tb_receitas_despesas`
+  ADD PRIMARY KEY (`id_receita_despesa`);
+
+--
+-- Índices para tabela `tb_usuario_adm_pf`
 --
 ALTER TABLE `tb_usuario_adm_pf`
   ADD PRIMARY KEY (`id_usuario_adm_pf`),
   ADD KEY `fk_id_entidade_usuario_adm_pf` (`id_entidade_usuario_adm_pf`);
 
 --
--- Índices de tabela `tb_usuario_adm_pj`
+-- Índices para tabela `tb_usuario_adm_pj`
 --
 ALTER TABLE `tb_usuario_adm_pj`
   ADD PRIMARY KEY (`id_usuario_adm_pj`),
   ADD KEY `fk_id_entidade_usuario_adm_pj` (`id_entidade_usuario_adm_pj`);
 
 --
--- Índices de tabela `tb_vendas`
+-- Índices para tabela `tb_vendas`
 --
 ALTER TABLE `tb_vendas`
   ADD PRIMARY KEY (`id_venda`);
 
 --
--- Índices de tabela `tb_vendas_pespectivas`
+-- Índices para tabela `tb_vendas_pespectivas`
 --
 ALTER TABLE `tb_vendas_pespectivas`
   ADD PRIMARY KEY (`id_venda_pespectiva`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
@@ -377,6 +424,12 @@ ALTER TABLE `tb_itens_precos`
   MODIFY `id_item_preco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
+-- AUTO_INCREMENT de tabela `tb_receitas_despesas`
+--
+ALTER TABLE `tb_receitas_despesas`
+  MODIFY `id_receita_despesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de tabela `tb_usuario_adm_pf`
 --
 ALTER TABLE `tb_usuario_adm_pf`
@@ -392,26 +445,26 @@ ALTER TABLE `tb_usuario_adm_pj`
 -- AUTO_INCREMENT de tabela `tb_vendas`
 --
 ALTER TABLE `tb_vendas`
-  MODIFY `id_venda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id_venda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT de tabela `tb_vendas_pespectivas`
 --
 ALTER TABLE `tb_vendas_pespectivas`
-  MODIFY `id_venda_pespectiva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_venda_pespectiva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
--- Restrições para tabelas despejadas
+-- Restrições para despejos de tabelas
 --
 
 --
--- Restrições para tabelas `tb_usuario_adm_pf`
+-- Limitadores para a tabela `tb_usuario_adm_pf`
 --
 ALTER TABLE `tb_usuario_adm_pf`
   ADD CONSTRAINT `fk_id_entidade_usuario_adm_pf` FOREIGN KEY (`id_entidade_usuario_adm_pf`) REFERENCES `tb_entidades_pf` (`id_entidade_pf`);
 
 --
--- Restrições para tabelas `tb_usuario_adm_pj`
+-- Limitadores para a tabela `tb_usuario_adm_pj`
 --
 ALTER TABLE `tb_usuario_adm_pj`
   ADD CONSTRAINT `fk_id_entidade_usuario_adm_pj` FOREIGN KEY (`id_entidade_usuario_adm_pj`) REFERENCES `tb_entidades` (`id_entidade`);
