@@ -967,3 +967,75 @@ class ReceitasDespesas implements InterfaceReceitasDespesas
         }
     }
 }
+
+class Movimentacao implements InterfaceMovimentacao
+{
+    private int $id_movimentacao;
+    private $conexao;
+    private $id_usuario_movimentacao;
+    private $id_entidade_movimentacao;
+    private $data_mensal_movimentacao;
+    private $data_atualizacao_movimentacao;
+    private $receita_movimentacao;
+    private $despesa_movimentacao;
+    private $soma_movimentacao;
+    private $lucro_prejuizo_movimentacao;
+
+    public function __construct()
+    {
+        $this->conexao = new Conexao();
+    }
+
+    public function inserirMovimentacao($id_usuario_movimentacao, $id_entidade_movimentacao, $data_mensal_movimentacao, $data_atualizacao_movimentacao, $receita_movimentacao, $despesa_movimentacao, $soma_movimentacao, $lucro_prejuizo_movimentacao){
+
+        $query = "INSERT INTO tb_movimentacao (id_usuario_movimentacao, id_entidade_movimentacao, data_mensal_movimentacao, data_atualizacao_movimentacao, receita_movimentacao, despesa_movimentacao, soma_movimentacao, lucro_prejuizo_movimentacao) VALUES (:id_usuario_movimentacao, :id_entidade_movimentacao, :data_mensal_movimentacao, :data_atualizacao_movimentacao, :receita_movimentacao, :despesa_movimentacao, :soma_movimentacao, :lucro_prejuizo_movimentacao)";
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':id_usuario_movimentacao', $id_usuario_movimentacao);
+        $stmt->bindValue(':id_entidade_movimentacao', $id_entidade_movimentacao);
+        $stmt->bindValue(':data_mensal_movimentacao', $data_mensal_movimentacao);
+        $stmt->bindValue(':data_atualizacao_movimentacao', $data_atualizacao_movimentacao);
+        $stmt->bindValue(':receita_movimentacao', $receita_movimentacao);
+        $stmt->bindValue(':despesa_movimentacao', $despesa_movimentacao);
+        $stmt->bindValue(':soma_movimentacao', $soma_movimentacao);
+        $stmt->bindValue(':lucro_prejuizo_movimentacao', $lucro_prejuizo_movimentacao);
+
+        $stmt->execute();
+    }
+
+    public function atualizarMovimentacao($id_usuario_movimentacao, $id_entidade_movimentacao, $data_atualizacao_movimentacao, $receita_movimentacao, $despesa_movimentacao, $soma_movimentacao, $lucro_prejuizo_movimentacao){
+
+        $query = "UPDATE tb_movimentacao SET data_atualizacao_movimentacao = :data_atualizacao_movimentacao, receita_movimentacao = :receita_movimentacao, despesa_movimentacao = :despesa_movimentacao, soma_movimentacao = :soma_movimentacao, lucro_prejuizo_movimentacao = :lucro_prejuizo_movimentacao WHERE id_usuario_movimentacao = :id_usuario_movimentacao AND id_entidade_movimentacao = :id_entidade_movimentacao";
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':id_usuario_movimentacao', $id_usuario_movimentacao);
+        $stmt->bindValue(':id_entidade_movimentacao', $id_entidade_movimentacao);
+        // $stmt->bindValue(':data_mensal_movimentacao', $data_mensal_movimentacao);
+        $stmt->bindValue(':data_atualizacao_movimentacao', $data_atualizacao_movimentacao);
+        $stmt->bindValue(':receita_movimentacao', $receita_movimentacao);
+        $stmt->bindValue(':despesa_movimentacao', $despesa_movimentacao);
+        $stmt->bindValue(':soma_movimentacao', $soma_movimentacao);
+        $stmt->bindValue(':lucro_prejuizo_movimentacao', $lucro_prejuizo_movimentacao);
+
+        $stmt->execute();
+    }
+
+    public function consultaMovimentacao($data_mensal_movimentacao, $id_usuario_movimentacao, $id_entidade_movimentacao){
+
+        $query = "SELECT COUNT(:data_mensal_movimentacao) AS RESULT FROM tb_movimentacao WHERE data_mensal_movimentacao = :data_mensal_movimentacao AND id_usuario_movimentacao = :id_usuario_movimentacao AND id_entidade_movimentacao = :id_entidade_movimentacao";
+
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':id_usuario_movimentacao', $id_usuario_movimentacao);
+        $stmt->bindValue(':id_entidade_movimentacao', $id_entidade_movimentacao);
+        $stmt->bindValue(':data_mensal_movimentacao', $data_mensal_movimentacao);
+        $stmt->execute();
+
+        $r = [];
+
+        return $r = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+}

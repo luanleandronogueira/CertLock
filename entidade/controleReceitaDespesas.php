@@ -9,8 +9,8 @@ $ReceitasDespesas = new ReceitasDespesas;
 $Receitas = $ReceitasDespesas->chamaReceitaDespesa('R', $_SESSION['id_usuario_adm_pj'], $_SESSION['id_entidade_usuario_adm_pj']);
 $Despesas = $ReceitasDespesas->chamaReceitaDespesa('D', $_SESSION['id_usuario_adm_pj'], $_SESSION['id_entidade_usuario_adm_pj']);
 
-$DespesasSomadas = $Despesas[0]['total_valor_receita_despesa'];
-$ReceitasSomadas = $Receitas[0]['total_valor_receita_despesa'];
+$DespesasSomadas = isset($Despesas[0]['total_valor_receita_despesa']) ? $Despesas[0]['total_valor_receita_despesa'] : 0;
+$ReceitasSomadas = isset($Receitas[0]['total_valor_receita_despesa']) ? $Receitas[0]['total_valor_receita_despesa'] : 0;
 
 $SomaValores = $DespesasSomadas + $ReceitasSomadas;
 $Lucratividade = $ReceitasSomadas - $DespesasSomadas;
@@ -39,6 +39,14 @@ $SomaValoresFormatado = number_format($SomaValores, 2, ',', '.');
 
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 O <strong>registro</strong> foi efetuado com sucesso!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+        <?php } ?>
+        <?php if (isset($_GET['statusRD']) and isset($_GET['statusRD']) == 'sucesso') { ?>
+
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                A <strong>movimentação</strong> foi atualizada com sucesso!
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
 
@@ -88,14 +96,21 @@ $SomaValoresFormatado = number_format($SomaValores, 2, ',', '.');
                 <div class="card-header">
                     Receita
                 </div>
-                <div class="card-body">
-                    <?php foreach ($Receitas as $Receita) { ?>
-                        <span><?= $Receita['titulo_receita_despesa'] ?> = <strong><?= $Receita['valor_receita_despesa'] ?></strong></span></br>
-                    <?php } ?>
-                </div>
-                <div class="card-footer text-muted">
-                    <span>Total: <?= number_format($Receitas[0]['total_valor_receita_despesa'], 2, ',', '.') ?></span>
-                </div>
+
+                <?php if (!empty($Receitas)) { ?>
+                    <div class="card-body">
+                        <?php foreach ($Receitas as $Receita) { ?>
+                            <span><?= $Receita['titulo_receita_despesa'] ?> = <strong><?= $Receita['valor_receita_despesa'] ?></strong></span></br>
+                        <?php } ?>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <span>Total: <?= number_format($Receitas[0]['total_valor_receita_despesa'], 2, ',', '.') ?></span>
+                    </div>
+                <?php } else { ?>
+                    <div class="card-body">
+                        <p>Sem Movimentação</p>
+                    </div>
+                <?php } ?>
             </div>
         </div>
 
@@ -104,28 +119,51 @@ $SomaValoresFormatado = number_format($SomaValores, 2, ',', '.');
                 <div class="card-header">
                     Despesas
                 </div>
-                <div class="card-body">
-                    <?php foreach ($Despesas as $Despesa) { ?>
-                        <span><?= $Despesa['titulo_receita_despesa'] ?> = <strong><?= $Despesa['valor_receita_despesa'] ?></strong></span></br>
-                    <?php } ?>
-                </div>
-                <div class="card-footer text-muted">
-                    <span>Total: <?= number_format($Despesas[0]['total_valor_receita_despesa'], 2, ',', '.')?></span>
-                </div>
+                <?php if (!empty($Despesas)) { ?>
+                    <div class="card-body">
+                        <?php foreach ($Despesas as $Despesa) { ?>
+                            <span><?= $Despesa['titulo_receita_despesa'] ?> = <strong><?= $Despesa['valor_receita_despesa'] ?></strong></span></br>
+                        <?php } ?>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <span>Total: <?= number_format($Despesas[0]['total_valor_receita_despesa'], 2, ',', '.') ?></span>
+                    </div>
+                <?php } else { ?>
+                    <div class="card-body">
+                        <p>Sem Movimentação</p>
+                    </div>
+                <?php } ?>
             </div>
         </div>
 
-        <div class="col-md-12 col-sm-12 col-4 col-xl-4 mt-4">
+        <div class="col-md-12 col-sm-12 col-4 col-xl-4 mt-4 mb-4">
             <div class="card">
                 <div class="card-header">
                     Movimentação Total Mês Atual:
                 </div>
                 <div class="card-body">
-                    <span><strong>Receitas: </strong> <?= $ReceitasSomadasFormatado ?></span></br>
-                    <span><strong>Despesas: </strong> <?= $DespesasSomadasFormatado ?></span></br></br>
+                    <form action="provedoresEntidade/FechaAtualizaMovimentacao.php" method="post">
+                        <input type="hidden" name="id_usuario_movimentacao" value="<?= $_SESSION['id_usuario_adm_pj'] ?>">
+                        <input type="hidden" name="id_entidade_movimentacao" value="<?= $_SESSION['id_entidade_usuario_adm_pj'] ?>">
+                        <input type="hidden" name="data_mensal_movimentacao" value="<?= date('Y-m') ?>">
+                        <input type="hidden" name="data_atualizacao_movimentacao" value="<?= date('d-m-Y H:m:s') ?>">
+                        <input type="hidden" name="receita_movimentacao" value="<?= $ReceitasSomadasFormatado ?>">
+                        <input type="hidden" name="despesa_movimentacao" value="<?= $DespesasSomadasFormatado ?>">
+                        <input type="hidden" name="soma_movimentacao" value="<?= $SomaValoresFormatado ?>">
+                        <input type="hidden" name="lucro_prejuizo_movimentacao" value="<?= $LucratividadeFormatado ?>">
 
-                    <span><strong>Total Movimentado: </strong> <?= $SomaValoresFormatado ?></span></br>
-                    <span><strong>Lucro/Prejuízo: </strong> <?= $LucratividadeFormatado ?></span></br>
+                        <span><strong>Receitas: </strong> <?= $ReceitasSomadasFormatado ?></span></br>
+                        <span><strong>Despesas: </strong> <?= $DespesasSomadasFormatado ?></span></br></br>
+
+                        <span><strong>Total Movimentado: </strong> <?= $SomaValoresFormatado ?></span></br>
+                        <?php if ($LucratividadeFormatado < 0) { ?>
+                            <span class="text-danger"><strong>Lucro/Prejuízo: </strong> <?= $LucratividadeFormatado ?></span></br>
+                        <?php } else { ?>
+                            <span class="text-success"><strong>Lucro/Prejuízo: </strong> <?= $LucratividadeFormatado ?></span></br>
+                        <?php } ?></br>
+
+                        <button class="btn btn-sm btn-info float-end" type="submit">Fechar Movimentação</button>
+                    </form>
                 </div>
             </div>
         </div>

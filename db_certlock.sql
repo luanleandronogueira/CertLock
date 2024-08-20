@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16-Ago-2024 às 21:36
+-- Tempo de geração: 20-Ago-2024 às 21:55
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -166,6 +166,24 @@ INSERT INTO `tb_itens_precos` (`id_item_preco`, `modelo_item_preco`, `custo_item
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `tb_movimentacao`
+--
+
+CREATE TABLE `tb_movimentacao` (
+  `id_movimentacao` int(11) NOT NULL,
+  `id_usuario_movimentacao` int(11) NOT NULL,
+  `id_entidade_movimentacao` int(11) NOT NULL,
+  `data_mensal_movimentacao` varchar(10) NOT NULL,
+  `data_atualizacao_movimentacao` varchar(20) NOT NULL,
+  `receita_movimentacao` float NOT NULL,
+  `despesa_movimentacao` float NOT NULL,
+  `soma_movimentacao` float NOT NULL,
+  `lucro_prejuizo_movimentacao` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `tb_receitas_despesas`
 --
 
@@ -185,10 +203,11 @@ CREATE TABLE `tb_receitas_despesas` (
 --
 
 INSERT INTO `tb_receitas_despesas` (`id_receita_despesa`, `id_usuario_receita_despesa`, `id_entidade_receita_despesa`, `titulo_receita_despesa`, `categoria_receita_despesa`, `valor_receita_despesa`, `data_receita_despesa`, `data_mensal_receita_despesa`) VALUES
-(1, 5, 7, ' CERTIFICADO DIGITAL A1 PF ', 'R', 178, '2024-08-16', '2024-08'),
-(2, 5, 7, ' CERTIFICADO DIGITAL A1 PF ', 'D', 65, '2024-08-16', '2024-08'),
-(3, 5, 7, ' CERTIFICADO DIGITAL A1 PF ', 'R', 177.66, '2024-08-15', '2024-08'),
-(4, 5, 7, ' CERTIFICADO DIGITAL A1 PF ', 'D', 65, '2024-08-15', '2024-08');
+(17, 5, 7, 'DAS MEI', 'D', 87, '2024-08-20', '2024-08'),
+(18, 5, 7, 'CM BREJÃO', 'R', 1114, '2024-08-21', '2024-08'),
+(19, 5, 7, 'ALUGUEL', 'D', 2000, '2024-08-20', '2024-08'),
+(20, 5, 7, 'CM BOM CONSELHO', 'R', 3000, '2024-08-21', '2024-08'),
+(21, 5, 7, 'PRESTAçãO DE SERVIçO', 'R', 120, '2024-08-21', '2024-08');
 
 -- --------------------------------------------------------
 
@@ -358,6 +377,12 @@ ALTER TABLE `tb_itens_precos`
   ADD PRIMARY KEY (`id_item_preco`);
 
 --
+-- Índices para tabela `tb_movimentacao`
+--
+ALTER TABLE `tb_movimentacao`
+  ADD PRIMARY KEY (`id_movimentacao`);
+
+--
 -- Índices para tabela `tb_receitas_despesas`
 --
 ALTER TABLE `tb_receitas_despesas`
@@ -424,10 +449,16 @@ ALTER TABLE `tb_itens_precos`
   MODIFY `id_item_preco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
+-- AUTO_INCREMENT de tabela `tb_movimentacao`
+--
+ALTER TABLE `tb_movimentacao`
+  MODIFY `id_movimentacao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT de tabela `tb_receitas_despesas`
 --
 ALTER TABLE `tb_receitas_despesas`
-  MODIFY `id_receita_despesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_receita_despesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de tabela `tb_usuario_adm_pf`
