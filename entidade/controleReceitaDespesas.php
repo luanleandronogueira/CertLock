@@ -1,7 +1,7 @@
 <?php
 session_start();
-
 include '../provedores/Classes.php';
+verificaSessao();
 include_once 'controladoresEntidade/controller.php';
 
 $ReceitasDespesas = new ReceitasDespesas;
@@ -101,6 +101,7 @@ $SomaValoresFormatado = number_format($SomaValores, 2, ',', '.');
                     <div class="card-body">
                         <?php foreach ($Receitas as $Receita) { ?>
                             <span><?= $Receita['titulo_receita_despesa'] ?> = <strong><?= $Receita['valor_receita_despesa'] ?></strong></span></br>
+                            <hr>
                         <?php } ?>
                     </div>
                     <div class="card-footer text-muted">
@@ -123,6 +124,7 @@ $SomaValoresFormatado = number_format($SomaValores, 2, ',', '.');
                     <div class="card-body">
                         <?php foreach ($Despesas as $Despesa) { ?>
                             <span><?= $Despesa['titulo_receita_despesa'] ?> = <strong><?= $Despesa['valor_receita_despesa'] ?></strong></span></br>
+                            <hr>
                         <?php } ?>
                     </div>
                     <div class="card-footer text-muted">

@@ -95,11 +95,13 @@ if (!empty($_POST)) {
         // aqui insere a venda;
         $Venda->inserirVenda($dados);
 
+        $tituloCliente = $item_produto_venda . " - " . $nome_cliente_venda;
+
         // inserir Receita
-        $ReceitasDespesas->inserirReceitaDespesa($id_usuario_venda, $id_entidade_venda, $item_produto_venda, 'R', $precoVenda, $data_venda, $data_mensal_receita_despesa);
+        $ReceitasDespesas->inserirReceitaDespesa($id_usuario_venda, $id_entidade_venda, $tituloCliente, 'R', $precoVenda, $data_venda, $data_mensal_receita_despesa);
 
         // inserir Despesas
-        $ReceitasDespesas->inserirReceitaDespesa($id_usuario_venda, $id_entidade_venda, $item_produto_venda, 'D', $preco_custo_venda, $data_venda, $data_mensal_receita_despesa);
+        $ReceitasDespesas->inserirReceitaDespesa($id_usuario_venda, $id_entidade_venda, $tituloCliente, 'D', $preco_custo_venda, $data_venda, $data_mensal_receita_despesa);
 
         header('Location: ../registrarVenda.php?status=sucesso');
 

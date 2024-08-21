@@ -63,14 +63,14 @@ $Entidade = $entidade->chamaEntidadeId($_SESSION['id_entidade_usuario_adm_pj']);
                             <div class="col-md-6 col-sm-12 col-lg-2 col-xl-2 mt-2 float-xl-end">
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="categoria_validade_item_preco" value="MES" >
+                                    <input class="form-check-input" type="radio" name="categoria_validade_item_preco" value="MES">
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         <strong>Meses</strong>
                                     </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="categoria_validade_item_preco" value="ANO" checked >
+                                    <input class="form-check-input" type="radio" name="categoria_validade_item_preco" value="ANO" checked>
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         <strong>Ano</strong>
                                     </label>
@@ -98,5 +98,6 @@ $Entidade = $entidade->chamaEntidadeId($_SESSION['id_entidade_usuario_adm_pj']);
         });
     });
 </script>
+
 
 <?php require_once 'controladoresEntidade/footer.php'; ?>

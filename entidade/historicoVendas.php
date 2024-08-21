@@ -1,7 +1,7 @@
 <?php
 session_start();
-
 include '../provedores/Classes.php';
+verificaSessao();
 include_once 'controladoresEntidade/controller.php';
 
 // print_r($_SESSION);
@@ -52,8 +52,4 @@ include_once 'controladoresEntidade/controller.php';
 
 
 
-<?php
-
-require_once 'controladoresEntidade/footer.php';
-
-?>
+<?php require_once 'controladoresEntidade/footer.php'; ?>

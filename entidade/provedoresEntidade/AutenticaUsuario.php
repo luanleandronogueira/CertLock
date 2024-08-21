@@ -1,12 +1,12 @@
-<?php 
+<?php
 session_start();
 include_once '../../provedores/Classes.php';
 
 $conexao = new Conexao;
 
-if(!empty($_POST)){
+if (!empty($_POST)) {
 
-    if(!empty($_POST['nome_usuario'])){
+    if (!empty($_POST['nome_usuario'])) {
 
         $log = trim($_POST['nome_usuario']);
         $senha = trim($_POST['senha_usuario']);
@@ -19,53 +19,39 @@ if(!empty($_POST)){
         // print_r($usu);
         // echo '</pre>';
 
-        extract($usu);
+        if (!empty($usu)) {
 
-        if($status_usuario_adm_pj === 'A'){
+            extract($usu);
 
-            if(password_verify($senha, $senha_usuario_adm_pj)){
+            if ($status_usuario_adm_pj === 'A') {
 
-                $_SESSION = $usu;
+                if (password_verify($senha, $senha_usuario_adm_pj)) {
 
-                header('Location: ../dashboard.php');
+                    $_SESSION = $usu;
+                    header('Location: ../dashboard.php');
 
-                echo '<pre>';
-                    print_r($usu);
-                echo '</pre>';
+                    // echo '<pre>';
+                    //     print_r($usu);
+                    // echo '</pre>';
 
+                } else {
+                    header("Location: ../index.php?senha=incorreta");
+                    die();
+                }
+            } else if ($status_usuario_adm_pj === 'B') {
 
-            } else {
-
-
-                header("Location: ../index.php?senha=incorreta");
+                header("Location: ../index.php?usuario=bloqueado");
                 die();
-
             }
+        } else {
 
-
-
-        } else if($status_usuario_adm_pj === 'B'){
-
-            header("Location: ../index.php?usuario=bloqueado");
+            header("Location: ../login.php?senha=incorreta");
             die();
-
         }
 
-
-    } else if(strlen($_POST['nome_usuario']) == 11){
-
-
-        
-
-
+    } else if (strlen($_POST['nome_usuario']) == 11) {
+        // em fase de construção
     } else {
-
-
-
-
+        // em fase de construção
     }
-
-
-
 }
-

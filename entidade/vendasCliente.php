@@ -1,7 +1,7 @@
 <?php
 session_start();
-
 include '../provedores/Classes.php';
+verificaSessao();
 include_once 'controladoresEntidade/controller.php';
 
 $Vendas = new Vendas;

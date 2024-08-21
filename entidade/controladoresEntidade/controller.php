@@ -80,7 +80,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="registrarVenda.php">Registrar Venda</a></li>
-                        <li><a class="dropdown-item" href="registrarVendaParceladas.php">Registrar Venda Parceladas/Recorrentes</a></li>
+                        <li><a class="dropdown-item disabled" href="registrarVendaParceladas.php">Registrar Venda Parceladas/Recorrentes</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -89,7 +89,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="vendasPespectivas.php">Vendas em Pespectivas</a></li>
-                        <li><a class="dropdown-item" href=".php">Clientes sem Renovação</a></li>
+                        <li><a class="dropdown-item disabled" href=".php">Clientes sem Renovação</a></li>
                         <li><a class="dropdown-item" href="historicoVendas.php">Histórico de Vendas</a></li>
                     </ul>
                 </li>
@@ -100,8 +100,8 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="movimentacaoFinanceira.php">Movimentação Financeira</a></li>
                         <li><a class="dropdown-item" href="controleReceitaDespesas.php">Controle de Receitas/Depesas</a></li>
-                        <li><a class="dropdown-item" href="#">Histórico de Caixa</a></li>
-                        <li><a class="dropdown-item" href="#">Administrar Despesas</a></li>
+                        <li><a class="dropdown-item disabled" href="#">Histórico de Caixa</a></li>
+                        <li><a class="dropdown-item disabled" href="#">Administrar Despesas</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -109,7 +109,7 @@
                         Administrador
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href=".php">Cadastrar um Usuário</a></li>
+                        <li><a class="dropdown-item disabled" href=".php">Cadastrar um Usuário</a></li>
                         <li><a class="dropdown-item" href="cadastrarItens.php">Cadastrar Itens de Venda</a></li>
                         <li><a class="dropdown-item" href="verItens.php">Ver Itens de Venda</a></li>
                     </ul>
@@ -119,7 +119,7 @@
                         Configurações
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href=".php">Suporte</a></li>
+                        <li><a class="dropdown-item disabled" href=".php">Suporte</a></li>
                         <li><a class="dropdown-item" href="provedoresEntidade/Sair.php">Sair</a></li>
                     </ul>
                 </li>

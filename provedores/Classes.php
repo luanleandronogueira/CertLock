@@ -1039,3 +1039,14 @@ class Movimentacao implements InterfaceMovimentacao
         return $r = $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
+
+function verificaSessao(){
+
+    if(empty($_SESSION) || isset($_SESSION['status_usuario_adm_pj']) AND $_SESSION['status_usuario_adm_pj'] != 'A') {
+
+        session_destroy();
+        header("Location: ../login.php?erro=3?usuarioSemAcesso&&function=verificaSessao");
+        die();
+    }
+
+}

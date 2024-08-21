@@ -192,10 +192,6 @@ $Itens = $Item->chamaItens($_SESSION['id_entidade_usuario_adm_pj']);
                             </div>
                         </form>
                     </div>
-
-
-
-
                 </div>
             </div>
         </div>
@@ -208,3 +204,22 @@ $Itens = $Item->chamaItens($_SESSION['id_entidade_usuario_adm_pj']);
 require_once 'controladoresEntidade/footer.php';
 
 ?>
+<!-- <script>
+$(document).ready(function() {
+    $('#identificador').on('input', function() {
+        var valor = $(this).val().replace(/[^0-9]/g, '');
+        var mask;
+
+        if (valor.length <= 11) {
+            mask = '000.000.000-00'; // CPF
+        } else {
+            mask = '00.000.000/0000-00'; // CNPJ
+        }
+
+        // Aplica a máscara selecionada
+        $(this).unmask().val(valor).mask(mask, {
+            reverse: true
+        });
+    });
+});
+</script> -->

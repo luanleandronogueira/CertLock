@@ -71,7 +71,7 @@ $Entidade = $entidade->chamaEntidadeId($_SESSION['id_entidade_usuario_adm_pj'])
                                             <h6 class="card-title text-center">Dados da Empresa</h6>
                                             <div class="col-md-6 col-sm-12 col-lg-3 col-xl-3">
                                                 <label for="">CNPJ: </label>
-                                                <input class="form-control" required type="number" onblur="verificarCampoCNPJ()" name="cnpj_cliente_pj" id="cnpj_entidade">
+                                                <input class="form-control"  required type="number" onblur="verificarCampoCNPJ();  verificaCNPJAPI();" name="cnpj_cliente_pj" id="cnpj_entidade">
                                                 <small><em><span id="mensagemOff"></span></em></small>
                                             </div>
                                             <div class="col-md-6 col-sm-12 col-lg-6 col-xl-6">

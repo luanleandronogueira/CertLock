@@ -54,40 +54,69 @@ document.addEventListener('DOMContentLoaded', function() {
 })
 
 
-async function verificaCNPJAPI() {
+// async function qverificaCNPJAPI() {
 
-    const cnpj = document.getElementById('cnpj_entidade').value;
+//     const cnpj = document.getElementById('cnpj_entidade').value;
 
-    if (cnpj.length === 14) { // Verifica se o CNPJ tem 14 dígitos
-        try {
-            const response = await fetch(`https://www.receitaws.com.br/v1/cnpj/${cnpj}`, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            });
+//     if (cnpj.length === 14) { // Verifica se o CNPJ tem 14 dígitos
+//         try {
+//             const response = await fetch(`https://publica.cnpj.ws/cnpj/${cnpj}`, {
+//                 method: 'GET',
+//                 headers: {
+//                     'Accept': 'application/json',
+//                     'Content-Type': 'application/json'
+//                 }
+//             });
 
-            if (response.ok) {
-                const empresa = await response.json();
+//             if (response.ok) {
+//                 const empresa = await response.json();
                 
-                // Atualiza os campos do formulário com os dados da empresa
-                document.getElementById('nome_empresa_entidade').value = empresa.nome || '';
-                document.getElementById('logradouro').value = empresa.logradouro || '';
-                document.getElementById('numero').value = empresa.numero || '';
+//                 // Atualiza os campos do formulário com os dados da empresa
+//                 document.getElementById('nome_empresa_entidade').value = empresa.nome || '';
+//                 document.getElementById('logradouro').value = empresa.logradouro || '';
+//                 document.getElementById('numero').value = empresa.numero || '';
 
-            } else {
+//             } else {
 
-                console.error("Erro na solicitação:", response.status, response.statusText);
+//                 console.error("Erro na solicitação:", response.status, response.statusText);
 
+//             }
+//         } catch (error) {
+//             console.error("Erro ao buscar o CNPJ:", error);
+//         }
+//     } else {
+//         alert('Por favor, insira um CNPJ válido com 14 dígitos.');
+//     }
+// }
+
+function verificaCNPJAPI() {
+    
+    const cnpj = document.getElementById('cnpj_entidade').value;
+    const API = "https://publica.cnpj.ws/cnpj/";
+
+    fetch(API+cnpj)
+        .then(response => {
+            console.log(response)
+            return response.json();
+        }).then(dados => {
+
+            console.log('Dados', dados);
+
+            if(dados.length != 0){
+
+                document.getElementById('nome_empresa_entidade').value = dados.razao_social
+                // document.getElementById('contato_entidade').value = dados.estabelecimento.dd1+estabelecimento.telefone1
+                document.getElementById('logradouro_entidade').value = dados.estabelecimento.logradouro
+                document.getElementById('numero_entidade').value = dados.estabelecimento.numero
+                document.getElementById('bairro_entidade').value = dados.estabelecimento.bairro
+                document.getElementById('cidade_entidade').value = dados.estabelecimento.cidade.nome
+                document.getElementById('uf_entidade').value = dados.estabelecimento.estado.sigla
+                document.getElementById('cep_entidade').value = dados.estabelecimento.cep
+                document.getElementById('email_entidade').value = dados.estabelecimento.email
             }
-        } catch (error) {
-            console.error("Erro ao buscar o CNPJ:", error);
-        }
-    } else {
-        alert('Por favor, insira um CNPJ válido com 14 dígitos.');
-    }
-}
+        })
+} 
+
 
 function verificarCampoCNPJ(){
 
@@ -138,7 +167,7 @@ function verificarCampoCNPJ(){
 
 function buscaCliente(){
 
-    const identificador = document.getElementById("identificador").value;
+    const identificador = document.getElementById("identificador").value.replace(/\.|\/|-/g, '');
     // const entidade = document.getElementById('entidade').value;
     const msgErro = document.getElementById('msgErro');
     const msgCliente = document.getElementById('msgCliente');
@@ -172,9 +201,9 @@ function buscaCliente(){
 
     var pj = document.getElementById('PJ');
     var pf = document.getElementById('PF');
- 
-    fetch('../entidade/provedoresEntidade/BuscaCliente.php?identificador='+identificador)
 
+
+    fetch('../entidade/provedoresEntidade/BuscaCliente.php?identificador='+identificador)
         .then(response => {
             console.log('Response', response)
             return response.json()
