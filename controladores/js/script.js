@@ -93,10 +93,11 @@ function verificaCNPJAPI() {
     
     const cnpj = document.getElementById('cnpj_entidade').value;
     const API = "https://publica.cnpj.ws/cnpj/";
+    var contato = null;
 
     fetch(API+cnpj)
         .then(response => {
-            console.log(response)
+            // console.log(response)
             return response.json();
         }).then(dados => {
 
@@ -104,8 +105,11 @@ function verificaCNPJAPI() {
 
             if(dados.length != 0){
 
+                // junta o ddd mais o numero do contato
+                contato = dados.estabelecimento.ddd1 + dados.estabelecimento.telefone1
+
                 document.getElementById('nome_empresa_entidade').value = dados.razao_social
-                // document.getElementById('contato_entidade').value = dados.estabelecimento.dd1+estabelecimento.telefone1
+                document.getElementById('contato_entidade').value = contato
                 document.getElementById('logradouro_entidade').value = dados.estabelecimento.logradouro
                 document.getElementById('numero_entidade').value = dados.estabelecimento.numero
                 document.getElementById('bairro_entidade').value = dados.estabelecimento.bairro

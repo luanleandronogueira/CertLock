@@ -32,7 +32,7 @@ $Itens = $Item->chamaItens($_SESSION['id_entidade_usuario_adm_pj']);
                 </div>
                 <div class="card-body">
                     <center>
-                        <h4><span id="msgCliente" class="badge text-bg-success form-section">Não encontramos esse cliente, preencha os dados e ele será cadastrado</span></h4>
+                        <h4><span id="msgCliente" class="badge text-bg-secondary form-section">Não encontramos esse cliente, <a href="cadastrarCliente.php">Clique aqui e faça o cadastro</a></span></h4>
                     </center>
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
                         <div class="input-group">
@@ -135,6 +135,7 @@ $Itens = $Item->chamaItens($_SESSION['id_entidade_usuario_adm_pj']);
                                             <option value="<?= $I['id_item_preco'] . ' - ' . $I['preco_venda_item_preco'] . ' - ' . $I['modelo_item_preco'] . ' - ' . $I['custo_item_preco'] . ' - ' . $I['validade_item_preco'] . ' - ' . $I['categoria_validade_item_preco'] ?>"><?= $I['modelo_item_preco'] ?></option>
                                         <?php } ?>
                                     </select>
+                                    <small><a href="cadastrarItens.php">+ Cadastrar um Novo Item</a></small>
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-lg-4 col-xl-4 mt-3">
@@ -178,13 +179,14 @@ $Itens = $Item->chamaItens($_SESSION['id_entidade_usuario_adm_pj']);
                                     <input class="form-control" name="codigo_venda" type="text">
                                 </div>
                                 <div class="col-lg-6 col-sm-12 col-xl-6 col-md-12">
-                                    <label for="">Item de Venda</label>
+                                    <label for="">Item de Venda: </label>
                                     <select class="form-control" name="item_venda" id="">
                                         <?php foreach ($Itens as $I) { ?>
 
                                             <option value="<?= $I['id_item_preco'] . ' - ' . $I['preco_venda_item_preco'] . ' - ' . $I['modelo_item_preco'] . ' - ' . $I['custo_item_preco'] . ' - ' . $I['validade_item_preco'] . ' - ' . $I['categoria_validade_item_preco'] ?>"><?= $I['modelo_item_preco'] ?></option>
                                         <?php } ?>
                                     </select>
+                                    <small><a href="cadastrarItens.php">+ Cadastrar um Novo Item</a></small>
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-lg-4 col-xl-4 mt-3">

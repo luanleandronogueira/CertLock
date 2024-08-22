@@ -72,6 +72,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="cadastrarCliente.php">Cadastrar Cliente</a></li>
+                        <li><a class="dropdown-item" href="verClientes.php">Ver Clientes Cadastrados</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">

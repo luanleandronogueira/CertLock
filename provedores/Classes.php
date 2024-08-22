@@ -447,6 +447,8 @@ abstract class Clientes
     abstract function inserirCliente($dados);
     abstract function consultaCliente($identificador);
     abstract function BuscaCliente($cnpj_cliente);
+    abstract function ChamaCliente($id_usuario, $id_entidade);
+    abstract function atualizaCliente($dados);
 }
 
 class ClientesPj extends Clientes
@@ -533,12 +535,53 @@ class ClientesPj extends Clientes
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function ChamaCliente($id_usuario_cliente_pj, $entidade_cliente_pj)
+    {
+
+        $query = "SELECT * FROM tb_clientes_pj WHERE id_usuario_cliente_pj = :id_usuario_cliente_pj AND entidade_cliente_pj = :entidade_cliente_pj";
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':id_usuario_cliente_pj', $id_usuario_cliente_pj);
+        $stmt->bindValue(':entidade_cliente_pj', $entidade_cliente_pj);
+
+        $stmt->execute();
+
+        $r = [];
+
+        return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function atualizaCliente($dados)
+    {
+
+        $query = "UPDATE tb_clientes_pj SET responsavel_cliente_pj = :responsavel_cliente_pj, telefone_cliente_pj = :telefone_cliente_pj, cnpj_cliente_pj = :cnpj_cliente_pj, nome_cliente_pj = :nome_cliente_pj, contato_cliente_pj = :contato_cliente_pj, logradouro_cliente_pj = :logradouro_cliente_pj, numero_cliente_pj = :numero_cliente_pj, bairro_cliente_pj = :bairro_cliente_pj, cidade_cliente_pj = :cidade_cliente_pj, uf_cliente_pj = :uf_cliente_pj, cep_cliente_pj = :cep_cliente_pj, email_cliente_pj = :email_cliente_pj WHERE id_cliente_pj = :id_cliente_pj";
+
+        $conexao =  new Conexao;
+        $conn = $conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':responsavel_cliente_pj', ucwords($dados['responsavel_cliente_pj']));
+        $stmt->bindValue(':telefone_cliente_pj', $dados['telefone_cliente_pj']);
+        $stmt->bindValue(':cnpj_cliente_pj', $dados['cnpj_cliente_pj']);
+        $stmt->bindValue(':nome_cliente_pj', ucwords($dados['nome_cliente_pj']));
+        $stmt->bindValue(':contato_cliente_pj', $dados['contato_cliente_pj']);
+        $stmt->bindValue(':logradouro_cliente_pj', ucwords($dados['logradouro_cliente_pj']));
+        $stmt->bindValue(':numero_cliente_pj', $dados['numero_cliente_pj']);
+        $stmt->bindValue(':bairro_cliente_pj', ucwords($dados['bairro_cliente_pj']));
+        $stmt->bindValue(':cidade_cliente_pj', ucwords($dados['cidade_cliente_pj']));
+        $stmt->bindValue(':uf_cliente_pj', strtoupper($dados['uf_cliente_pj']));
+        $stmt->bindValue(':cep_cliente_pj', $dados['cep_cliente_pj']);
+        $stmt->bindValue(':email_cliente_pj', $dados['email_cliente_pj']);
+        $stmt->bindValue(':id_cliente_pj', $dados['id_cliente_pj']);
+
+        $stmt->execute();
+    }
 }
 
 class ClientesPf extends Clientes
 {
-
-
     public function inserirCliente($dados)
     {
 
@@ -604,6 +647,40 @@ class ClientesPf extends Clientes
 
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function ChamaCliente($id_usuario_cliente_pf, $entidade_cliente_pf)
+    {
+
+        $query = "SELECT * FROM tb_clientes_pf WHERE id_usuario_cliente_pf = :id_usuario_cliente_pf AND entidade_cliente_pf = :entidade_cliente_pf";
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':id_usuario_cliente_pf', $id_usuario_cliente_pf);
+        $stmt->bindValue(':entidade_cliente_pf', $entidade_cliente_pf);
+
+        $stmt->execute();
+
+        $r = [];
+
+        return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function atualizaCliente($dados){
+
+        $query = "UPDATE `tb_clientes_pf` SET `cpf_cliente_pf` = :cpf_cliente_pf, `nome_cliente_pf` = :nome_cliente_pf, `email_cliente_pf` = :email_cliente_pf, `contato_cliente_pf` = :contato_cliente_pf
+        WHERE `id_cliente_pf` = :id_cliente_pf";
+
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':cpf_cliente_pf', $dados['cpf_cliente_pf']);
+        $stmt->bindValue(':nome_cliente_pf', ucwords($dados['nome_cliente_pf']));
+        $stmt->bindValue(':email_cliente_pf', $dados['email_cliente_pf']);
+        $stmt->bindValue(':contato_cliente_pf', $dados['contato_cliente_pf']);
+        $stmt->bindValue(':id_cliente_pf', $dados['id_cliente_pf']);
+
+        $stmt->execute();
     }
 }
 
@@ -986,7 +1063,8 @@ class Movimentacao implements InterfaceMovimentacao
         $this->conexao = new Conexao();
     }
 
-    public function inserirMovimentacao($id_usuario_movimentacao, $id_entidade_movimentacao, $data_mensal_movimentacao, $data_atualizacao_movimentacao, $receita_movimentacao, $despesa_movimentacao, $soma_movimentacao, $lucro_prejuizo_movimentacao){
+    public function inserirMovimentacao($id_usuario_movimentacao, $id_entidade_movimentacao, $data_mensal_movimentacao, $data_atualizacao_movimentacao, $receita_movimentacao, $despesa_movimentacao, $soma_movimentacao, $lucro_prejuizo_movimentacao)
+    {
 
         $query = "INSERT INTO tb_movimentacao (id_usuario_movimentacao, id_entidade_movimentacao, data_mensal_movimentacao, data_atualizacao_movimentacao, receita_movimentacao, despesa_movimentacao, soma_movimentacao, lucro_prejuizo_movimentacao) VALUES (:id_usuario_movimentacao, :id_entidade_movimentacao, :data_mensal_movimentacao, :data_atualizacao_movimentacao, :receita_movimentacao, :despesa_movimentacao, :soma_movimentacao, :lucro_prejuizo_movimentacao)";
         $conn = $this->conexao->Conectar();
@@ -1004,7 +1082,8 @@ class Movimentacao implements InterfaceMovimentacao
         $stmt->execute();
     }
 
-    public function atualizarMovimentacao($id_usuario_movimentacao, $id_entidade_movimentacao, $data_atualizacao_movimentacao, $receita_movimentacao, $despesa_movimentacao, $soma_movimentacao, $lucro_prejuizo_movimentacao){
+    public function atualizarMovimentacao($id_usuario_movimentacao, $id_entidade_movimentacao, $data_atualizacao_movimentacao, $receita_movimentacao, $despesa_movimentacao, $soma_movimentacao, $lucro_prejuizo_movimentacao)
+    {
 
         $query = "UPDATE tb_movimentacao SET data_atualizacao_movimentacao = :data_atualizacao_movimentacao, receita_movimentacao = :receita_movimentacao, despesa_movimentacao = :despesa_movimentacao, soma_movimentacao = :soma_movimentacao, lucro_prejuizo_movimentacao = :lucro_prejuizo_movimentacao WHERE id_usuario_movimentacao = :id_usuario_movimentacao AND id_entidade_movimentacao = :id_entidade_movimentacao";
         $conn = $this->conexao->Conectar();
@@ -1022,7 +1101,8 @@ class Movimentacao implements InterfaceMovimentacao
         $stmt->execute();
     }
 
-    public function consultaMovimentacao($data_mensal_movimentacao, $id_usuario_movimentacao, $id_entidade_movimentacao){
+    public function consultaMovimentacao($data_mensal_movimentacao, $id_usuario_movimentacao, $id_entidade_movimentacao)
+    {
 
         $query = "SELECT COUNT(:data_mensal_movimentacao) AS RESULT FROM tb_movimentacao WHERE data_mensal_movimentacao = :data_mensal_movimentacao AND id_usuario_movimentacao = :id_usuario_movimentacao AND id_entidade_movimentacao = :id_entidade_movimentacao";
 
@@ -1040,13 +1120,13 @@ class Movimentacao implements InterfaceMovimentacao
     }
 }
 
-function verificaSessao(){
+function verificaSessao()
+{
 
-    if(empty($_SESSION) || isset($_SESSION['status_usuario_adm_pj']) AND $_SESSION['status_usuario_adm_pj'] != 'A') {
+    if (empty($_SESSION) || isset($_SESSION['status_usuario_adm_pj']) and $_SESSION['status_usuario_adm_pj'] != 'A') {
 
         session_destroy();
         header("Location: ../login.php?erro=3?usuarioSemAcesso&&function=verificaSessao");
         die();
     }
-
 }
