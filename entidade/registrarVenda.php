@@ -109,8 +109,8 @@ $Itens = $Item->chamaItens($_SESSION['id_entidade_usuario_adm_pj']);
                                     <label for="">Email:</label>
                                     <input class="form-control" required type="text" name="email_cliente_pj" id="email_cliente_pj">
                                 </div>
-                                <input type="hidden" name="entidade_cliente_pj" id="entidade_cliente_pj">
-                                <input type="hidden" name="id_usuario_cliente_pj" id="id_usuario_cliente_pj">
+                                <input type="hidden" value="<?= $_SESSION['id_entidade_usuario_adm_pj'] ?>" name="id_entidade_venda" id="entidade_cliente_pj">
+                                <input type="hidden" value="<?=$_SESSION['id_usuario_adm_pj'] ?>" name="id_usuario_venda" id="id_usuario_cliente_pj">
                                 <input type="hidden" name="id_cliente_pj" id="id_cliente_pj">
 
                                 <div>
@@ -163,8 +163,8 @@ $Itens = $Item->chamaItens($_SESSION['id_entidade_usuario_adm_pj']);
                                     <label for="">Contato:</label>
                                     <input class="form-control" required type="text" name="contato_cliente_pf" id="contato_cliente_pf">
                                 </div>
-                                <input type="hidden" name="entidade_cliente_pf" id="entidade_cliente_pf">
-                                <input type="hidden" name="id_usuario_cliente_pf" id="id_usuario_cliente_pf">
+                                <input type="hidden" value="<?= $_SESSION['id_entidade_usuario_adm_pj'] ?>" name="id_entidade_venda" id="entidade_cliente_pj">
+                                <input type="hidden" value="<?=$_SESSION['id_usuario_adm_pj'] ?>" name="id_usuario_venda" id="id_usuario_cliente_pj">
                                 <input type="hidden" name="id_cliente_pf" id="id_cliente_pf">
                             </div>
                             <hr>

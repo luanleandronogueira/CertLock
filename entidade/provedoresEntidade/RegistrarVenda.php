@@ -11,7 +11,22 @@ if (!empty($_POST)) {
 
     $precoVenda = floatval(str_replace(',', '.', $_POST['preco_vendido_venda'])) - floatval(str_replace(',', '.', $_POST['desconto_venda']));
 
+
+    // echo '<pre>';
+    // print_r($_SESSION);
+    // echo '</pre>';
+
+    // echo '<pre>';
+    // print_r($_POST);
+    // echo '</pre>';
+
     extract($_POST);
+
+    if(!empty($preco_alterado_venda)){
+
+        echo $precoVenda = $preco_alterado_venda;
+
+    }
 
     if (isset($btn_submit_pf) || isset($btn_submit_pj)) {
 

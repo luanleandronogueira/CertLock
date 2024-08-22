@@ -37,9 +37,14 @@ $item_v = explode('-', $item_venda);
                             <div class="col-3 col-xl-3 col-lg-3">
                                 <input class="form-control money" name="desconto_venda" type="text">
                                 <small><em>digite o valor do desconto. Ex: 20,00</em></small>
+                            </div></br>
+                            Alterar Preço de Venda?
+                            <div class="col-3 col-xl-3 col-lg-3">
+                                <input class="form-control money" name="preco_alterado_venda" type="text">
+                                <small><em>digite o valor do desconto. Ex: 20,00</em></small>
                             </div>
-                            <input type="hidden" name="id_usuario_venda" value="<?= $id_usuario_cliente_pf ?>">
-                            <input type="hidden" name="id_entidade_venda" value="<?= $entidade_cliente_pf ?>">
+                            <input type="hidden" name="id_usuario_venda" value="<?= $id_entidade_venda ?>">
+                            <input type="hidden" name="id_entidade_venda" value="<?= $id_usuario_venda ?>">
                             <input type="hidden" name="id_produto_venda" value="<?= $item_v[0] ?>">
                             <input type="hidden" name="data_venda" value="<?= $_POST['data_venda'] ?>">
                             <input type="hidden" name="codigo_venda" value="<?= $_POST['codigo_venda'] ?>">
@@ -88,8 +93,13 @@ $item_v = explode('-', $item_venda);
                                 <input class="form-control money" name="desconto_venda" type="text">
                                 <small><em>digite o valor do desconto. Ex: 20,00</em></small>
                             </div>
-                            <input type="hidden" name="id_usuario_venda" value="<?= $id_usuario_cliente_pj ?>">
-                            <input type="hidden" name="id_entidade_venda" value="<?= $entidade_cliente_pj ?>">
+                            Alterar Preço de Venda?
+                            <div class="col-3 col-xl-3 col-lg-3">
+                                <input class="form-control money" name="preco_alterado_venda" type="text">
+                                <small><em>digite o valor do desconto. Ex: 20,00</em></small>
+                            </div>
+                            <input type="hidden" name="id_usuario_venda" value="<?= $id_entidade_venda?>">
+                            <input type="hidden" name="id_entidade_venda" value="<?= $id_usuario_venda?>">
                             <input type="hidden" name="id_produto_venda" value="<?= $item_v[0] ?>">
                             <input type="hidden" name="data_venda" value="<?= $_POST['data_venda'] ?>">
                             <input type="hidden" name="codigo_venda" value="<?= $_POST['codigo_venda'] ?>">

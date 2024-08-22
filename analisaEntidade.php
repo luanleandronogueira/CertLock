@@ -10,7 +10,7 @@ $Entidade = $Entidades->chamaEntidade();
 $Entidade_pf = $Entidades_pf->chamaEntidadePf();
 
 // echo '<pre>';
-//     print_r($Entidade_pf);
+//     print_r($_SESSION);
 // echo '</pre>';
 
 ?>

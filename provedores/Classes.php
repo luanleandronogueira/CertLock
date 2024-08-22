@@ -1023,25 +1023,40 @@ class ReceitasDespesas implements InterfaceReceitasDespesas
     {
         try {
             $dataMes = date('Y-m');
-            $query = "SELECT *, (SELECT SUM(valor_receita_despesa) FROM tb_receitas_despesas WHERE data_mensal_receita_despesa = :dataMes AND categoria_receita_despesa = :categoria_receita_despesa) AS total_valor_receita_despesa FROM tb_receitas_despesas WHERE data_mensal_receita_despesa = :dataMes AND categoria_receita_despesa = :categoria_receita_despesa AND id_usuario_receita_despesa = :id_usuario_receita_despesa AND  id_entidade_receita_despesa = :id_entidade_receita_despesa";
-
+            $query = "
+                SELECT *, 
+                (
+                    SELECT SUM(valor_receita_despesa) 
+                    FROM tb_receitas_despesas 
+                    WHERE data_mensal_receita_despesa = :dataMes 
+                    AND categoria_receita_despesa = :categoria_receita_despesa 
+                    AND id_usuario_receita_despesa = :id_usuario_receita_despesa 
+                    AND id_entidade_receita_despesa = :id_entidade_receita_despesa
+                ) AS total_valor_receita_despesa 
+                FROM tb_receitas_despesas 
+                WHERE data_mensal_receita_despesa = :dataMes 
+                AND categoria_receita_despesa = :categoria_receita_despesa 
+                AND id_usuario_receita_despesa = :id_usuario_receita_despesa 
+                AND id_entidade_receita_despesa = :id_entidade_receita_despesa";
+        
             $conn = $this->conexao->Conectar();
-
+        
             $stmt = $conn->prepare($query);
             $stmt->bindValue(':dataMes', $dataMes);
             $stmt->bindValue(':categoria_receita_despesa', $categoria_receita_despesa);
             $stmt->bindValue(':id_usuario_receita_despesa', $id_usuario_receita_despesa);
             $stmt->bindValue(':id_entidade_receita_despesa', $id_entidade_receita_despesa);
-
+        
             $stmt->execute();
-
+        
             $r = [];
-
+        
             return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             // Exibe a mensagem de erro
             echo "Erro: " . $e->getMessage();
         }
+        
     }
 }
 
