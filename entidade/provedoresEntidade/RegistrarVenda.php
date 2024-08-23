@@ -11,14 +11,17 @@ if (!empty($_POST)) {
 
     $precoVenda = floatval(str_replace(',', '.', $_POST['preco_vendido_venda'])) - floatval(str_replace(',', '.', $_POST['desconto_venda']));
 
+    $id_usuario_venda = isset($_POST['id_usuario_venda']) ? $_POST['id_usuario_venda'] : null;
+    $id_entidade_venda = isset($_POST['id_entidade_venda']) ? $_POST['id_entidade_venda'] : null;
 
-    // echo '<pre>';
-    // print_r($_SESSION);
-    // echo '</pre>';
 
-    // echo '<pre>';
-    // print_r($_POST);
-    // echo '</pre>';
+    echo '<pre>';
+    print_r($_SESSION);
+    echo '</pre>';
+
+    echo '<pre>';
+    print_r($_POST);
+    echo '</pre>';
 
     extract($_POST);
 
@@ -61,7 +64,6 @@ if (!empty($_POST)) {
                 // echo 'Data de vencimento: ' . $data_prevista1;
 
                 $dadosValidade = [
-
                     'id_usuario_venda_pespectiva' => $id_usuario_venda,
                     'id_entidade_venda_pespectiva' => $id_entidade_venda,
                     'id_produto_venda_pespectiva'  => $id_produto_venda,
@@ -74,8 +76,13 @@ if (!empty($_POST)) {
                     'mes_venda_pespectiva' => date('m'),
                     'ano_venda_pespectiva' => date('Y')
                 ];
+                
 
-                $VendaPespectiva->inserirVendaPespectiva($dadosValidade);
+                if ($id_usuario_venda && $id_entidade_venda) {
+                    $VendaPespectiva->inserirVendaPespectiva($dadosValidade);
+                } else {
+                    echo "Erro: id_usuario_venda ou id_entidade_venda estão nulos.";
+                }
 
             } else if (trim($modalidade_validade) === 'MES') {
 
