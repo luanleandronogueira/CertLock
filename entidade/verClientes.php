@@ -32,7 +32,7 @@ $PJ = $Clientes_pj->ChamaCliente($_SESSION['id_usuario_adm_pj'], $_SESSION['id_e
                     <em>Clientes Pessoa Jurídica</em>
                 </div>
                 <div class="card-body">
-                <table class="table table-striped sua-tabela" id="myTable">
+                    <table class="table table-striped sua-tabela" id="myTable">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -43,15 +43,15 @@ $PJ = $Clientes_pj->ChamaCliente($_SESSION['id_usuario_adm_pj'], $_SESSION['id_e
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <?php foreach ($PJ as $clientePJ) { ?>
-                                <td><?=$clientePJ['id_cliente_pj']?></td>
-                                <td><?=$clientePJ['nome_cliente_pj']?></td>
-                                <td><?=$clientePJ['cnpj_cliente_pj']?></td>
-                                <td><?=$clientePJ['contato_cliente_pj']?></td>
-                                <td><a href="clienteCnpj.php?cnpj=<?=$clientePJ['cnpj_cliente_pj']?>">Detalhar</a></td>
-                                <?php } ?>
-                            </tr>
+                            <?php foreach ($PJ as $clientePJ) { ?>
+                                <tr>
+                                    <td><?= $clientePJ['id_cliente_pj'] ?></td>
+                                    <td><?= $clientePJ['nome_cliente_pj'] ?></td>
+                                    <td><?= $clientePJ['cnpj_cliente_pj'] ?></td>
+                                    <td><?= $clientePJ['contato_cliente_pj'] ?></td>
+                                    <td><a href="clienteCnpj.php?cnpj=<?= $clientePJ['cnpj_cliente_pj'] ?>">Detalhar</a></td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
@@ -72,15 +72,15 @@ $PJ = $Clientes_pj->ChamaCliente($_SESSION['id_usuario_adm_pj'], $_SESSION['id_e
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <?php foreach ($PF as $clientePF) { ?>
-                                <td><?=$clientePF['id_cliente_pf']?></td>
-                                <td><?=$clientePF['nome_cliente_pf']?></td>
-                                <td><?=$clientePF['cpf_cliente_pf']?></td>
-                                <td><?=$clientePF['contato_cliente_pf']?></td>
-                                <td><a href="clienteCpf.php?cpf=<?=$clientePF['cpf_cliente_pf']?>">Detalhar</a></td>
-                                <?php } ?>
-                            </tr>
+                            <?php foreach ($PF as $clientePF) { ?>
+                                <tr>
+                                    <td><?= $clientePF['id_cliente_pf'] ?></td>
+                                    <td><?= $clientePF['nome_cliente_pf'] ?></td>
+                                    <td><?= $clientePF['cpf_cliente_pf'] ?></td>
+                                    <td><?= $clientePF['contato_cliente_pf'] ?></td>
+                                    <td><a href="clienteCpf.php?cpf=<?= $clientePF['cpf_cliente_pf'] ?>">Detalhar</a></td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>

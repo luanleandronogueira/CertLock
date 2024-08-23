@@ -3,7 +3,8 @@ session_start();
 
 include '../provedores/Classes.php';
 include_once 'controladoresEntidade/controller.php';
-print_r($_SESSION);
+
+// print_r($_SESSION);
 
 $Item = new Itens;
 $Itens = $Item->chamaItens($_SESSION['id_entidade_usuario_adm_pj']);
@@ -71,14 +72,9 @@ $Itens = $Item->chamaItens($_SESSION['id_entidade_usuario_adm_pj']);
                                     <input class="form-control" required type="number" readonly name="cnpj_cliente_pj" id="cnpj_cliente_pj">
                                     <small><em><span id="mensagemOff"></span></em></small>
                                 </div>
-                                <div class="col-md-5 col-sm-12 col-lg-5 col-xl-5">
+                                <div class="col-md-6 col-sm-12 col-lg-6 col-xl-6">
                                     <label for="">Nome da Empresa:</label>
                                     <input class="form-control" required type="text" name="nome_cliente_pj" id="nome_cliente_pj">
-
-                                </div>
-                                <div class="col-md-1 col-sm-12 col-lg-1 col-xl-1">
-                                    <label for="">ID:</label>
-                                    <input class="form-control" required type="text" name="id_cliente_pj" id="id_cliente_pj">
 
                                 </div>
                                 <div class="col-md-6 col-sm-12 col-lg-3 col-xl-3">
@@ -113,8 +109,9 @@ $Itens = $Item->chamaItens($_SESSION['id_entidade_usuario_adm_pj']);
                                     <label for="">Email:</label>
                                     <input class="form-control" required type="text" name="email_cliente_pj" id="email_cliente_pj">
                                 </div>
-                                <input type="hidden" value="<?=$_SESSION['id_usuario_adm_pj'] ?>" name="id_usuario_adm_pj" id="id_usuario_adm_pj">
-                                <input type="hidden" value="<?= $_SESSION['id_entidade_usuario_adm_pj'] ?>" name="id_entidade_usuario_adm_pj" id="entidade_cliente_pj">                     
+                                <input type="hidden" value="<?= $_SESSION['id_entidade_usuario_adm_pj'] ?>" name="id_entidade_venda" id="entidade_cliente_pj">
+                                <input type="hidden" value="<?=$_SESSION['id_usuario_adm_pj'] ?>" name="id_usuario_venda" id="id_usuario_cliente_pj">
+                                <input type="hidden" name="id_cliente_pj" id="id_cliente_pj">
 
                                 <div>
                                 </div>
@@ -166,8 +163,8 @@ $Itens = $Item->chamaItens($_SESSION['id_entidade_usuario_adm_pj']);
                                     <label for="">Contato:</label>
                                     <input class="form-control" required type="text" name="contato_cliente_pf" id="contato_cliente_pf">
                                 </div>
-                                <input type="hidden" value="<?= $_SESSION['id_entidade_usuario_adm_pj'] ?>" name="id_entidade_usuario_adm_pj" id="entidade_cliente_pj">
-                                <input type="hidden" value="<?=$_SESSION['id_usuario_adm_pj'] ?>" name="id_usuario_adm_pj" id="id_usuario_cliente_pj">
+                                <input type="hidden" value="<?= $_SESSION['id_entidade_usuario_adm_pj'] ?>" name="id_entidade_venda" id="entidade_cliente_pj">
+                                <input type="hidden" value="<?=$_SESSION['id_usuario_adm_pj'] ?>" name="id_usuario_venda" id="id_usuario_cliente_pj">
                                 <input type="hidden" name="id_cliente_pf" id="id_cliente_pf">
                             </div>
                             <hr>

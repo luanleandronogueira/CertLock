@@ -4,9 +4,9 @@ include '../provedores/Classes.php';
 verificaSessao();
 include_once 'controladoresEntidade/controller.php';
 
-echo '<pre>';
-print_r($_POST);
-echo '</pre>';
+// echo '<pre>';
+// print_r($_POST);
+// echo '</pre>';
 
 extract($_POST);
 $item_v = explode('-', $item_venda);
@@ -43,8 +43,8 @@ $item_v = explode('-', $item_venda);
                                 <input class="form-control money" name="preco_alterado_venda" type="text">
                                 <small><em>digite o valor do desconto. Ex: 20,00</em></small>
                             </div>
-                            <input type="hidden" name="id_usuario_venda" value="<?= $id_usuario_adm_pj?>">
-                            <input type="hidden" name="id_entidade_venda" value="<?= $id_entidade_usuario_adm_pj?>">
+                            <input type="hidden" name="id_usuario_venda" value="<?= $id_usuario_venda ?>">
+                            <input type="hidden" name="id_entidade_venda" value="<?= $id_entidade_venda ?>">
                             <input type="hidden" name="id_produto_venda" value="<?= $item_v[0] ?>">
                             <input type="hidden" name="data_venda" value="<?= $_POST['data_venda'] ?>">
                             <input type="hidden" name="codigo_venda" value="<?= $_POST['codigo_venda'] ?>">
@@ -98,8 +98,8 @@ $item_v = explode('-', $item_venda);
                                 <input class="form-control money" name="preco_alterado_venda" type="text">
                                 <small><em>digite o valor do desconto. Ex: 20,00</em></small>
                             </div>
-                            <input type="hidden" name="id_usuario_venda" value="<?= $id_usuario_adm_pj?>">
-                            <input type="hidden" name="id_entidade_venda" value="<?= $id_entidade_usuario_adm_pj?>">
+                            <input type="hidden" name="id_usuario_venda" value="<?= $id_usuario_venda ?>">
+                            <input type="hidden" name="id_entidade_venda" value="<?= $id_entidade_venda ?>">
                             <input type="hidden" name="id_produto_venda" value="<?= $item_v[0] ?>">
                             <input type="hidden" name="data_venda" value="<?= $_POST['data_venda'] ?>">
                             <input type="hidden" name="codigo_venda" value="<?= $_POST['codigo_venda'] ?>">

@@ -171,7 +171,7 @@ function verificarCampoCNPJ(){
 
 function buscaCliente(){
 
-    const identificador = document.getElementById("identificador").value.replace(/\.|\/|-/g, '');
+    const identificador = document.getElementById("identificador").value.replace(/\.|\/|-/g, '').trim();
     // const entidade = document.getElementById('entidade').value;
     const msgErro = document.getElementById('msgErro');
     const msgCliente = document.getElementById('msgCliente');
