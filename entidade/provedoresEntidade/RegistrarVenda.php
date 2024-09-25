@@ -11,19 +11,19 @@ if (!empty($_POST)) {
 
     $precoVenda = floatval(str_replace(',', '.', $_POST['preco_vendido_venda'])) - floatval(str_replace(',', '.', $_POST['desconto_venda']));
 
-    echo $id_usuario_venda = isset($_POST['id_usuario_venda']) ? $_POST['id_usuario_venda'] : null;
-    echo $id_entidade_venda = isset($_POST['id_entidade_venda']) ? $_POST['id_entidade_venda'] : null;
+    // echo '<pre>';
+    // print_r($_SESSION);
+    // echo '</pre>';
 
-
-    echo '<pre>';
-    print_r($_SESSION);
-    echo '</pre>';
-
-    echo '<pre>';
-    print_r($_POST);
-    echo '</pre>';
+    // echo '<pre>';
+    // print_r($_POST);
+    // echo '</pre>';
 
     extract($_POST);
+
+    $id_usuario_venda = isset($_SESSION['id_usuario_adm_pj']) ? $_SESSION['id_usuario_adm_pj'] : null;
+    //echo '<hr/>';
+    $id_entidade_venda = isset($_SESSION['id_entidade_usuario_adm_pj']) ? $_SESSION['id_entidade_usuario_adm_pj'] : null;
 
     if(!empty($preco_alterado_venda)){
 
@@ -50,7 +50,9 @@ if (!empty($_POST)) {
         ];
 
         $data = explode('-', $data_venda);
-        // print_r($data);        
+        // echo '<pre>';
+        // print_r($dados);
+        // echo '</pre>';        
 
         if ($modalidade_validade) {
 
@@ -106,7 +108,7 @@ if (!empty($_POST)) {
                     'data_prevista_venda_pespectiva' => $data_prevista,
                 ];
 
-                // $VendaPespectiva->inserirVendaPespectiva($dadosValidade);
+                $VendaPespectiva->inserirVendaPespectiva($dadosValidade);
             }
         }
 
@@ -115,17 +117,17 @@ if (!empty($_POST)) {
         $data_mensal_receita_despesa = $data_mensal_anual[0] . "-" . $data_mensal_anual[1];
 
         // aqui insere a venda;
-        // $Venda->inserirVenda($dados);
+        $Venda->inserirVenda($dados);
 
         $tituloCliente = $item_produto_venda . " - " . $nome_cliente_venda;
 
         // inserir Receita
-        // $ReceitasDespesas->inserirReceitaDespesa($id_usuario_venda, $id_entidade_venda, $tituloCliente, 'R', $precoVenda, $data_venda, $data_mensal_receita_despesa);
+       $ReceitasDespesas->inserirReceitaDespesa($id_usuario_venda, $id_entidade_venda, $tituloCliente, 'R', $precoVenda, $data_venda, $data_mensal_receita_despesa);
 
         // inserir Despesas
-        // $ReceitasDespesas->inserirReceitaDespesa($id_usuario_venda, $id_entidade_venda, $tituloCliente, 'D', $preco_custo_venda, $data_venda, $data_mensal_receita_despesa);
+       $ReceitasDespesas->inserirReceitaDespesa($id_usuario_venda, $id_entidade_venda, $tituloCliente, 'D', $preco_custo_venda, $data_venda, $data_mensal_receita_despesa);
 
-        // header('Location: ../registrarVenda.php?status=sucesso');
+        header('Location: ../registrarVenda.php?status=sucesso');
 
     } else {
 

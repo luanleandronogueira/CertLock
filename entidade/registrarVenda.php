@@ -12,6 +12,10 @@ $Itens = $Item->chamaItens($_SESSION['id_entidade_usuario_adm_pj']);
 // echo '<pre>';
 //     print_r($Itens);
 // echo '</pre>';
+
+// echo '<pre>';
+//     print_r($_SESSION);
+// echo '</pre>';
 ?>
 
 <div class="container mt-3 mb-5">
@@ -109,8 +113,8 @@ $Itens = $Item->chamaItens($_SESSION['id_entidade_usuario_adm_pj']);
                                     <label for="">Email:</label>
                                     <input class="form-control" required type="text" name="email_cliente_pj" id="email_cliente_pj">
                                 </div>
-                                <input type="hidden" value="<?= $_SESSION['id_entidade_usuario_adm_pj'] ?>" name="id_entidade_venda" id="entidade_cliente_pj">
                                 <input type="hidden" value="<?=$_SESSION['id_usuario_adm_pj'] ?>" name="id_usuario_venda" id="id_usuario_cliente_pj">
+                                <input type="hidden" value="<?= $_SESSION['id_entidade_usuario_adm_pj'] ?>" name="id_entidade_venda" id="entidade_cliente_pj">           
                                 <input type="hidden" name="id_cliente_pj" id="id_cliente_pj">
 
                                 <div>

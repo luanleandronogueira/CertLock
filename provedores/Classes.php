@@ -666,8 +666,7 @@ class ClientesPf extends Clientes
         return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function atualizaCliente($dados)
-    {
+    public function atualizaCliente($dados){
 
         $query = "UPDATE `tb_clientes_pf` SET `cpf_cliente_pf` = :cpf_cliente_pf, `nome_cliente_pf` = :nome_cliente_pf, `email_cliente_pf` = :email_cliente_pf, `contato_cliente_pf` = :contato_cliente_pf
         WHERE `id_cliente_pf` = :id_cliente_pf";
@@ -917,11 +916,11 @@ class Vendas_Pespectivas implements InterfaceVendasPespectivas
 
     public function inserirVendaPespectiva($dados)
     {
+
         $query = 'INSERT INTO tb_vendas_pespectivas (id_usuario_venda_pespectiva, id_entidade_venda_pespectiva, id_produto_venda_pespectiva, nome_venda_pespectiva, telefone_venda_pespectiva, data_venda_pespectiva, item_venda_pespectiva, preco_venda_pespectiva, data_prevista_venda_pespectiva, mes_venda_pespectiva, ano_venda_pespectiva) VALUES (:id_usuario_venda_pespectiva, :id_entidade_venda_pespectiva, :id_produto_venda_pespectiva, :nome_venda_pespectiva, :telefone_venda_pespectiva, :data_venda_pespectiva, :item_venda_pespectiva, :preco_venda_pespectiva, :data_prevista_venda_pespectiva, :mes_venda_pespectiva, :ano_venda_pespectiva)';
-
         $conn = $this->conexao->Conectar();
-        $stmt = $conn->prepare($query);
 
+        $stmt = $conn->prepare($query);
         $stmt->bindValue(':id_usuario_venda_pespectiva', $dados['id_usuario_venda_pespectiva']);
         $stmt->bindValue(':id_entidade_venda_pespectiva', $dados['id_entidade_venda_pespectiva']);
         $stmt->bindValue(':id_produto_venda_pespectiva', $dados['id_produto_venda_pespectiva']);
@@ -934,9 +933,9 @@ class Vendas_Pespectivas implements InterfaceVendasPespectivas
         $stmt->bindValue(':mes_venda_pespectiva', $dados['mes_venda_pespectiva']);
         $stmt->bindValue(':ano_venda_pespectiva', $dados['ano_venda_pespectiva']);
 
+
         $stmt->execute();
     }
-
 
     public function ChamaVendasPespectivas($id_usuario_venda_pespectiva, $id_entidade_venda_pespectiva)
     {
@@ -1039,24 +1038,25 @@ class ReceitasDespesas implements InterfaceReceitasDespesas
                 AND categoria_receita_despesa = :categoria_receita_despesa 
                 AND id_usuario_receita_despesa = :id_usuario_receita_despesa 
                 AND id_entidade_receita_despesa = :id_entidade_receita_despesa";
-
+        
             $conn = $this->conexao->Conectar();
-
+        
             $stmt = $conn->prepare($query);
             $stmt->bindValue(':dataMes', $dataMes);
             $stmt->bindValue(':categoria_receita_despesa', $categoria_receita_despesa);
             $stmt->bindValue(':id_usuario_receita_despesa', $id_usuario_receita_despesa);
             $stmt->bindValue(':id_entidade_receita_despesa', $id_entidade_receita_despesa);
-
+        
             $stmt->execute();
-
+        
             $r = [];
-
+        
             return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             // Exibe a mensagem de erro
             echo "Erro: " . $e->getMessage();
         }
+        
     }
 }
 

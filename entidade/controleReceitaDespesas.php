@@ -20,6 +20,7 @@ $DespesasSomadasFormatado = number_format($DespesasSomadas, 2, ',', '.');
 $ReceitasSomadasFormatado = number_format($ReceitasSomadas, 2, ',', '.');
 $LucratividadeFormatado = number_format($Lucratividade, 2, ',', '.');
 $SomaValoresFormatado = number_format($SomaValores, 2, ',', '.');
+
 // echo '<pre>';
 // print_r($Receitas);
 // echo '</pre>';
