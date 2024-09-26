@@ -1058,6 +1058,16 @@ class ReceitasDespesas implements InterfaceReceitasDespesas
         }
         
     }
+
+    public function excluirReceitaDespesa($id_receita_despesa){
+
+        $query = "DELETE FROM tb_receitas_despesas WHERE id_receita_despesa = :id_receita_despesa";
+        $conn = $this->conexao->Conectar();
+        
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':id_receita_despesa', $id_receita_despesa);
+        $stmt->execute();
+    }
 }
 
 class Movimentacao implements InterfaceMovimentacao

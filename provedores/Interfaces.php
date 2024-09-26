@@ -29,6 +29,7 @@ interface InterfaceReceitasDespesas {
 
     public function inserirReceitaDespesa($id_usuario_receita_despesa, $id_entidade_receita_despesa, $titulo_receita_despesa, $categoria_receita_despesa, $valor_receita_despesa, $data_receita_despesa, $data_mensal_receita_despesa);
     public function chamaReceitaDespesa($categoria_receita_despesa, $id_usuario_receita_despesa, $id_entidade_receita_despesa);
+    public function excluirReceitaDespesa($id_receita_despesa);
 
 }
 

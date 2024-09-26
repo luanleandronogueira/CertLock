@@ -44,7 +44,23 @@ $SomaValoresFormatado = number_format($SomaValores, 2, ',', '.');
             </div>
 
         <?php } ?>
+        <?php if (isset($_GET['statusE']) and isset($_GET['statusE']) == 'sucesso') { ?>
+
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                A <strong>exclusão</strong> foi efetuado com sucesso!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+        <?php } ?>
         <?php if (isset($_GET['statusRD']) and isset($_GET['statusRD']) == 'sucesso') { ?>
+
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                A <strong>movimentação</strong> foi atualizada com sucesso!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+        <?php } ?>
+        <?php if (isset($_GET['statusF']) and isset($_GET['statusF']) == 'falhou') { ?>
 
             <div class="alert alert-info alert-dismissible fade show" role="alert">
                 A <strong>movimentação</strong> foi atualizada com sucesso!
@@ -115,7 +131,7 @@ $SomaValoresFormatado = number_format($SomaValores, 2, ',', '.');
                                         <td scope="row"><strong>Data: </strong> <?= $Receita['data_receita_despesa'] ?></td>
                                         <td><?= $Receita['titulo_receita_despesa'] ?></td>
                                         <td><strong>Valor: </strong><?= $Receita['valor_receita_despesa'] ?></td>
-                                        <td><a href="provedores/ExcluirReceitaDespesa.php?id=<?=$Receita['id_receita_despesa']?>"><span class="badge text-bg-danger">Excluir</span></a></td>
+                                        <td><a href="provedoresEntidade/ExcluirReceitaDespesa.php?id=<?= $Receita['id_receita_despesa'] ?>"><span class="badge text-bg-danger">Excluir</span></a></td>
                                     </tr>
 
                                 <?php } ?>
@@ -151,10 +167,10 @@ $SomaValoresFormatado = number_format($SomaValores, 2, ',', '.');
                                 </tr>
                                 <?php foreach ($Despesas as $Despesa) { ?>
                                     <tr>
-                                        <td scope="row"><strong>Data: </strong> <?= $Receita['data_receita_despesa'] ?></td>
+                                        <td scope="row"><strong>Data: </strong> <?= $Despesa['data_receita_despesa'] ?></td>
                                         <td><?= $Despesa['titulo_receita_despesa'] ?></td>
                                         <td><strong>Valor: </strong><?= $Despesa['valor_receita_despesa'] ?></td>
-                                        <td><a href="provedores/ExcluirReceitaDespesa.php?id=<?=$Despesa['id_receita_despesa']?>"><span class="badge text-bg-danger">Excluir</span></a></td>
+                                        <td><a href="provedoresEntidade/ExcluirReceitaDespesa.php?id=<?= $Despesa['id_receita_despesa'] ?>"><span class="badge text-bg-danger">Excluir</span></a></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
