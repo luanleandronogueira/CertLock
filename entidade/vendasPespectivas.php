@@ -32,7 +32,7 @@ $Vendas = $VendasPespectivas->ChamaVendasPespectivasMes($_SESSION['id_usuario_ad
         <div class="col-6 col-xl-4 col-lg-4 col-sm-12 col-md-12">
             <div class="card">
                 <div class="card-header">
-                    Vendas feitas e em pespectiva para o mês <?= date('m') ?>
+                    Clientes atendidos no mês <?= date('m') ?>
                 </div>
                 <div class="card-body">
                     <table class="table table-striped sua-tabela" id="myTable">

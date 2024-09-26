@@ -92,7 +92,7 @@ $SomaValoresFormatado = number_format($SomaValores, 2, ',', '.');
             </div>
         </div>
 
-        <div class="col-md-12 col-sm-12 col-4 col-xl-4 mt-4 mb-5">
+        <div class="col-md-12 col-sm-12 col-12 col-xl-12 mt-4">
             <div class="card">
                 <div class="card-header">
                     Receita
@@ -100,10 +100,27 @@ $SomaValoresFormatado = number_format($SomaValores, 2, ',', '.');
 
                 <?php if (!empty($Receitas)) { ?>
                     <div class="card-body">
-                        <?php foreach ($Receitas as $Receita) { ?>
-                            <span><?= $Receita['titulo_receita_despesa'] ?> = <strong><?= $Receita['valor_receita_despesa'] ?></strong></span></br>
-                            <hr>
-                        <?php } ?>
+                        <table class="table">
+                            <thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="col">Data da Movimentação:</th>
+                                    <th scope="col">Item:</th>
+                                    <th scope="col">Valor da Movimentado:</th>
+                                    <th scope="col"></th>
+                                </tr>
+                                <?php foreach ($Receitas as $Receita) { ?>
+
+                                    <tr>
+                                        <td scope="row"><strong>Data: </strong> <?= $Receita['data_receita_despesa'] ?></td>
+                                        <td><?= $Receita['titulo_receita_despesa'] ?></td>
+                                        <td><strong>Valor: </strong><?= $Receita['valor_receita_despesa'] ?></td>
+                                        <td><a href="provedores/ExcluirReceitaDespesa.php?id=<?=$Receita['id_receita_despesa']?>"><span class="badge text-bg-danger">Excluir</span></a></td>
+                                    </tr>
+
+                                <?php } ?>
+                            </tbody>
+                        </table>
                     </div>
                     <div class="card-footer text-muted">
                         <span>Total: <?= number_format($Receitas[0]['total_valor_receita_despesa'], 2, ',', '.') ?></span>
@@ -116,17 +133,32 @@ $SomaValoresFormatado = number_format($SomaValores, 2, ',', '.');
             </div>
         </div>
 
-        <div class="col-md-12 col-sm-12 col-4 col-xl-4 mt-4">
+        <div class="col-md-12 col-sm-12 col-12 col-xl-12 mt-3">
             <div class="card">
                 <div class="card-header">
                     Despesas
                 </div>
                 <?php if (!empty($Despesas)) { ?>
                     <div class="card-body">
-                        <?php foreach ($Despesas as $Despesa) { ?>
-                            <span><?= $Despesa['titulo_receita_despesa'] ?> = <strong><?= $Despesa['valor_receita_despesa'] ?></strong></span></br>
-                            <hr>
-                        <?php } ?>
+                        <table class="table">
+                            <thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="col">Data da Movimentação:</th>
+                                    <th scope="col">Item:</th>
+                                    <th scope="col">Valor da Movimentado:</th>
+                                    <th scope="col"></th>
+                                </tr>
+                                <?php foreach ($Despesas as $Despesa) { ?>
+                                    <tr>
+                                        <td scope="row"><strong>Data: </strong> <?= $Receita['data_receita_despesa'] ?></td>
+                                        <td><?= $Despesa['titulo_receita_despesa'] ?></td>
+                                        <td><strong>Valor: </strong><?= $Despesa['valor_receita_despesa'] ?></td>
+                                        <td><a href="provedores/ExcluirReceitaDespesa.php?id=<?=$Despesa['id_receita_despesa']?>"><span class="badge text-bg-danger">Excluir</span></a></td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
                     </div>
                     <div class="card-footer text-muted">
                         <span>Total: <?= number_format($Despesas[0]['total_valor_receita_despesa'], 2, ',', '.') ?></span>
