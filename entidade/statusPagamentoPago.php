@@ -6,7 +6,7 @@ include_once 'controladoresEntidade/controller.php';
 
 $Pagamentos = new Vendas;
 
-$StatusPagamento = $Pagamentos->vendasStatus();
+$StatusPagamento = $Pagamentos->vendasStatus($_SESSION['id_usuario_adm_pj'], $_SESSION['id_entidade_usuario_adm_pj']);
 
 // echo '<pre>';
 // print_r($StatusPagamento);
@@ -30,6 +30,7 @@ $StatusPagamento = $Pagamentos->vendasStatus();
                                 <th>Código:</th>
                                 <th>Status Pagamento do Custo:</th>
                                 <th>Pagamento Cliente:</th>
+                                <th>Comprovante</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -45,6 +46,11 @@ $StatusPagamento = $Pagamentos->vendasStatus();
                                         <?php } else { ?>
                                             <span class="text-danger"><strong><em><?= $Status['status_pg_cliente_venda'] ?></em></strong></span>
                                         <?php } ?>
+                                    </td>
+                                    <td>
+                                        <a href="<?= $Status['comprovante_pagamento'] ?>" target="_blank" rel="Comprovante de Pagamento">
+                                            <span class="badge text-bg-secondary"><strong>Visualizar</strong></span>
+                                        </a>
                                     </td>
                                     <td>
                                         <button type="button" class="badge text-bg-primary" data-bs-toggle="modal" data-bs-target="#<?= $Status['id_venda'] ?>exampleModal">

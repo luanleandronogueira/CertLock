@@ -24,6 +24,9 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
                 $_FILES['comprovante']['type'] == 'image/jpeg' ||
                 $_FILES['comprovante']['type'] == 'image/png'
             ) {
+                //consulta se já há no db esse dado
+                $consultaPagamento = $StatusPagamento->consultaPagamento($_POST['id_venda']);
+
                 // separa a extensão do formato para salvar no nome do arquivo
                 $extensao = explode("/", $_FILES['comprovante']['type']);
 
@@ -40,10 +43,15 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
                 $Vendas->atualizarStatusPagamentos($_POST['id_venda'], $_POST['status_custo_venda'], $_POST['status_pg_cliente_venda']);
 
                 //cria o caminho sem subir pastas cria um caminho absoluto
-                $localizarArquivo = "assets/comprovantes/" . $nome_arquivo;
+                $localizarArquivo = "../assets/comprovantes/" . $nome_arquivo;
 
-                // insere na tabela de comprovantess
-                $StatusPagamento->inserirComprovantePagamento($_POST['id_venda'], $localizarArquivo);
+                if($consultaPagamento != 0){
+
+
+                } else {
+                    // insere na tabela de comprovantes    
+                    $StatusPagamento->inserirComprovantePagamento($_POST['id_venda'], $localizarArquivo);
+                }
 
                 // redireciona novamente para a pasta
                 header("Location: ../statusPagamento.php?status=sucesso");

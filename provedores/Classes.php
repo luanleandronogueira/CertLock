@@ -891,12 +891,14 @@ class Vendas implements InterfaceVendas
         return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function vendasStatusAberto(){
+    public function vendasStatusAberto($id_usuario_venda, $id_entidade_venda){
 
-        $query = "SELECT id_venda, codigo_venda, status_custo_venda, status_pg_cliente_venda FROM tb_vendas WHERE status_custo_venda = 'ABERTO'";
+        $query = "SELECT id_venda, codigo_venda, status_custo_venda, status_pg_cliente_venda FROM tb_vendas WHERE status_custo_venda = 'ABERTO' AND id_usuario_venda = :id_usuario_venda AND id_entidade_venda = :id_entidade_venda";
         $conn = $this->conexao->Conectar();
 
         $stmt = $conn->prepare($query);
+        $stmt->bindParam(':id_usuario_venda', $id_usuario_venda);
+        $stmt->bindParam(':id_entidade_venda', $id_entidade_venda);
         $stmt->execute();
 
         $r = [];
@@ -905,12 +907,24 @@ class Vendas implements InterfaceVendas
 
     }
 
-    public function vendasStatus(){
+    public function vendasStatus($id_usuario_venda, $id_entidade_venda){
 
-        $query = "SELECT id_venda, codigo_venda, status_custo_venda, status_pg_cliente_venda FROM tb_vendas WHERE status_custo_venda != 'ABERTO'";
+        $query = "SELECT 
+                    v.id_venda, 
+                    v.codigo_venda, 
+                    v.status_custo_venda, 
+                    v.status_pg_cliente_venda,
+                    c.comprovante_pagamento,
+                    c.id_venda_comprovante_pagamento 
+                  FROM tb_vendas v 
+                  JOIN tb_comprovantes_pagamento c ON v.id_venda = c.id_venda_comprovante_pagamento
+                  WHERE status_custo_venda != 'ABERTO' AND id_usuario_venda = :id_usuario_venda AND id_entidade_venda = :id_entidade_venda";
+
         $conn = $this->conexao->Conectar();
 
         $stmt = $conn->prepare($query);
+        $stmt->bindParam(':id_usuario_venda', $id_usuario_venda);
+        $stmt->bindParam(':id_entidade_venda', $id_entidade_venda);
         $stmt->execute();
 
         $r = [];
@@ -1223,8 +1237,13 @@ class StatusPagamento implements InterfaceStatusPagamento{
 
         $r = [];
 
-        return $r = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $r = $stmt->rowCount(PDO::FETCH_ASSOC);
 
+    }
+
+    public function atualizaPagamento($id_comprovante_pagamento){
+
+        // continuar atualização do comprovante
     }
 
 }

@@ -6,7 +6,7 @@ include_once 'controladoresEntidade/controller.php';
 
 $Pagamentos = new Vendas;
 
-$StatusPagamento = $Pagamentos->vendasStatusAberto();
+$StatusPagamento = $Pagamentos->vendasStatusAberto($_SESSION['id_usuario_adm_pj'], $_SESSION['id_entidade_usuario_adm_pj']);
 
 // echo '<pre>';
 // print_r($StatusPagamento);
