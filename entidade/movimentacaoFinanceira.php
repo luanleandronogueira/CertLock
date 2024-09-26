@@ -67,20 +67,4 @@ $movimentacao = $movimentacaoFinanceira->chamaMovimentacaoVendasMes($_SESSION['i
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php require_once 'controladoresEntidade/footer.php'; ?>

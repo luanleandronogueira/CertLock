@@ -9,14 +9,14 @@ include_once 'controladoresEntidade/controller.php';
 $Item = new Itens;
 $Itens = $Item->chamaItens($_SESSION['id_entidade_usuario_adm_pj']);
 
-// echo '<pre>';
-//     print_r($Itens);
-// echo '</pre>';
-
-// echo '<pre>';
-//     print_r($_SESSION);
-// echo '</pre>';
 ?>
+<script>
+        // Verifique se a página foi recarregada (atualizada)
+        if (performance.navigation.type === 1) {
+            // Redirecione para a URL desejada
+            window.location.href = 'registrarVenda.php';
+        }
+</script>
 
 <div class="container mt-3 mb-5">
     <div class="row">

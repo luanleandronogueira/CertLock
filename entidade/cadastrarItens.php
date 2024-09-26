@@ -13,6 +13,13 @@ $entidade = new Entidades;
 $Entidade = $entidade->chamaEntidadeId($_SESSION['id_entidade_usuario_adm_pj']);
 
 ?>
+<script>
+        // Verifique se a página foi recarregada (atualizada)
+        if (performance.navigation.type === 1) {
+            // Redirecione para a URL desejada
+            window.location.href = 'cadastrarItens.php';
+        }
+</script>
 
 <div class="container mt-3">
     <div class="row">

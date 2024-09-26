@@ -33,6 +33,13 @@ if(isset($_GET['nome'])){
 //     print_r($Itens);
 // echo '</pre>';
 ?>
+<script>
+        // Verifique se a página foi recarregada (atualizada)
+        if (performance.navigation.type === 1) {
+            // Redirecione para a URL desejada
+            window.location.href = 'registrarVendaPespectiva.php';
+        }
+</script>
 
 <div class="container mt-3 mb-5">
     <div class="row">

@@ -7,10 +7,9 @@ include_once 'controladoresEntidade/controller.php';
 $Vendas = new Vendas;
 $Venda_Usuario = $Vendas->chamaVendaPorId($_SESSION['id_usuario_adm_pj'], $_SESSION['id_entidade_usuario_adm_pj']);
 
-echo '<pre>';
-print_r($Venda_Usuario);
-echo '</pre>';
-
+// echo '<pre>';
+// print_r($Venda_Usuario);
+// echo '</pre>';
 ?>
 
 
@@ -30,14 +29,6 @@ echo '</pre>';
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
 
 
 <?php require_once 'controladoresEntidade/footer.php'; ?>

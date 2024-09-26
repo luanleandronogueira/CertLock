@@ -466,6 +466,22 @@ function MovimentacaoFinanceira(){
 
 }
 
+function liberaComprovante(){
+
+    const atualizaComprovante = document.getElementById('atualizaComprovante')
+    const campoComprovante = document.getElementById('campoComprovante')
+
+    if(atualizaComprovante.checked){
+
+        campoComprovante.disabled = false
+
+    } else {
+
+        campoComprovante.disabled = true
+    }
+
+}
+
 
 
     

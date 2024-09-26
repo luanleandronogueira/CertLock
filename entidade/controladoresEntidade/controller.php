@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="pt-br">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CertLock - Controle de Vendas</title>
@@ -11,34 +12,40 @@
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
     <script src="../controladores/js/script.js"></script>
     <script src="../controladores/js/core/locales-all.global.min.js"></script>
- 
+
     <style>
-      /* Adicione um estilo específico para telas menores, como celulares */
-      @media (max-width: 767px) {
-        /* Seletor para a tabela que você deseja adicionar o scroll horizontal */
-        .sua-tabela {
-          /* Defina a largura máxima da tabela para ativar o scroll horizontal quando necessário */
-          max-width: 100%;
-          /* Adicione um scroll horizontal quando o conteúdo excede a largura da tabela */
-          overflow-x: auto;
-          display: block; /* Adicione display: block para forçar a barra de rolagem horizontal */
+        /* Adicione um estilo específico para telas menores, como celulares */
+        @media (max-width: 767px) {
+
+            /* Seletor para a tabela que você deseja adicionar o scroll horizontal */
+            .sua-tabela {
+                /* Defina a largura máxima da tabela para ativar o scroll horizontal quando necessário */
+                max-width: 100%;
+                /* Adicione um scroll horizontal quando o conteúdo excede a largura da tabela */
+                overflow-x: auto;
+                display: block;
+                /* Adicione display: block para forçar a barra de rolagem horizontal */
+            }
+
+            /* Opcional: Remova as bordas da tabela para um visual mais limpo */
+            .sua-tabela,
+            .sua-tabela th,
+            .sua-tabela td {
+                border: none;
+            }
         }
-        /* Opcional: Remova as bordas da tabela para um visual mais limpo */
-        .sua-tabela, .sua-tabela th, .sua-tabela td {
-          border: none;
-        }
-      }
     </style>
-  </head>
-  <body>
+</head>
 
-  <div class="topo1">
-    <div class="">
-        <a class="navbar-brand" href="#">
-            <img src="https://images.vexels.com/media/users/3/128728/isolated/preview/4979f424070de1dbf7055d91695b74c3-icone-plano-de-cadeado-de-seguranca.png" alt="Logo" width="50" height="30" class="d-inline-block align-text-top">
-        </a> Bem Vindo ao CertLock
+<body>
 
-        <!-- <div class="float-end">
+    <div class="topo1">
+        <div class="">
+            <a class="navbar-brand" href="#">
+                <img src="https://images.vexels.com/media/users/3/128728/isolated/preview/4979f424070de1dbf7055d91695b74c3-icone-plano-de-cadeado-de-seguranca.png" alt="Logo" width="50" height="30" class="d-inline-block align-text-top">
+            </a> Bem Vindo ao CertLock
+
+            <!-- <div class="float-end">
             <a class="navbar-brand" href="#">
                 <img width="40" height="30" src="https://cdn-icons-png.flaticon.com/512/266/266033.png" class="rounded-circle border-success" alt="...">
             </a>
@@ -48,83 +55,83 @@
                 <img width="40" height="30" src="https://cdn-icons-png.flaticon.com/512/266/266033.png" class="rounded-circle border-success" alt="...">
             </a>
         </div> -->
-        <div class="float-end">
-            <a class="navbar-brand" href="#">
-                Olá, <strong><?= $_SESSION['nome_usuario_adm_pj'] ?></strong>
-                <img width="40" height="30" src="https://cdn-icons-png.flaticon.com/512/266/266033.png" class="rounded-circle border-success" alt="...">
-            </a>
+            <div class="float-end">
+                <a class="navbar-brand" href="#">
+                    Olá, <strong><?= $_SESSION['nome_usuario_adm_pj'] ?></strong>
+                    <img width="40" height="30" src="https://cdn-icons-png.flaticon.com/512/266/266033.png" class="rounded-circle border-success" alt="...">
+                </a>
+            </div>
+
         </div>
 
     </div>
-
-  </div>
-  <nav class="navbar navbar-expand-lg color">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="dashboard.php"><img width="40" height="30" src="https://www.imagensempng.com.br/wp-content/uploads/2021/08/02-51.png" alt=""></a>
+    <nav class="navbar navbar-expand-lg color">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="dashboard.php"><img width="40" height="30" src="https://www.imagensempng.com.br/wp-content/uploads/2021/08/02-51.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Cadastrar Cliente
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="cadastrarCliente.php">Cadastrar Cliente</a></li>
-                        <li><a class="dropdown-item" href="verClientes.php">Ver Clientes Cadastrados</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Registrar Vendas
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="registrarVenda.php">Registrar Venda</a></li>
-                        <li><a class="dropdown-item disabled" href="registrarVendaParceladas.php">Registrar Venda Parceladas/Recorrentes</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Projeção de Vendas
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="vendasPespectivas.php">Vendas em Pespectivas</a></li>
-                        <li><a class="dropdown-item disabled" href=".php">Clientes sem Renovação</a></li>
-                        <li><a class="dropdown-item" href="historicoVendas.php">Histórico de Vendas</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Financeiro
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="movimentacaoFinanceira.php">Movimentação Financeira</a></li>
-                        <li><a class="dropdown-item" href="controleReceitaDespesas.php">Controle de Receitas/Depesas</a></li>
-                        <li><a class="dropdown-item disabled" href="#">Histórico de Caixa</a></li>
-                        <li><a class="dropdown-item disabled" href="#">Administrar Despesas</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Administrador
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item disabled" href=".php">Cadastrar um Usuário</a></li>
-                        <li><a class="dropdown-item" href="cadastrarItens.php">Cadastrar Itens de Venda</a></li>
-                        <li><a class="dropdown-item" href="verItens.php">Ver Itens de Venda</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Configurações
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item disabled" href=".php">Suporte</a></li>
-                        <li><a class="dropdown-item" href="provedoresEntidade/Sair.php">Sair</a></li>
-                    </ul>
-                </li>
-            </ul>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Cadastrar Cliente
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="cadastrarCliente.php">Cadastrar Cliente</a></li>
+                            <li><a class="dropdown-item" href="verClientes.php">Ver Clientes Cadastrados</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Registrar Vendas
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="registrarVenda.php">Registrar Venda</a></li>
+                            <li><a class="dropdown-item disabled" href="registrarVendaParceladas.php">Registrar Venda Parceladas/Recorrentes</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Projeção de Vendas
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="vendasPespectivas.php">Vendas em Pespectivas</a></li>
+                            <li><a class="dropdown-item disabled" href=".php">Clientes sem Renovação</a></li>
+                            <li><a class="dropdown-item" href="historicoVendas.php">Histórico de Vendas</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Financeiro
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="controleReceitaDespesas.php">Controle de Receitas/Depesas</a></li>
+                            <li><a class="dropdown-item" href="movimentacaoFinanceira.php">Movimentação Financeira</a></li>
+                            <li><a class="dropdown-item disabled" href="#">Histórico de Caixa</a></li>
+                            <li><a class="dropdown-item" href="statusPagamento.php">Status Pagamento</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Administrador
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item disabled" href=".php">Cadastrar um Usuário</a></li>
+                            <li><a class="dropdown-item" href="cadastrarItens.php">Cadastrar Itens de Venda</a></li>
+                            <li><a class="dropdown-item" href="verItens.php">Ver Itens de Venda</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Configurações
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item disabled" href=".php">Suporte</a></li>
+                            <li><a class="dropdown-item" href="provedoresEntidade/Sair.php">Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
     </nav>

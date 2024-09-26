@@ -14,6 +14,8 @@ interface InterfaceVendas {
     public function chamaVendaPorId($id_usuario_venda, $id_entidade_venda);
     public function chamaHistoricoVendas($id_usuario_venda, $id_entidade_venda, $dataInicial, $dataFinal);
     public function chamaMovimentacaoVendasMes($id_usuario_venda, $id_entidade_venda, $dataInicial, $dataFinal);
+    public function vendasStatusAberto();
+    public function atualizarStatusPagamentos($id_venda, $status_custo_venda, $status_pg_cliente_venda);
 
 }
 
@@ -40,5 +42,16 @@ interface InterfaceMovimentacao {
     public function atualizarMovimentacao($id_usuario_movimentacao, $id_entidade_movimentacao, $data_atualizacao_movimentacao, $receita_movimentacao, $despesa_movimentacao, $soma_movimentacao, $lucro_prejuizo_movimentacao);
     
     public function consultaMovimentacao($data_mensal_movimentacao, $id_usuario_movimentacao, $id_entidade_movimentacao);
+
+}
+
+interface InterfaceStatusPagamento {
+
+    public function inserirComprovantePagamento($id_venda_comprovante_pagamento, $comprovante_pagamento);
+}
+
+interface InterfaceConsultaPagamentoAdm{
+
+    public function inserirConsultaPagamentoAdm($id_usuario_consulta_pagamento, $id_entidade_consulta_pagamento, $codigo_consulta_pagamento, $status_consulta_pagamento);
 
 }

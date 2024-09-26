@@ -890,6 +890,48 @@ class Vendas implements InterfaceVendas
 
         return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function vendasStatusAberto(){
+
+        $query = "SELECT id_venda, codigo_venda, status_custo_venda, status_pg_cliente_venda FROM tb_vendas WHERE status_custo_venda = 'ABERTO'";
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+
+        $r = [];
+
+        return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    public function vendasStatus(){
+
+        $query = "SELECT id_venda, codigo_venda, status_custo_venda, status_pg_cliente_venda FROM tb_vendas WHERE status_custo_venda != 'ABERTO'";
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+
+        $r = [];
+
+        return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    public function atualizarStatusPagamentos($id_venda, $status_custo_venda, $status_pg_cliente_venda){
+
+        $query = "UPDATE tb_vendas SET status_custo_venda = :status_custo_venda, status_pg_cliente_venda = :status_pg_cliente_venda WHERE id_venda = :id_venda";
+
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':status_custo_venda', $status_custo_venda);
+        $stmt->bindParam(':status_pg_cliente_venda', $status_pg_cliente_venda);
+        $stmt->bindParam(':id_venda', $id_venda);
+        $stmt->execute();
+
+    }
 }
 
 class Vendas_Pespectivas implements InterfaceVendasPespectivas
@@ -1142,6 +1184,81 @@ class Movimentacao implements InterfaceMovimentacao
         $r = [];
 
         return $r = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+}
+
+class StatusPagamento implements InterfaceStatusPagamento{
+
+    private $id_comprovante_pagamento;
+    private $conexao;
+    private $id_venda_comprovante_pagamento;
+    private $comprovante_pagamento;
+
+    public function __construct()
+    {
+        $this->conexao = new Conexao();
+    }
+
+    public function inserirComprovantePagamento($id_venda_comprovante_pagamento, $comprovante_pagamento){
+
+        $query = "INSERT INTO tb_comprovantes_pagamento (id_venda_comprovante_pagamento, comprovante_pagamento) VALUES (:id_venda_comprovante_pagamento, :comprovante_pagamento)";
+
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':id_venda_comprovante_pagamento', $id_venda_comprovante_pagamento);
+        $stmt->bindValue(':comprovante_pagamento', $comprovante_pagamento);
+        $stmt->execute();
+
+    }
+
+    public function consultaPagamento($id_comprovante_pagamento){
+
+        $query = "SELECT id_comprovante_pagamento FROM tb_vendas WHERE id_comprovante_pagamento = :id_comprovante_pagamento";
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':id_comprovante_pagamento', $id_comprovante_pagamento);
+        $stmt->execute();
+
+        $r = [];
+
+        return $r = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    }
+
+}
+
+class ConsultaPagamentoAdm implements InterfaceConsultaPagamentoAdm{
+
+    private $id_consulta_pagamento;
+    private $conexao;
+    private $id_usuario_consulta_pagamento;
+    private $id_entidade_consulta_pagamento;
+    private $codigo_consulta_pagamento;
+    private $status_consulta_pagamento;
+    private $data_baixa_consulta_pagamento;
+    private $usuario_adm_consulta_pagamento;
+
+    public function __construct()
+    {
+        $this->conexao = new Conexao();
+    }
+
+    public function inserirConsultaPagamentoAdm($id_usuario_consulta_pagamento, $id_entidade_consulta_pagamento, $codigo_consulta_pagamento, $status_consulta_pagamento){
+
+        $query = "INSERT INTO tb_consulta_pagamento_adm (id_usuario_consulta_pagamento, id_entidade_consulta_pagamento, codigo_consulta_pagamento, status_consulta_pagamento) VALUES (:id_usuario_consulta_pagamento, :id_entidade_consulta_pagamento, :codigo_consulta_pagamento, :status_consulta_pagamento)";
+
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':id_usuario_consulta_pagamento', $id_usuario_consulta_pagamento);
+        $stmt->bindValue(':id_entidade_consulta_pagamento', $id_entidade_consulta_pagamento);
+        $stmt->bindValue(':codigo_consulta_pagamento', $codigo_consulta_pagamento);
+        $stmt->bindValue(':status_consulta_pagamento', $status_consulta_pagamento);
+
+        $stmt->execute();
+
     }
 }
 
