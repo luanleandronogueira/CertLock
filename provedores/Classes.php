@@ -7,7 +7,6 @@ date_default_timezone_set('America/Sao_Paulo');
 
 class Entidades
 {
-
     private $id_entidade;
     private $conexao;
     private $cnpj_entidade;
@@ -1287,6 +1286,41 @@ class ConsultaPagamentoAdm implements InterfaceConsultaPagamentoAdm{
 
     }
 }
+
+class UsuarioMaster {
+
+    private int $id_usuario_master;
+    private $conexao;
+    private $nome_usuario_master;
+    private $email_usuario_master;
+    private $senha_usuario_master;
+    private $cpf_usuario_master;
+    private $status_usuario_master;
+
+    public function __construct()
+    {
+        $this->conexao = new Conexao();
+    }
+
+    public function chamaUsuarioMaster($email_usuario_master)
+    {
+        $query = 'SELECT * FROM tb_usuario_master WHERE email_usuario_master = :email_usuario_master';
+        $conexao =  new Conexao;
+
+        $conn = $conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':email_usuario_master', $email_usuario_master);
+
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
+
+}
+
+
 
 function verificaSessao()
 {
