@@ -48,13 +48,17 @@ $StatusPagamento = $Pagamentos->vendasStatus($_SESSION['id_usuario_adm_pj'], $_S
                                         <?php } ?>
                                     </td>
                                     <td>
+                                        <?php if(!empty($Status['comprovante_pagamento'])){?>
                                         <a href="<?= $Status['comprovante_pagamento'] ?>" target="_blank" rel="Comprovante de Pagamento">
                                             <span class="badge text-bg-secondary"><strong>Visualizar</strong></span>
                                         </a>
+                                        <?php } else { ?>
+                                            <span class="text-danger"><strong>Sem comprovante</strong></span>
+                                        <?php }?>
                                     </td>
                                     <td>
                                         <button type="button" class="badge text-bg-primary" data-bs-toggle="modal" data-bs-target="#<?= $Status['id_venda'] ?>exampleModal">
-                                            Atualizar Status
+                                            Atualizar Status/Comprovante
                                         </button>
 
                                         <!-- Modal -->
@@ -85,14 +89,14 @@ $StatusPagamento = $Pagamentos->vendasStatus($_SESSION['id_usuario_adm_pj'], $_S
                                                             </select></br>
 
                                                             <div class="form-check">
-                                                                <input onchange="liberaComprovante()" class="form-check-input" type="checkbox" value="" id="atualizaComprovante">
+                                                                <input onchange="liberaComprovante(<?= $Status['id_venda'] ?>)" class="form-check-input" type="checkbox" value="" id="atualizaComprovante_<?= $Status['id_venda'] ?>">
                                                                 <label class="form-check-label" for="flexCheckDefault">
                                                                     Deseja atualizar ou inserir um comprovante?
                                                                 </label>
                                                             </div></br>
 
                                                             <label for="">Inserir Comprovate: </label>
-                                                            <input type="file" disabled class="form-control" name="comprovante" id="campoComprovante">
+                                                            <input type="file" id="campoComprovante_<?= $Status['id_venda'] ?>" disabled class="form-control" name="comprovante">
 
                                                     </div>
                                                     <div class="modal-footer">

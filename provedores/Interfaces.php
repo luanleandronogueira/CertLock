@@ -50,7 +50,8 @@ interface InterfaceStatusPagamento {
 
     public function inserirComprovantePagamento($id_venda_comprovante_pagamento, $comprovante_pagamento);
     public function consultaPagamento($id_comprovante_pagamento);
-    public function atualizaPagamento($id_comprovante_pagamento);
+    public function atualizaPagamento($id_comprovante_pagamento, $nome_comprovante);
+    
 }
 
 interface InterfaceConsultaPagamentoAdm{

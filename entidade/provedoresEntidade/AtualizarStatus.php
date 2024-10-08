@@ -5,6 +5,14 @@ include "../../provedores/Classes.php";
 $Vendas = new Vendas;
 $StatusPagamento = new StatusPagamento;
 
+echo '<pre>';
+print_r($_POST);
+echo '</pre>';
+
+echo '<pre>';
+print_r($_FILES);
+echo '</pre>';
+
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!empty($_POST)) {
@@ -47,6 +55,9 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
 
                 if($consultaPagamento != 0){
 
+                    // $nome_comprovante = $caminho . "/" . $nome_arquivo;
+                    $StatusPagamento->atualizaPagamento($_POST['id_venda'], $localizarArquivo);
+                    print_r($consultaPagamento);
 
                 } else {
                     // insere na tabela de comprovantes    
@@ -72,10 +83,3 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
     die();
 }
 
-// echo '<pre>';
-// print_r($_POST);
-// echo '</pre>';
-
-// echo '<pre>';
-// print_r($_FILES);
-// echo '</pre>';

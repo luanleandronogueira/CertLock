@@ -917,8 +917,8 @@ class Vendas implements InterfaceVendas
                     c.comprovante_pagamento,
                     c.id_venda_comprovante_pagamento 
                   FROM tb_vendas v 
-                  JOIN tb_comprovantes_pagamento c ON v.id_venda = c.id_venda_comprovante_pagamento
-                  WHERE status_custo_venda != 'ABERTO' AND id_usuario_venda = :id_usuario_venda AND id_entidade_venda = :id_entidade_venda";
+                  LEFT JOIN tb_comprovantes_pagamento c ON v.id_venda = c.id_venda_comprovante_pagamento
+                  WHERE v.status_custo_venda != 'ABERTO' AND v.id_usuario_venda = :id_usuario_venda AND v.id_entidade_venda = :id_entidade_venda";
 
         $conn = $this->conexao->Conectar();
 
@@ -1228,7 +1228,7 @@ class StatusPagamento implements InterfaceStatusPagamento{
 
     public function consultaPagamento($id_comprovante_pagamento){
 
-        $query = "SELECT id_comprovante_pagamento FROM tb_vendas WHERE id_comprovante_pagamento = :id_comprovante_pagamento";
+        $query = "SELECT id_comprovante_pagamento FROM tb_comprovantes_pagamento WHERE id_venda_comprovante_pagamento = :id_comprovante_pagamento";
         $conn = $this->conexao->Conectar();
 
         $stmt = $conn->prepare($query);
@@ -1237,13 +1237,20 @@ class StatusPagamento implements InterfaceStatusPagamento{
 
         $r = [];
 
-        return $r = $stmt->rowCount(PDO::FETCH_ASSOC);
+        return $r = $stmt->rowCount();
 
     }
 
-    public function atualizaPagamento($id_comprovante_pagamento){
+    public function atualizaPagamento($id_comprovante_pagamento, $nome_comprovante){
 
         // continuar atualização do comprovante
+        $query = "UPDATE tb_comprovantes_pagamento SET comprovante_pagamento = :nome_comprovante WHERE id_venda_comprovante_pagamento = :id_comprovante_pagamento";
+        $conn = $this->conexao->Conectar();
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':id_comprovante_pagamento', $id_comprovante_pagamento);
+        $stmt->bindValue(':nome_comprovante', $nome_comprovante);
+        $stmt->execute();
     }
 
 }

@@ -103,14 +103,14 @@ $StatusPagamento = $Pagamentos->vendasStatusAberto($_SESSION['id_usuario_adm_pj'
                                                             </select></br>
 
                                                             <div class="form-check">
-                                                                <input onchange="liberaComprovante()" class="form-check-input" type="checkbox" value="" id="atualizaComprovante">
+                                                                <input onchange="liberaComprovante(<?= $Status['id_venda'] ?>)" class="form-check-input" type="checkbox" value="" id="atualizaComprovante_<?= $Status['id_venda'] ?>" >
                                                                 <label class="form-check-label" for="flexCheckDefault">
                                                                     Deseja atualizar ou inserir um comprovante?
                                                                 </label>
                                                             </div></br>
 
                                                             <label for="">Inserir Comprovate: </label>
-                                                            <input type="file" disabled class="form-control" name="comprovante" id="campoComprovante">
+                                                            <input type="file" disabled class="form-control" name="comprovante" id="campoComprovante_<?= $Status['id_venda'] ?>">
 
                                                     </div>
                                                     <div class="modal-footer">
