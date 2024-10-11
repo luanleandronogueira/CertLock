@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 26-Set-2024 às 20:04
+-- Tempo de geração: 11-Out-2024 às 19:51
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -96,8 +96,9 @@ CREATE TABLE `tb_comprovantes_pagamento` (
 --
 
 INSERT INTO `tb_comprovantes_pagamento` (`id_comprovante_pagamento`, `id_venda_comprovante_pagamento`, `comprovante_pagamento`) VALUES
-(1, 87, 'assets/comprovantes/8743212.pdf'),
-(2, 86, 'assets/comprovantes/862.jpeg');
+(8, 91, '../assets/comprovantes/91123.pdf'),
+(9, 90, '../assets/comprovantes/90123456.pdf'),
+(10, 92, '../assets/comprovantes/921.pdf');
 
 -- --------------------------------------------------------
 
@@ -120,7 +121,11 @@ CREATE TABLE `tb_consulta_pagamento_adm` (
 --
 
 INSERT INTO `tb_consulta_pagamento_adm` (`id_consulta_pagamento`, `id_usuario_consulta_pagamento`, `id_entidade_consulta_pagamento`, `codigo_consulta_pagamento`, `status_consulta_pagamento`, `data_baixa_consulta_pagamento`, `usuario_adm_consulta_pagamento`) VALUES
-(1, 10, 11, 'BXG-R95A-E44', 'ABERTO', '0000-00-00', 0);
+(1, 10, 11, 'BXG-R95A-E44', 'ABERTO', '0000-00-00', 0),
+(2, 10, 11, '123456', 'ABERTO', '0000-00-00', 0),
+(3, 10, 11, '123', 'ABERTO', '0000-00-00', 0),
+(4, 10, 11, '1', 'ABERTO', '0000-00-00', 0),
+(5, 10, 11, '2', 'ABERTO', '0000-00-00', 0);
 
 -- --------------------------------------------------------
 
@@ -241,7 +246,15 @@ INSERT INTO `tb_receitas_despesas` (`id_receita_despesa`, `id_usuario_receita_de
 (113, 10, 11, ' CERTIFICADO DIGITAL A1 PF  - LUAN LEANDRO NOGUEIRA 11769868488', 'R', 190, '2024-09-26', '2024-09'),
 (114, 10, 11, ' CERTIFICADO DIGITAL A1 PF  - LUAN LEANDRO NOGUEIRA 11769868488', 'D', 65, '2024-09-26', '2024-09'),
 (115, 10, 11, ' CERTIFICADO DIGITAL A1 PF  - LUAN LEANDRO NOGUEIRA 11769868488', 'R', 190, '2024-09-23', '2024-09'),
-(116, 10, 11, ' CERTIFICADO DIGITAL A1 PF  - LUAN LEANDRO NOGUEIRA 11769868488', 'D', 65, '2024-09-23', '2024-09');
+(116, 10, 11, ' CERTIFICADO DIGITAL A1 PF  - LUAN LEANDRO NOGUEIRA 11769868488', 'D', 65, '2024-09-23', '2024-09'),
+(117, 10, 11, ' CERTIFICADO DIGITAL A1 PJ  - Luan Leandro Nogueira', 'R', 190, '2024-10-08', '2024-10'),
+(118, 10, 11, ' CERTIFICADO DIGITAL A1 PJ  - Luan Leandro Nogueira', 'D', 65, '2024-10-08', '2024-10'),
+(119, 10, 11, ' CERTIFICADO DIGITAL A1 PJ  - Aylla De Kássia Alves Nogueira', 'R', 190, '2024-10-08', '2024-10'),
+(120, 10, 11, ' CERTIFICADO DIGITAL A1 PJ  - Aylla De Kássia Alves Nogueira', 'D', 65, '2024-10-08', '2024-10'),
+(121, 10, 11, ' CERTIFICADO DIGITAL A1 PJ  - Luan Leandro Nogueira', 'R', 190, '2024-10-08', '2024-10'),
+(122, 10, 11, ' CERTIFICADO DIGITAL A1 PJ  - Luan Leandro Nogueira', 'D', 65, '2024-10-08', '2024-10'),
+(123, 10, 11, ' CERTIFICADO DIGITAL A1 PJ  - Aylla De Kássia Alves Nogueira', 'R', 190, '2024-10-28', '2024-10'),
+(124, 10, 11, ' CERTIFICADO DIGITAL A1 PJ  - Aylla De Kássia Alves Nogueira', 'D', 65, '2024-10-28', '2024-10');
 
 -- --------------------------------------------------------
 
@@ -272,16 +285,17 @@ CREATE TABLE `tb_usuario_adm_pj` (
   `nome_usuario_adm_pj` varchar(150) NOT NULL,
   `senha_usuario_adm_pj` varchar(200) NOT NULL,
   `status_usuario_adm_pj` varchar(1) NOT NULL,
-  `id_entidade_usuario_adm_pj` int(11) NOT NULL
+  `id_entidade_usuario_adm_pj` int(11) NOT NULL,
+  `tipo_usuario_adm_pj` varchar(1) NOT NULL DEFAULT 'U'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `tb_usuario_adm_pj`
 --
 
-INSERT INTO `tb_usuario_adm_pj` (`id_usuario_adm_pj`, `cpf_usuario_adm_pj`, `email_usuario_adm_pj`, `nome_usuario_adm_pj`, `senha_usuario_adm_pj`, `status_usuario_adm_pj`, `id_entidade_usuario_adm_pj`) VALUES
-(10, '11769868488', 'luannogueira093@gmail.com', 'Luan Leandro Nogueira', '$2y$10$5o77H2F5p95KDHuvH.biH.WLwnSkgZvhvlG0bBS3r3sCGa/BTRIpW', 'A', 11),
-(11, '08635248422', 'akaf@gmail.com', 'Aylla Alves F. Nogueira', '$2y$10$njHC.MTi125ssxF8uzVWk.urEgHGHqe5m0sAEt/8jjYw3BfHpm35e', 'A', 12);
+INSERT INTO `tb_usuario_adm_pj` (`id_usuario_adm_pj`, `cpf_usuario_adm_pj`, `email_usuario_adm_pj`, `nome_usuario_adm_pj`, `senha_usuario_adm_pj`, `status_usuario_adm_pj`, `id_entidade_usuario_adm_pj`, `tipo_usuario_adm_pj`) VALUES
+(10, '11769868488', 'luannogueira093@gmail.com', 'Luan Leandro Nogueira', '$2y$10$5o77H2F5p95KDHuvH.biH.WLwnSkgZvhvlG0bBS3r3sCGa/BTRIpW', 'A', 11, 'U'),
+(11, '08635248422', 'akaf@gmail.com', 'Aylla Alves F. Nogueira', '$2y$10$njHC.MTi125ssxF8uzVWk.urEgHGHqe5m0sAEt/8jjYw3BfHpm35e', 'A', 12, 'U');
 
 -- --------------------------------------------------------
 
@@ -297,6 +311,30 @@ CREATE TABLE `tb_usuario_entidade_pj` (
   `status_usuario_entidade_pj` varchar(1) NOT NULL,
   `id_entidade_usuario_entidade_pj` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tb_usuario_master`
+--
+
+CREATE TABLE `tb_usuario_master` (
+  `id_usuario_master` int(11) NOT NULL,
+  `nome_usuario_master` varchar(200) NOT NULL,
+  `email_usuario_master` varchar(100) NOT NULL,
+  `senha_usuario_master` varchar(300) NOT NULL,
+  `cpf_usuario_master` varchar(11) NOT NULL,
+  `status_usuario_master` varchar(1) NOT NULL,
+  `tipo_usuario_master` varchar(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `tb_usuario_master`
+--
+
+INSERT INTO `tb_usuario_master` (`id_usuario_master`, `nome_usuario_master`, `email_usuario_master`, `senha_usuario_master`, `cpf_usuario_master`, `status_usuario_master`, `tipo_usuario_master`) VALUES
+(1, 'Luan Leandro Nogueira', 'luanleandro1934@hotmail.com', '$2y$10$5o77H2F5p95KDHuvH.biH.WLwnSkgZvhvlG0bBS3r3sCGa/BTRIpW', '11769868488', 'A', 'M'),
+(2, 'Aylla de Kássia', 'aylla@aylla.com', '$2y$10$5o77H2F5p95KDHuvH.biH.WLwnSkgZvhvlG0bBS3r3sCGa/BTRIpW', '08635248422', 'B', 'M');
 
 -- --------------------------------------------------------
 
@@ -328,8 +366,12 @@ INSERT INTO `tb_vendas` (`id_venda`, `id_usuario_venda`, `id_entidade_venda`, `i
 (85, 11, 12, 33, '2024-09-24', '1', 'GARANHUNS CALCADOS LTDA', ' CERTIFICADO DIGITAL A1 PJ ', 65, 0, 190, 'PAGO', 'ABERTO'),
 (86, 10, 11, 29, '2024-09-25', '2', 'GARANHUNS CALCADOS LTDA', ' CERTIFICADO DIGITAL A1 PJ ', 65, 0, 190, 'PAGO', 'PAGO'),
 (87, 10, 11, 29, '2024-09-26', '43212', 'Aylla De Kássia Alves Nogueira', ' CERTIFICADO DIGITAL A1 PJ ', 65, 0, 190, 'PAGO', 'PAGO'),
-(88, 10, 11, 32, '2024-09-26', '172942859', 'LUAN LEANDRO NOGUEIRA 11769868488', ' CERTIFICADO DIGITAL A1 PF ', 65, 0, 190, 'ABERTO', 'ABERTO'),
-(89, 10, 11, 32, '2024-09-23', 'BXG-R95A-E44', 'LUAN LEANDRO NOGUEIRA 11769868488', ' CERTIFICADO DIGITAL A1 PF ', 65, 0, 190, 'ABERTO', 'ABERTO');
+(88, 10, 11, 32, '2024-09-26', '172942859', 'LUAN LEANDRO NOGUEIRA 11769868488', ' CERTIFICADO DIGITAL A1 PF ', 65, 0, 190, 'PAGO', 'PAGO'),
+(89, 10, 11, 32, '2024-09-23', 'BXG-R95A-E44', 'LUAN LEANDRO NOGUEIRA 11769868488', ' CERTIFICADO DIGITAL A1 PF ', 65, 0, 190, 'PAGO', 'PAGO'),
+(90, 10, 11, 29, '2024-10-08', '123456', 'Luan Leandro Nogueira', ' CERTIFICADO DIGITAL A1 PJ ', 65, 0, 190, 'PAGO', 'PAGO'),
+(91, 10, 11, 29, '2024-10-08', '123', 'Aylla De Kássia Alves Nogueira', ' CERTIFICADO DIGITAL A1 PJ ', 65, 0, 190, 'PAGO', 'PAGO'),
+(92, 10, 11, 29, '2024-10-08', '1', 'Luan Leandro Nogueira', ' CERTIFICADO DIGITAL A1 PJ ', 65, 0, 190, 'PAGO', 'PAGO'),
+(93, 10, 11, 29, '2024-10-28', '2', 'Aylla De Kássia Alves Nogueira', ' CERTIFICADO DIGITAL A1 PJ ', 65, 0, 190, 'ABERTO', 'ABERTO');
 
 -- --------------------------------------------------------
 
@@ -361,7 +403,11 @@ INSERT INTO `tb_vendas_pespectivas` (`id_venda_pespectiva`, `id_usuario_venda_pe
 (81, 10, 11, 29, 'GARANHUNS CALCADOS LTDA', '878126151313', '2024-09-25', ' CERTIFICADO DIGITAL A1 PJ ', 190, '2025-09-25', 9, 2024),
 (82, 10, 11, 29, 'Aylla De Kássia Alves Nogueira', '87996437287', '2024-09-26', ' CERTIFICADO DIGITAL A1 PJ ', 190, '2025-09-26', 9, 2024),
 (83, 10, 11, 32, 'LUAN LEANDRO NOGUEIRA 11769868488', '87988457530', '2024-09-26', ' CERTIFICADO DIGITAL A1 PF ', 190, '2025-09-26', 9, 2024),
-(84, 10, 11, 32, 'LUAN LEANDRO NOGUEIRA 11769868488', '87988457530', '2024-09-23', ' CERTIFICADO DIGITAL A1 PF ', 190, '2025-09-23', 9, 2024);
+(84, 10, 11, 32, 'LUAN LEANDRO NOGUEIRA 11769868488', '87988457530', '2024-09-23', ' CERTIFICADO DIGITAL A1 PF ', 190, '2025-09-23', 9, 2024),
+(85, 10, 11, 29, 'Luan Leandro Nogueira', '87988457530', '2024-10-08', ' CERTIFICADO DIGITAL A1 PJ ', 190, '2025-10-08', 10, 2024),
+(86, 10, 11, 29, 'Aylla De Kássia Alves Nogueira', '87996437287', '2024-10-08', ' CERTIFICADO DIGITAL A1 PJ ', 190, '2025-10-08', 10, 2024),
+(87, 10, 11, 29, 'Luan Leandro Nogueira', '87988457530', '2024-10-08', ' CERTIFICADO DIGITAL A1 PJ ', 190, '2025-10-08', 10, 2024),
+(88, 10, 11, 29, 'Aylla De Kássia Alves Nogueira', '87996437287', '2024-10-28', ' CERTIFICADO DIGITAL A1 PJ ', 190, '2025-10-28', 10, 2024);
 
 --
 -- Índices para tabelas despejadas
@@ -443,6 +489,12 @@ ALTER TABLE `tb_usuario_entidade_pj`
   ADD PRIMARY KEY (`id_usuario_entidade_pj`);
 
 --
+-- Índices para tabela `tb_usuario_master`
+--
+ALTER TABLE `tb_usuario_master`
+  ADD PRIMARY KEY (`id_usuario_master`);
+
+--
 -- Índices para tabela `tb_vendas`
 --
 ALTER TABLE `tb_vendas`
@@ -474,13 +526,13 @@ ALTER TABLE `tb_clientes_pj`
 -- AUTO_INCREMENT de tabela `tb_comprovantes_pagamento`
 --
 ALTER TABLE `tb_comprovantes_pagamento`
-  MODIFY `id_comprovante_pagamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_comprovante_pagamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `tb_consulta_pagamento_adm`
 --
 ALTER TABLE `tb_consulta_pagamento_adm`
-  MODIFY `id_consulta_pagamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_consulta_pagamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `tb_entidades`
@@ -510,7 +562,7 @@ ALTER TABLE `tb_movimentacao`
 -- AUTO_INCREMENT de tabela `tb_receitas_despesas`
 --
 ALTER TABLE `tb_receitas_despesas`
-  MODIFY `id_receita_despesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `id_receita_despesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 
 --
 -- AUTO_INCREMENT de tabela `tb_usuario_adm_pf`
@@ -531,16 +583,22 @@ ALTER TABLE `tb_usuario_entidade_pj`
   MODIFY `id_usuario_entidade_pj` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de tabela `tb_usuario_master`
+--
+ALTER TABLE `tb_usuario_master`
+  MODIFY `id_usuario_master` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de tabela `tb_vendas`
 --
 ALTER TABLE `tb_vendas`
-  MODIFY `id_venda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id_venda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT de tabela `tb_vendas_pespectivas`
 --
 ALTER TABLE `tb_vendas_pespectivas`
-  MODIFY `id_venda_pespectiva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id_venda_pespectiva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- Restrições para despejos de tabelas

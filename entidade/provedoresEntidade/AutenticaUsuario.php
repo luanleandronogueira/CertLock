@@ -31,7 +31,7 @@ if (!empty($_POST)) {
                     header('Location: ../dashboard.php');
 
                     // echo '<pre>';
-                    //     print_r($usu);
+                    //     print_r($_SESSION);
                     // echo '</pre>';
 
                 } else {

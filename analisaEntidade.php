@@ -1,6 +1,7 @@
 <?php 
-
+session_start();
 include 'provedores/Classes.php';
+verificaSessaoMaster();
 include 'controladores/controller.php';
 
 $Entidades = new Entidades;

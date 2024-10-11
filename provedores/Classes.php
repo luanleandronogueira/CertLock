@@ -665,7 +665,8 @@ class ClientesPf extends Clientes
         return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function atualizaCliente($dados){
+    public function atualizaCliente($dados)
+    {
 
         $query = "UPDATE `tb_clientes_pf` SET `cpf_cliente_pf` = :cpf_cliente_pf, `nome_cliente_pf` = :nome_cliente_pf, `email_cliente_pf` = :email_cliente_pf, `contato_cliente_pf` = :contato_cliente_pf
         WHERE `id_cliente_pf` = :id_cliente_pf";
@@ -890,7 +891,8 @@ class Vendas implements InterfaceVendas
         return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function vendasStatusAberto($id_usuario_venda, $id_entidade_venda){
+    public function vendasStatusAberto($id_usuario_venda, $id_entidade_venda)
+    {
 
         $query = "SELECT id_venda, codigo_venda, status_custo_venda, status_pg_cliente_venda FROM tb_vendas WHERE status_custo_venda = 'ABERTO' AND id_usuario_venda = :id_usuario_venda AND id_entidade_venda = :id_entidade_venda";
         $conn = $this->conexao->Conectar();
@@ -903,10 +905,10 @@ class Vendas implements InterfaceVendas
         $r = [];
 
         return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     }
 
-    public function vendasStatus($id_usuario_venda, $id_entidade_venda){
+    public function vendasStatus($id_usuario_venda, $id_entidade_venda)
+    {
 
         $query = "SELECT 
                     v.id_venda, 
@@ -929,10 +931,10 @@ class Vendas implements InterfaceVendas
         $r = [];
 
         return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     }
 
-    public function atualizarStatusPagamentos($id_venda, $status_custo_venda, $status_pg_cliente_venda){
+    public function atualizarStatusPagamentos($id_venda, $status_custo_venda, $status_pg_cliente_venda)
+    {
 
         $query = "UPDATE tb_vendas SET status_custo_venda = :status_custo_venda, status_pg_cliente_venda = :status_pg_cliente_venda WHERE id_venda = :id_venda";
 
@@ -943,7 +945,6 @@ class Vendas implements InterfaceVendas
         $stmt->bindParam(':status_pg_cliente_venda', $status_pg_cliente_venda);
         $stmt->bindParam(':id_venda', $id_venda);
         $stmt->execute();
-
     }
 }
 
@@ -1093,32 +1094,32 @@ class ReceitasDespesas implements InterfaceReceitasDespesas
                 AND categoria_receita_despesa = :categoria_receita_despesa 
                 AND id_usuario_receita_despesa = :id_usuario_receita_despesa 
                 AND id_entidade_receita_despesa = :id_entidade_receita_despesa";
-        
+
             $conn = $this->conexao->Conectar();
-        
+
             $stmt = $conn->prepare($query);
             $stmt->bindValue(':dataMes', $dataMes);
             $stmt->bindValue(':categoria_receita_despesa', $categoria_receita_despesa);
             $stmt->bindValue(':id_usuario_receita_despesa', $id_usuario_receita_despesa);
             $stmt->bindValue(':id_entidade_receita_despesa', $id_entidade_receita_despesa);
-        
+
             $stmt->execute();
-        
+
             $r = [];
-        
+
             return $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             // Exibe a mensagem de erro
             echo "Erro: " . $e->getMessage();
         }
-        
     }
 
-    public function excluirReceitaDespesa($id_receita_despesa){
+    public function excluirReceitaDespesa($id_receita_despesa)
+    {
 
         $query = "DELETE FROM tb_receitas_despesas WHERE id_receita_despesa = :id_receita_despesa";
         $conn = $this->conexao->Conectar();
-        
+
         $stmt = $conn->prepare($query);
         $stmt->bindValue(':id_receita_despesa', $id_receita_despesa);
         $stmt->execute();
@@ -1200,7 +1201,8 @@ class Movimentacao implements InterfaceMovimentacao
     }
 }
 
-class StatusPagamento implements InterfaceStatusPagamento{
+class StatusPagamento implements InterfaceStatusPagamento
+{
 
     private $id_comprovante_pagamento;
     private $conexao;
@@ -1212,7 +1214,8 @@ class StatusPagamento implements InterfaceStatusPagamento{
         $this->conexao = new Conexao();
     }
 
-    public function inserirComprovantePagamento($id_venda_comprovante_pagamento, $comprovante_pagamento){
+    public function inserirComprovantePagamento($id_venda_comprovante_pagamento, $comprovante_pagamento)
+    {
 
         $query = "INSERT INTO tb_comprovantes_pagamento (id_venda_comprovante_pagamento, comprovante_pagamento) VALUES (:id_venda_comprovante_pagamento, :comprovante_pagamento)";
 
@@ -1222,10 +1225,10 @@ class StatusPagamento implements InterfaceStatusPagamento{
         $stmt->bindValue(':id_venda_comprovante_pagamento', $id_venda_comprovante_pagamento);
         $stmt->bindValue(':comprovante_pagamento', $comprovante_pagamento);
         $stmt->execute();
-
     }
 
-    public function consultaPagamento($id_comprovante_pagamento){
+    public function consultaPagamento($id_comprovante_pagamento)
+    {
 
         $query = "SELECT id_comprovante_pagamento FROM tb_comprovantes_pagamento WHERE id_venda_comprovante_pagamento = :id_comprovante_pagamento";
         $conn = $this->conexao->Conectar();
@@ -1237,10 +1240,10 @@ class StatusPagamento implements InterfaceStatusPagamento{
         $r = [];
 
         return $r = $stmt->rowCount();
-
     }
 
-    public function atualizaPagamento($id_comprovante_pagamento, $nome_comprovante){
+    public function atualizaPagamento($id_comprovante_pagamento, $nome_comprovante)
+    {
 
         // continuar atualização do comprovante
         $query = "UPDATE tb_comprovantes_pagamento SET comprovante_pagamento = :nome_comprovante WHERE id_venda_comprovante_pagamento = :id_comprovante_pagamento";
@@ -1251,10 +1254,10 @@ class StatusPagamento implements InterfaceStatusPagamento{
         $stmt->bindValue(':nome_comprovante', $nome_comprovante);
         $stmt->execute();
     }
-
 }
 
-class ConsultaPagamentoAdm implements InterfaceConsultaPagamentoAdm{
+class ConsultaPagamentoAdm implements InterfaceConsultaPagamentoAdm
+{
 
     private $id_consulta_pagamento;
     private $conexao;
@@ -1270,7 +1273,8 @@ class ConsultaPagamentoAdm implements InterfaceConsultaPagamentoAdm{
         $this->conexao = new Conexao();
     }
 
-    public function inserirConsultaPagamentoAdm($id_usuario_consulta_pagamento, $id_entidade_consulta_pagamento, $codigo_consulta_pagamento, $status_consulta_pagamento){
+    public function inserirConsultaPagamentoAdm($id_usuario_consulta_pagamento, $id_entidade_consulta_pagamento, $codigo_consulta_pagamento, $status_consulta_pagamento)
+    {
 
         $query = "INSERT INTO tb_consulta_pagamento_adm (id_usuario_consulta_pagamento, id_entidade_consulta_pagamento, codigo_consulta_pagamento, status_consulta_pagamento) VALUES (:id_usuario_consulta_pagamento, :id_entidade_consulta_pagamento, :codigo_consulta_pagamento, :status_consulta_pagamento)";
 
@@ -1283,11 +1287,11 @@ class ConsultaPagamentoAdm implements InterfaceConsultaPagamentoAdm{
         $stmt->bindValue(':status_consulta_pagamento', $status_consulta_pagamento);
 
         $stmt->execute();
-
     }
 }
 
-class UsuarioMaster {
+class UsuarioMaster
+{
 
     private int $id_usuario_master;
     private $conexao;
@@ -1315,20 +1319,52 @@ class UsuarioMaster {
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-
-
-
 }
-
 
 
 function verificaSessao()
 {
 
-    if (empty($_SESSION) || isset($_SESSION['status_usuario_adm_pj']) and $_SESSION['status_usuario_adm_pj'] != 'A') {
+    // if (empty($_SESSION) || isset($_SESSION['status_usuario_adm_pj']) and $_SESSION['status_usuario_adm_pj'] != 'A' and $_SESSION['tipo_usuario_adm_pj'] != 'U') {
 
+    //     session_destroy();
+    //     header("Location: ../login.php?erro=3?usuarioSemAcesso&&function=verificaSessao");
+    //     die();
+    // }
+    if (!empty($_SESSION)){
+
+        if (isset($_SESSION['tipo_usuario_adm_pj']) and $_SESSION['tipo_usuario_adm_pj'] === 'U') {
+            if (isset($_SESSION['status_usuario_adm_pj']) and $_SESSION['status_usuario_adm_pj'] != 'A') {
+                session_destroy();
+                header("Location: ./login.php?erro=1?usuarioSemAcesso&&function=verificaSessao");
+                die();
+            }
+        } else {
+            session_destroy();
+            header("Location: ./login.php?erro=2?usuarioSemAcesso&&function=verificaSessao");
+            die();
+        }
+    } else {
         session_destroy();
-        header("Location: ../login.php?erro=3?usuarioSemAcesso&&function=verificaSessao");
+        header("Location: ./login.php?erro=3?usuarioSemAcesso&&function=verificaSessao");
         die();
+    }
+}
+
+function verificaSessaoMaster()
+{
+    if (!empty($_SESSION)) {
+
+        if ($_SESSION['status_usuario_master'] === 'A') {
+            if (isset($_SESSION['tipo_usuario_master']) and $_SESSION['tipo_usuario_master'] != 'M') {
+                session_destroy();
+                header("Location: ./login.php?erro=3?usuarioSemAcesso&&function=verificaSessaoMaster");
+                die();
+            }
+        } else {
+            session_destroy();
+            header("Location: ./login.php?erro=3?usuarioSemAcesso&&function=verificaSessaoMaster");
+            die();
+        }
     }
 }
